@@ -68,17 +68,17 @@
         
         <div class="portfolio-grid">
           <div class="service-card reveal">
-            <i data-feather="monitor" style="color: var(--pc-blue-600); width: 40px; height: 40px; margin-bottom: var(--space-4);"></i>
+            <img src="https://images.unsplash.com/photo-1597733336794-12d05021d510?auto=format&fit=crop&q=80&w=800" alt="Assistenza PC" class="service-card-img">
             <h3 style="margin-bottom: var(--space-2);">Assistenza PC & Mac</h3>
             <p style="color: var(--text-muted); font-size: var(--text-sm);">Riparazioni hardware, ottimizzazione software, rimozione virus e recupero dati professionale.</p>
           </div>
           <div class="service-card reveal">
-            <i data-feather="smartphone" style="color: var(--pc-blue-600); width: 40px; height: 40px; margin-bottom: var(--space-4);"></i>
+            <img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&q=80&w=800" alt="Smartphone Repair" class="service-card-img">
             <h3 style="margin-bottom: var(--space-2);">Riparazione Smartphone</h3>
             <p style="color: var(--text-muted); font-size: var(--text-sm);">Sostituzione schermi, batterie e riparazioni su schede madri per iPhone, Samsung e altre marche.</p>
           </div>
           <div class="service-card reveal">
-            <i data-feather="tool" style="color: var(--pc-blue-600); width: 40px; height: 40px; margin-bottom: var(--space-4);"></i>
+            <img src="https://images.unsplash.com/photo-1605906302474-f60df655218e?auto=format&fit=crop&q=80&w=800" alt="Console Gaming" class="service-card-img">
             <h3 style="margin-bottom: var(--space-2);">Console & Gaming</h3>
             <p style="color: var(--text-muted); font-size: var(--text-sm);">Pulizia interna, pasta termica e riparazioni su PS5, Xbox e Nintendo Switch.</p>
           </div>
@@ -87,7 +87,7 @@
     </section>
 
     <!-- Dynamic Vetrina Section -->
-    <section id="vetrina" style="background: var(--bg-secondary);">
+    <section id="vetrina" style="background: var(--bg-secondary); display: none;">
       <div class="container">
         <h2 class="section-title reveal">Vetrina Hardware</h2>
         <p class="section-subtitle reveal">Scopri le ultime novità disponibili nel nostro laboratorio.</p>
@@ -121,7 +121,7 @@
             <a href="#contact" class="btn btn-primary">Richiedi un Preventivo</a>
           </div>
           <div class="reveal-in">
-            <img src="images/uploads/pizzeria-la-romana-marcianise-1-.jpg" alt="Web Development" style="width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-premium);">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Web Development Presence" style="width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-premium);">
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@
       <div class="container">
         <div class="hero-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
           <div class="reveal-in">
-            <img src="images/uploads/laboratorio.png" alt="PC Work Nicola Iovinella" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-premium);">
+            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" alt="Assistenza Informatica Professionale" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-premium);">
           </div>
           <div class="reveal">
             <h2 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-6);">Chi Siamo</h2>
@@ -198,18 +198,18 @@
     </section>
   </main>
 
-  <footer style="padding-block: var(--space-12); border-top: 1px solid var(--border-light);">
+  <footer class="footer">
     <div class="container">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-8);">
         <div class="logo flex items-center" style="gap: var(--space-2);">
           <img src="images/logo.jpg" alt="PC Work" style="height: 30px; border-radius: var(--radius-sm);">
-          <span style="font-weight: 800; color: var(--pc-blue-600);">PC WORK</span>
+          <h4 style="margin-bottom: 0;">PC WORK</h4>
         </div>
         <div style="display: flex; gap: var(--space-6);">
-          <a href="#" style="color: var(--text-muted);"><i data-feather="facebook"></i></a>
-          <a href="#" style="color: var(--text-muted);"><i data-feather="instagram"></i></a>
+          <a href="#"><i data-feather="facebook"></i></a>
+          <a href="#"><i data-feather="instagram"></i></a>
         </div>
-        <p style="color: var(--text-muted); font-size: var(--text-xs);">&copy; 2026 PC Work. P.IVA 03212340612</p>
+        <p style="font-size: var(--text-xs); margin-bottom: 0;">&copy; 2026 PC Work. P.IVA 03212340612</p>
       </div>
     </div>
   </footer>
@@ -297,13 +297,25 @@
 
     async function fetchContent() {
       const grid = document.getElementById('hardwareGrid');
+      const vetrinaSection = document.getElementById('vetrina');
       try {
         const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/prodotti?t=${Date.now()}`);
-        if (!res.ok) return;
+        if (!res.ok) {
+          vetrinaSection.style.display = 'none';
+          return;
+        }
         const files = await res.json();
+        const productFiles = files.filter(f => f.name.endsWith('.md') || f.name.endsWith('.json'));
+
+        if (productFiles.length === 0) {
+          vetrinaSection.style.display = 'none';
+          return;
+        }
+
+        vetrinaSection.style.display = 'block';
         grid.innerHTML = '';
 
-        for (const file of files.filter(f => f.name.endsWith('.md') || f.name.endsWith('.json'))) {
+        for (const file of productFiles) {
           const cRes = await fetch(file.download_url);
           const text = await cRes.text();
           let p;
