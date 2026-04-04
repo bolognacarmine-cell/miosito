@@ -873,8 +873,13 @@
           // Gestione immagini multiple per carosello prodotto
           let imageList = [];
           if (product.images && Array.isArray(product.images)) {
-            // Se è un array di stringhe (nuovo formato) o oggetti (vecchio formato)
-            imageList = product.images.map(img => typeof img === 'string' ? img : (img.image || img));
+            // Se è un array di stringhe, oggetti o persino sotto-array (per via di vecchie config)
+            imageList = product.images.map(img => {
+              if (typeof img === 'string') return img;
+              if (Array.isArray(img)) return img[0]; // Prende il primo elemento se è un array
+              if (img && typeof img === 'object') return img.image || Object.values(img)[0];
+              return img;
+            }).filter(img => typeof img === 'string'); // Solo stringhe valide
           } else if (product.image) {
             // Fallback per vecchi prodotti con singola immagine
             imageList = [product.image];
