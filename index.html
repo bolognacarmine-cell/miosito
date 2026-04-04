@@ -1021,25 +1021,30 @@
       const title = typeof slide === 'string' ? "PC Work Marcianise" : (slide.title || "PC Work Marcianise");
       const subtitle = typeof slide === 'string' ? "Assistenza e vendita informatica professionale dal 2005." : (slide.subtitle || "");
 
+      // Svuota e reinserisce con nuove animazioni per ogni slide
       heroContent.innerHTML = `
-        <div class="flex flex-col lg:flex-row items-center gap-10 animate-ui-reveal">
+        <div class="flex flex-col lg:flex-row items-center gap-10">
           <div class="lg:w-1/2 mb-6 lg:mb-0">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight animate-ui-reveal">
               ${title}
             </h1>
-            <p class="text-lg md:text-xl lg:text-2xl text-white mb-6 leading-relaxed">
+            <p class="text-lg md:text-xl lg:text-2xl text-white mb-6 leading-relaxed animate-ui-reveal reveal-delay-1">
               ${subtitle}
             </p>
-            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 animate-ui-reveal reveal-delay-2">
               <a href="tel:3335920941" class="btn-primary bg-white text-pc-blue-800 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold text-center transition shadow-lg transform hover:scale-105 flex items-center justify-center">
                 <i data-feather="phone" class="inline mr-2 w-5 h-5"></i>
                 Chiama ora
               </a>
+              <a href="#services" class="btn-outline border-2 border-white hover:bg-white hover:text-pc-blue-800 px-8 py-4 rounded-lg font-semibold text-center transition duration-300 transform hover:scale-105 flex items-center justify-center">
+                <i data-feather="info" class="inline mr-2 w-5 h-5"></i>
+                I nostri servizi
+              </a>
             </div>
           </div>
           <div class="lg:w-1/2 flex justify-center">
-            <div class="relative hero-device about-photo">
-              <img src="${imageUrl}" alt="${title}" class="rounded-2xl shadow-2xl max-w-full h-auto">
+            <div class="relative hero-device about-photo animate-ui-reveal reveal-delay-3">
+              <img src="${imageUrl}" alt="${title}" class="rounded-2xl shadow-2xl max-w-full h-auto transform transition duration-700 hover:rotate-1 hover:scale-105">
             </div>
           </div>
         </div>
