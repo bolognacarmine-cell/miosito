@@ -23,7 +23,12 @@ collections:
       - { label: "Categoria", name: "category", widget: "select", options: ["Hardware", "Software", "Accessori", "Altro"] }
       - { label: "Prezzo", name: "price", widget: "string" }
       - { label: "In Evidenza", name: "featured", widget: "boolean", default: false }
-      - { label: "Immagine", name: "image", widget: "image" }
+      - name: "images"
+        label: "Immagini (max 5)"
+        widget: "list"
+        min: 1
+        max: 5
+        field: { label: "Immagine", name: "image", widget: "image" }
       - { label: "Descrizione", name: "body", widget: "markdown" }
 
   - name: "servizi"

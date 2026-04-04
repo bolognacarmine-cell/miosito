@@ -825,7 +825,6 @@
       if (!hardwareGrid || !vetrinaSection) return;
 
       try {
-        // URL delle API di GitHub per leggere il contenuto della cartella
         const owner = 'bolognacarmine-cell';
         const repo = 'miosito';
         const path = 'content/prodotti';
@@ -862,41 +861,117 @@
               product = {};
               fm.split('\n').forEach(line => {
                 const [key, ...val] = line.split(':');
-                if (key && val) product[key.trim()] = val.join(':').trim().replace(/^"(.*)"$/, '$1');
+                if (key && val) {
+                  const k = key.trim();
+                  const v = val.join(':').trim().replace(/^"(.*)"$/, '$1');
+                  product[k] = v;
+                }
               });
               product.body = text.replace(/^---[\s\S]*?---/, '').trim();
             }
           }
           
           if (!product) continue;
+
+          // Gestione immagini multiple per carosello prodotto
+          let imageList = [];
+          if (product.images && Array.isArray(product.images)) {
+            imageList = product.images.map(img => typeof img === 'string' ? img : img.image);
+          } else if (product.image) {
+            imageList = [product.image];
+          } else {
+            imageList = ['https://via.placeholder.com/400x300?text=Immagine+non+disponibile'];
+          }
+          
+          const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
           
           const card = document.createElement('div');
-          card.className = 'bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer visible';
+          card.className = 'bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer visible flex flex-col h-full';
+          
+          let imageSection = '';
+          if (imageList.length > 1) {
+            imageSection = `
+              <div id="${carouselId}" class="relative h-56 overflow-hidden group">
+                <div class="carousel-inner flex transition-transform duration-500 h-full w-full">
+                  ${imageList.map(img => `
+                    <div class="min-w-full h-full flex-shrink-0">
+                      <img src="${img}" class="w-full h-full object-cover">
+                    </div>
+                  `).join('')}
+                </div>
+                <button onclick="event.preventDefault(); moveProductCarousel('${carouselId}', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                  <i data-feather="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button onclick="event.preventDefault(); moveProductCarousel('${carouselId}', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                  <i data-feather="chevron-right" class="w-5 h-5"></i>
+                </button>
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                  ${imageList.map((_, i) => `<div class="w-2 h-2 rounded-full bg-white/40 carousel-dot transition-all" data-index="${i}"></div>`).join('')}
+                </div>
+              </div>
+            `;
+          } else {
+            imageSection = `
+              <div class="h-56 overflow-hidden">
+                <img src="${imageList[0]}" alt="${product.title}" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+              </div>
+            `;
+          }
+
           card.innerHTML = `
-            <div class="h-48 overflow-hidden">
-              <img src="${product.image || 'https://via.placeholder.com/400x300?text=Immagine+non+disponibile'}" 
-                   alt="${product.title}" 
-                   class="w-full h-full object-cover transition duration-500 hover:scale-110">
-            </div>
-            <div class="p-5">
+            ${imageSection}
+            <div class="p-5 flex flex-col flex-grow">
               <div class="flex justify-between items-start mb-2">
                 <span class="text-xs font-semibold bg-pc-blue-100 text-pc-blue-700 px-2 py-1 rounded">${product.category || 'Hardware'}</span>
                 <span class="text-lg font-bold text-pc-blue-600">${product.price || 'P.R.'}</span>
               </div>
               <h3 class="text-xl font-bold text-gray-800 mb-2">${product.title}</h3>
-              <p class="text-gray-600 text-sm mb-4 line-clamp-2">${product.body || ''}</p>
+              <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">${product.body || ''}</p>
               <a href="https://wa.me/3335920941?text=Ciao,%20sono%20interessato%20a:%20${encodeURIComponent(product.title)}" 
-                 class="w-full block bg-pc-blue-600 text-white text-center py-2 rounded-lg font-semibold hover:bg-pc-blue-700 transition">
-                Richiedi Info
+                 class="w-full block bg-pc-blue-600 text-white text-center py-2.5 rounded-lg font-semibold hover:bg-pc-blue-700 transition shadow-md mt-auto">
+                <i data-feather="message-circle" class="inline w-4 h-4 mr-2"></i>Richiedi Info
               </a>
             </div>
           `;
           hardwareGrid.appendChild(card);
         }
+        feather.replace();
+        updateDots();
       } catch (error) {
         console.error('Errore nel caricamento dei contenuti:', error);
         vetrinaSection.style.display = 'none';
       }
+    }
+
+    // Funzione globale per muovere il carosello del prodotto
+    window.moveProductCarousel = function(id, direction) {
+      const container = document.getElementById(id);
+      const inner = container.querySelector('.carousel-inner');
+      const slides = inner.children;
+      const total = slides.length;
+      
+      let current = parseInt(container.dataset.currentIndex || 0);
+      current = (current + direction + total) % total;
+      
+      container.dataset.currentIndex = current;
+      inner.style.transform = `translateX(-${current * 100}%)`;
+      
+      // Update dots
+      const dots = container.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, i) => {
+        dot.style.background = i === current ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.4)';
+        dot.style.width = i === current ? '12px' : '8px';
+      });
+    };
+
+    function updateDots() {
+      document.querySelectorAll('[id^="carousel-"]').forEach(carousel => {
+        const dots = carousel.querySelectorAll('.carousel-dot');
+        if (dots.length > 0) {
+          dots[0].style.background = 'rgba(255, 255, 255, 1)';
+          dots[0].style.width = '12px';
+        }
+      });
     }
 
     // Funzione per recuperare il carosello da gallery.json
