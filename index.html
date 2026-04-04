@@ -8,7 +8,7 @@
   
   <!-- SEO & Social -->
   <meta property="og:title" content="PC Work - Innovazione Informatica">
-  <meta property="og:description" content="Assistenza e soluzioni tech d'avanguardia.">
+  <meta property="og:description" content="Assistenza e soluzioni tech d'avanguardia a Marcianise.">
   <meta property="og:image" content="images/uploads/laboratorio.png">
 
   <!-- Fonts & Icons -->
@@ -16,6 +16,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  
+  <!-- Netlify Identity -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   
   <!-- Core Styles -->
   <link rel="stylesheet" href="style.css?v=2026">
@@ -24,20 +28,22 @@
 
   <!-- Premium Navigation -->
   <header class="header" id="header">
-    <div class="container flex justify-between items-center" style="display: flex; justify-content: space-between; align-items: center;">
-      <a href="#" class="logo flex items-center" style="display: flex; align-items: center; gap: var(--space-2); text-decoration: none;">
+    <div class="container flex justify-between items-center">
+      <a href="#" class="logo flex items-center" style="text-decoration: none; gap: var(--space-2);">
         <img src="images/logo.jpg" alt="PC Work" style="height: 40px; border-radius: var(--radius-sm);">
         <span style="font-weight: 800; font-size: var(--text-lg); color: var(--pc-blue-600);">PC WORK</span>
       </a>
 
-      <nav class="nav-desktop" style="display: flex; gap: var(--space-8);">
-        <a href="#services" class="nav-link" style="text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Servizi</a>
-        <a href="#solutions" class="nav-link" style="text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Soluzioni</a>
-        <a href="#portfolio" class="nav-link" style="text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Portfolio</a>
-        <a href="#about" class="nav-link" style="text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Chi Siamo</a>
+      <nav class="nav-desktop">
+        <a href="#hero" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Home</a>
+        <a href="#services" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Servizi</a>
+        <a href="#vetrina" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Vetrina</a>
+        <a href="#web" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Siti Web</a>
+        <a href="#portfolio" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Portfolio</a>
+        <a href="#about" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Chi Siamo</a>
       </nav>
 
-      <div class="nav-actions" style="display: flex; gap: var(--space-4); align-items: center;">
+      <div class="nav-actions flex items-center" style="gap: var(--space-4);">
         <a href="#contact" class="btn btn-primary" style="padding: var(--space-2) var(--space-6); font-size: var(--text-sm);">Contattaci</a>
         <button id="theme-toggle" style="background: none; border: none; cursor: pointer; color: var(--text-main);">
           <i data-feather="moon"></i>
@@ -49,128 +55,175 @@
   <main>
     <!-- Immersive Hero Section -->
     <section id="hero" class="hero" style="min-height: 100vh; display: flex; align-items: center; padding-top: 100px; background: radial-gradient(circle at top right, var(--pc-blue-50), transparent);">
+      <div class="container" id="hero-dynamic-content">
+        <!-- Content will be injected by fetchCarousel() -->
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
       <div class="container">
-        <div class="hero-wrapper" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-12); align-items: center;">
-          <div class="hero-content">
-            <div class="badge" style="display: inline-block; padding: var(--space-1) var(--space-4); background: var(--pc-blue-100); color: var(--pc-blue-700); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 700; margin-bottom: var(--space-6); letter-spacing: 1px; text-transform: uppercase;">
-              Tech Excellence Since 2005
-            </div>
-            <h1 style="font-size: var(--text-hero); font-weight: 800; line-height: 1.1; margin-bottom: var(--space-6); background: linear-gradient(to bottom right, var(--text-main), var(--pc-blue-700)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-              Innovazione Informatica <br><span style="color: var(--pc-blue-600); -webkit-text-fill-color: var(--pc-blue-600);">Senza Compromessi.</span>
-            </h1>
-            <p style="font-size: var(--text-lg); color: var(--text-muted); margin-bottom: var(--space-8); max-width: 600px;">
-              Assistenza premium, hardware d'avanguardia e soluzioni digitali su misura. Progettiamo il futuro tecnologico della tua azienda a Marcianise.
-            </p>
-            <div class="hero-btns" style="display: flex; gap: var(--space-4);">
-              <a href="#contact" class="btn btn-primary">Inizia un Progetto <i data-feather="arrow-right"></i></a>
-              <a href="#services" class="btn btn-outline">I Nostri Servizi</a>
-            </div>
+        <h2 class="section-title reveal">I Nostri Servizi</h2>
+        <p class="section-subtitle reveal">Dal 2005 offriamo soluzioni tecniche professionali per privati e aziende.</p>
+        
+        <div class="portfolio-grid">
+          <div class="service-card reveal">
+            <i data-feather="monitor" style="color: var(--pc-blue-600); width: 40px; height: 40px; margin-bottom: var(--space-4);"></i>
+            <h3 style="margin-bottom: var(--space-2);">Assistenza PC & Mac</h3>
+            <p style="color: var(--text-muted); font-size: var(--text-sm);">Riparazioni hardware, ottimizzazione software, rimozione virus e recupero dati professionale.</p>
+          </div>
+          <div class="service-card reveal">
+            <i data-feather="smartphone" style="color: var(--pc-blue-600); width: 40px; height: 40px; margin-bottom: var(--space-4);"></i>
+            <h3 style="margin-bottom: var(--space-2);">Riparazione Smartphone</h3>
+            <p style="color: var(--text-muted); font-size: var(--text-sm);">Sostituzione schermi, batterie e riparazioni su schede madri per iPhone, Samsung e altre marche.</p>
+          </div>
+          <div class="service-card reveal">
+            <i data-feather="tool" style="color: var(--pc-blue-600); width: 40px; height: 40px; margin-bottom: var(--space-4);"></i>
+            <h3 style="margin-bottom: var(--space-2);">Console & Gaming</h3>
+            <p style="color: var(--text-muted); font-size: var(--text-sm);">Pulizia interna, pasta termica e riparazioni su PS5, Xbox e Nintendo Switch.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Vetrina Section -->
+    <section id="vetrina" style="background: var(--bg-secondary);">
+      <div class="container">
+        <h2 class="section-title reveal">Vetrina Hardware</h2>
+        <p class="section-subtitle reveal">Scopri le ultime novità disponibili nel nostro laboratorio.</p>
+        
+        <div id="hardwareGrid" class="portfolio-grid">
+          <!-- Injected by fetchContent() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Web Design Section -->
+    <section id="web">
+      <div class="container">
+        <div class="hero-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
+          <div class="reveal">
+            <div class="badge" style="background: var(--pc-blue-100); color: var(--pc-blue-700); padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 700; margin-bottom: 16px;">WEB SOLUTIONS</div>
+            <h2 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-6);">Creiamo la tua presenza digitale.</h2>
+            <p style="color: var(--text-muted); margin-bottom: var(--space-8);">Sviluppiamo siti web di ultima generazione, veloci, sicuri e ottimizzati per i motori di ricerca. Dall'e-commerce al sito vetrina.</p>
             
-            <div class="hero-stats" style="display: flex; gap: var(--space-12); margin-top: var(--space-12);">
-              <div>
-                <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--pc-blue-600);">20+</div>
-                <div style="font-size: var(--text-xs); color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Anni di Esperienza</div>
+            <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-8);">
+              <div class="flex items-center gap-2">
+                <i data-feather="check-circle" style="color: #10b981;"></i> <span>Design Responsive Premium</span>
               </div>
-              <div>
-                <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--pc-blue-600);">5k+</div>
-                <div style="font-size: var(--text-xs); color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Clienti Soddisfatti</div>
+              <div class="flex items-center gap-2">
+                <i data-feather="check-circle" style="color: #10b981;"></i> <span>SEO & Performance Optimization</span>
               </div>
-              <div>
-                <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--pc-blue-600);">99%</div>
-                <div style="font-size: var(--text-xs); color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Riparazioni Successo</div>
+              <div class="flex items-center gap-2">
+                <i data-feather="check-circle" style="color: #10b981;"></i> <span>Pannello di Controllo CMS</span>
               </div>
             </div>
+            <a href="#contact" class="btn btn-primary">Richiedi un Preventivo</a>
           </div>
-          
-          <div class="hero-visual reveal-in" style="position: relative;">
-            <div style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; background: var(--pc-blue-200); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; filter: blur(60px); opacity: 0.3; z-index: -1;"></div>
-            <img src="images/uploads/laboratorio.png" alt="PC Work Laboratorio" style="width: 100%; border-radius: var(--radius-xl); shadow: var(--shadow-premium); transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bento Grid Solutions -->
-    <section id="solutions" style="background: var(--bg-secondary);">
-      <div class="container">
-        <div class="section-header reveal" style="text-align: center; margin-bottom: var(--space-16);">
-          <h2 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-4);">Soluzioni Digitali Integrate</h2>
-          <p style="color: var(--text-muted); max-width: 700px; margin-inline: auto;">Dall'assistenza hardware allo sviluppo software, offriamo un ecosistema di servizi progettati per l'era moderna.</p>
-        </div>
-
-        <div class="bento-grid">
-          <div class="bento-item reveal" style="grid-column: span 2; grid-row: span 2; background: linear-gradient(to bottom right, var(--pc-blue-600), var(--pc-blue-800)); color: white;">
-            <i data-feather="cpu" style="width: 48px; height: 48px; margin-bottom: var(--space-6);"></i>
-            <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-4);">Assistenza Hardware</h3>
-            <p style="opacity: 0.9; margin-bottom: var(--space-6);">Riparazioni certificate su notebook, PC gaming, workstation e console. Diagnosi avanzata e componentistica originale.</p>
-            <img src="images/uploads/riparazione.png" alt="Hardware" style="position: absolute; bottom: -20px; right: -20px; width: 200px; opacity: 0.2; transform: rotate(-15deg);">
-          </div>
-          
-          <div class="bento-item reveal">
-            <i data-feather="code" style="color: var(--pc-blue-600); margin-bottom: var(--space-4);"></i>
-            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Web Design 2026</h3>
-            <p style="font-size: var(--text-sm); color: var(--text-muted);">Siti web ultra-veloci, interfacce premium e SEO d'avanguardia.</p>
-          </div>
-          
-          <div class="bento-item reveal">
-            <i data-feather="smartphone" style="color: var(--pc-blue-600); margin-bottom: var(--space-4);"></i>
-            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Mobile Repair</h3>
-            <p style="font-size: var(--text-sm); color: var(--text-muted);">Sostituzione display, batterie e riparazioni scheda madre smartphone.</p>
-          </div>
-          
-          <div class="bento-item reveal" style="grid-column: span 2;">
-            <i data-feather="shield" style="color: var(--pc-blue-600); margin-bottom: var(--space-4);"></i>
-            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Sicurezza & Reti</h3>
-            <p style="font-size: var(--text-sm); color: var(--text-muted);">Infrastrutture IT protette, sistemi di videosorveglianza e configurazione server aziendali.</p>
+          <div class="reveal-in">
+            <img src="images/uploads/pizzeria-la-romana-marcianise-1-.jpg" alt="Web Development" style="width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-premium);">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Stats Section -->
-    <section id="stats">
+    <!-- Portfolio Section -->
+    <section id="portfolio" style="background: var(--bg-secondary);">
       <div class="container">
-        <div class="cta-card reveal" style="background: var(--text-main); border-radius: var(--radius-xl); padding: var(--space-16); text-align: center; color: white; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, var(--pc-blue-600) 0%, transparent 70%); opacity: 0.1;"></div>
-          <h2 style="font-size: var(--text-3xl); margin-bottom: var(--space-6); position: relative; z-index: 1;">Pronto a trasformare la tua infrastruttura?</h2>
-          <p style="font-size: var(--text-lg); opacity: 0.8; margin-bottom: var(--space-12); max-width: 800px; margin-inline: auto; position: relative; z-index: 1;">Unisciti alle centinaia di aziende che hanno scelto PC Work per la loro evoluzione tecnologica. Consulenza gratuita e preventivi su misura.</p>
-          <a href="https://wa.me/3335920941" class="btn btn-primary" style="position: relative; z-index: 1; padding: var(--space-4) var(--space-12); font-size: var(--text-lg);">
-            <i data-feather="message-circle"></i> Parla con un esperto
-          </a>
+        <h2 class="section-title reveal">Il Nostro Portfolio</h2>
+        <p class="section-subtitle reveal">Alcuni dei progetti web realizzati per i nostri clienti.</p>
+        
+        <div id="portfolioGrid" class="portfolio-grid">
+          <!-- Injected by fetchPortfolio() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <div class="hero-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
+          <div class="reveal-in">
+            <img src="images/uploads/laboratorio.png" alt="PC Work Nicola Iovinella" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-premium);">
+          </div>
+          <div class="reveal">
+            <h2 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-6);">Chi Siamo</h2>
+            <p style="color: var(--text-muted); margin-bottom: var(--space-4);">PC Work nasce dalla passione di <strong>Nicola Iovinella</strong> per l'informatica e l'elettronica. Dal 2005 siamo un punto di riferimento a Marcianise per la riparazione e la vendita di prodotti tecnologici.</p>
+            <p style="color: var(--text-muted); margin-bottom: var(--space-8);">La nostra missione è fornire assistenza rapida e di qualità, garantendo sempre la massima trasparenza e professionalità.</p>
+            
+            <div style="background: var(--bg-secondary); padding: var(--space-6); border-radius: var(--radius-md); border-left: 4px solid var(--pc-blue-600);">
+              <p style="font-weight: 600;">Via G.B. Novelli, 107/109<br>Marcianise (CE)</p>
+              <p style="font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-2);">Vieni a trovarci nel nostro laboratorio.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Google Maps -->
+        <div class="reveal" style="margin-top: var(--space-12); height: 400px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.2325375545224!2d14.2965471!3d41.0311548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b077f687f877f%3A0x7f877f687f877f68!2sVia%20G.B.%20Novelli%2C%20107%2C%2081025%20Marcianise%20CE!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
+                  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: var(--text-main); color: white;">
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom: var(--space-12);">
+          <h2 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-4);">Contattaci</h2>
+          <p style="opacity: 0.7;">Richiedi un preventivo gratuito o assistenza immediata.</p>
+        </div>
+        
+        <div class="portfolio-grid">
+          <div class="reveal" style="background: rgba(255,255,255,0.05); padding: var(--space-8); border-radius: var(--radius-lg); text-align: center;">
+            <i data-feather="phone" style="width: 32px; height: 32px; color: var(--accent-orange); margin-bottom: var(--space-4);"></i>
+            <h3>Chiamaci</h3>
+            <p style="opacity: 0.7; margin-top: var(--space-2);">+39 333 592 0941</p>
+            <a href="tel:3335920941" class="btn btn-outline" style="margin-top: var(--space-4); border-color: rgba(255,255,255,0.2); color: white;">Chiama Ora</a>
+          </div>
+          <div class="reveal" style="background: rgba(255,255,255,0.05); padding: var(--space-8); border-radius: var(--radius-lg); text-align: center;">
+            <i data-feather="message-circle" style="width: 32px; height: 32px; color: #25d366; margin-bottom: var(--space-4);"></i>
+            <h3>WhatsApp</h3>
+            <p style="opacity: 0.7; margin-top: var(--space-2);">Assistenza rapida via chat</p>
+            <a href="https://wa.me/3335920941" class="btn btn-primary" style="margin-top: var(--space-4); background: #25d366; border: none;">Scrivici</a>
+          </div>
+          <div class="reveal" style="background: rgba(255,255,255,0.05); padding: var(--space-8); border-radius: var(--radius-lg); text-align: center;">
+            <i data-feather="mail" style="width: 32px; height: 32px; color: var(--pc-blue-500); margin-bottom: var(--space-4);"></i>
+            <h3>Email</h3>
+            <p style="opacity: 0.7; margin-top: var(--space-2);">info@pc-work.it</p>
+            <a href="mailto:info@pc-work.it" class="btn btn-outline" style="margin-top: var(--space-4); border-color: rgba(255,255,255,0.2); color: white;">Invia Email</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer style="padding-block: var(--space-16); border-top: 1px solid var(--border-light);">
+  <footer style="padding-block: var(--space-12); border-top: 1px solid var(--border-light);">
     <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-12);">
-        <div>
-          <h4 style="margin-bottom: var(--space-6); font-weight: 800; color: var(--pc-blue-600);">PC WORK</h4>
-          <p style="color: var(--text-muted); font-size: var(--text-sm);">Via G.B. Novelli, 107/109<br>Marcianise (CE)</p>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-8);">
+        <div class="logo flex items-center" style="gap: var(--space-2);">
+          <img src="images/logo.jpg" alt="PC Work" style="height: 30px; border-radius: var(--radius-sm);">
+          <span style="font-weight: 800; color: var(--pc-blue-600);">PC WORK</span>
         </div>
-        <div>
-          <h5 style="margin-bottom: var(--space-4);">Contatti</h5>
-          <p style="color: var(--text-muted); font-size: var(--text-sm);">info@pc-work.it<br>+39 333 592 0941</p>
+        <div style="display: flex; gap: var(--space-6);">
+          <a href="#" style="color: var(--text-muted);"><i data-feather="facebook"></i></a>
+          <a href="#" style="color: var(--text-muted);"><i data-feather="instagram"></i></a>
         </div>
-        <div>
-          <h5 style="margin-bottom: var(--space-4);">Seguici</h5>
-          <div style="display: flex; gap: var(--space-4);">
-            <a href="#" style="color: var(--text-muted);"><i data-feather="facebook"></i></a>
-            <a href="#" style="color: var(--text-muted);"><i data-feather="instagram"></i></a>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--border-light); text-align: center; color: var(--text-muted); font-size: var(--text-xs);">
-        &copy; 2026 PC Work di Nicola Iovinella. All rights reserved. | P.IVA 03212340612
+        <p style="color: var(--text-muted); font-size: var(--text-xs);">&copy; 2026 PC Work. P.IVA 03212340612</p>
       </div>
     </div>
   </footer>
 
+  <button id="back-to-top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--pc-blue-600); color: white; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); z-index: 999;">
+    <i data-feather="arrow-up"></i>
+  </button>
+
   <!-- Scripts -->
   <script>
-    // Feather Icons
     feather.replace();
+
+    const owner = 'bolognacarmine-cell';
+    const repo = 'miosito';
 
     // Theme Toggle
     const themeToggle = document.getElementById('theme-toggle');
@@ -182,15 +235,21 @@
       feather.replace();
     });
 
-    // Scroll Header
+    // Scroll Logic
     const header = document.getElementById('header');
+    const btt = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
+        btt.style.display = 'flex';
       } else {
         header.classList.remove('scrolled');
+        btt.style.display = 'none';
       }
+      reveal();
     });
+
+    btt.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
 
     // Reveal on Scroll
     const reveal = () => {
@@ -198,61 +257,144 @@
       reveals.forEach(el => {
         const windowHeight = window.innerHeight;
         const revealTop = el.getBoundingClientRect().top;
-        const revealPoint = 100;
-        if (revealTop < windowHeight - revealPoint) {
-          el.classList.add('visible');
-        }
+        if (revealTop < windowHeight - 100) el.classList.add('visible');
       });
     };
 
-    // Vetrina Dinamica (Integrazione CMS)
-    async function fetchVetrina() {
-      const grid = document.querySelector('.bento-grid');
+    // CMS Fetch Logic
+    async function fetchCarousel() {
+      const hero = document.getElementById('hero-dynamic-content');
       try {
-        const owner = 'bolognacarmine-cell';
-        const repo = 'miosito';
-        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/content/prodotti`;
+        const res = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/main/content/gallery.json?t=${Date.now()}`);
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        const slide = data.slides[0];
         
-        const res = await fetch(apiUrl);
+        hero.innerHTML = `
+          <div class="hero-wrapper" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-12); align-items: center;">
+            <div class="hero-content">
+              <div class="badge reveal visible" style="display: inline-block; padding: 4px 16px; background: var(--pc-blue-100); color: var(--pc-blue-700); border-radius: 99px; font-size: 12px; font-weight: 700; margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;">Tech Excellence Since 2005</div>
+              <h1 class="reveal visible" style="font-size: var(--text-hero); font-weight: 800; line-height: 1.1; margin-bottom: 24px; background: linear-gradient(to bottom right, var(--text-main), var(--pc-blue-700)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                ${slide.title}
+              </h1>
+              <p class="reveal visible" style="font-size: var(--text-lg); color: var(--text-muted); margin-bottom: 32px; max-width: 600px;">
+                ${slide.subtitle}
+              </p>
+              <div class="hero-btns reveal visible" style="display: flex; gap: 16px;">
+                <a href="#contact" class="btn btn-primary">Inizia un Progetto <i data-feather="arrow-right"></i></a>
+                <a href="#services" class="btn btn-outline">I Nostri Servizi</a>
+              </div>
+            </div>
+            <div class="hero-visual reveal-in visible" style="position: relative;">
+              <div style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; background: var(--pc-blue-200); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; filter: blur(60px); opacity: 0.3; z-index: -1;"></div>
+              <img src="${slide.image}" alt="PC Work" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-premium); transition: var(--transition-smooth);" class="hover-rotate">
+            </div>
+          </div>
+        `;
+        feather.replace();
+      } catch (e) { console.error("Carousel error", e); }
+    }
+
+    async function fetchContent() {
+      const grid = document.getElementById('hardwareGrid');
+      try {
+        const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/prodotti?t=${Date.now()}`);
         if (!res.ok) return;
         const files = await res.json();
-        
+        grid.innerHTML = '';
+
         for (const file of files.filter(f => f.name.endsWith('.md') || f.name.endsWith('.json'))) {
-          const contentRes = await fetch(file.download_url);
-          const text = await contentRes.text();
-          let data;
-          
-          if (file.name.endsWith('.json')) {
-            data = JSON.parse(text);
-          } else {
-            const match = text.match(/^---([\s\S]*?)---/);
-            if (match) data = jsyaml.load(match[1]);
+          const cRes = await fetch(file.download_url);
+          const text = await cRes.text();
+          let p;
+          if (file.name.endsWith('.json')) p = JSON.parse(text);
+          else {
+            const m = text.match(/^---([\s\S]*?)---/);
+            if (m) { p = jsyaml.load(m[1]); p.body = text.replace(/^---[\s\S]*?---/, '').trim(); }
           }
           
-          if (data && data.featured) {
-            const item = document.createElement('div');
-            item.className = 'bento-item reveal';
-            const img = Array.isArray(data.images) ? (typeof data.images[0] === 'string' ? data.images[0] : data.images[0].image) : data.image;
+          if (p) {
+            const imgs = Array.isArray(p.images) ? p.images.map(i => typeof i === 'string' ? i : i.image) : [p.image];
+            const cid = `carousel-${Math.random().toString(36).substr(2,9)}`;
             
-            item.innerHTML = `
-              <div style="position: relative; height: 100%;">
-                <img src="${img}" style="width: 100%; height: 150px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--space-4);">
-                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">${data.title}</h3>
-                <p style="font-size: var(--text-xs); color: var(--text-muted);">${data.price}</p>
+            const card = document.createElement('div');
+            card.className = 'service-card reveal';
+            card.innerHTML = `
+              <div id="${cid}" class="relative overflow-hidden" style="height: 200px; border-radius: var(--radius-md); margin-bottom: var(--space-4);">
+                <div class="carousel-inner h-full">
+                  ${imgs.map(img => `<img src="${img}" class="w-full h-full object-cover flex-shrink-0">`).join('')}
+                </div>
+                ${imgs.length > 1 ? `
+                  <button onclick="moveC('${cid}', -1)" class="product-carousel-btn" style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%;"><i data-feather="chevron-left"></i></button>
+                  <button onclick="moveC('${cid}', 1)" class="product-carousel-btn" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%;"><i data-feather="chevron-right"></i></button>
+                ` : ''}
+              </div>
+              <h3 style="font-size: var(--text-lg); margin-bottom: 8px;">${p.title}</h3>
+              <p style="font-size: var(--text-sm); color: var(--text-muted); margin-bottom: 16px; line-clamp: 2; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${p.body || ''}</p>
+              <div class="flex justify-between items-center">
+                <span style="font-weight: 800; color: var(--pc-blue-600);">${p.price || 'P.R.'}</span>
+                <a href="https://wa.me/3335920941?text=Interessato a: ${p.title}" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px;">Info</a>
               </div>
             `;
-            grid.appendChild(item);
+            grid.appendChild(card);
           }
         }
         feather.replace();
         reveal();
-      } catch (e) { console.error("CMS load error:", e); }
+      } catch (e) { console.error("Content error", e); }
     }
 
-    window.addEventListener('scroll', reveal);
+    window.moveC = (id, dir) => {
+      const c = document.getElementById(id);
+      const inner = c.querySelector('.carousel-inner');
+      let idx = parseInt(c.dataset.idx || 0);
+      idx = (idx + dir + inner.children.length) % inner.children.length;
+      c.dataset.idx = idx;
+      inner.style.transform = `translateX(-${idx * 100}%)`;
+    };
+
+    async function fetchPortfolio() {
+      const grid = document.getElementById('portfolioGrid');
+      try {
+        const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/portfolio?t=${Date.now()}`);
+        if (!res.ok) return;
+        const files = await res.json();
+        grid.innerHTML = '';
+
+        for (const file of files.filter(f => f.name.endsWith('.md') || f.name.endsWith('.json'))) {
+          const cRes = await fetch(file.download_url);
+          const text = await cRes.text();
+          let p;
+          if (file.name.endsWith('.json')) p = JSON.parse(text);
+          else {
+            const m = text.match(/^---([\s\S]*?)---/);
+            if (m) { p = jsyaml.load(m[1]); p.body = text.replace(/^---[\s\S]*?---/, '').trim(); }
+          }
+          
+          if (p) {
+            const card = document.createElement('div');
+            card.className = 'service-card reveal';
+            card.innerHTML = `
+              <div class="relative overflow-hidden" style="height: 250px; border-radius: var(--radius-md); margin-bottom: var(--space-4);">
+                <img src="${p.image}" class="w-full h-full object-cover transition-smooth hover-rotate">
+              </div>
+              <h3 style="font-size: var(--text-lg); margin-bottom: 8px;">${p.title}</h3>
+              <p style="font-size: var(--text-sm); color: var(--text-muted); margin-bottom: 16px;">${p.description || ''}</p>
+              <a href="${p.link || '#'}" target="_blank" class="btn btn-outline w-full" style="font-size: 12px;">Visita Sito</a>
+            `;
+            grid.appendChild(card);
+          }
+        }
+        feather.replace();
+        reveal();
+      } catch (e) { console.error("Portfolio error", e); }
+    }
+
     window.addEventListener('load', () => {
+      fetchCarousel();
+      fetchContent();
+      fetchPortfolio();
       reveal();
-      fetchVetrina();
     });
   </script>
 </body>
