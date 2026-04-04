@@ -30,7 +30,8 @@ collections:
         min: 1
         max: 5
         add_to_top: false
-        field: { label: "Immagine", name: "image", widget: "image", media_library: { config: { multiple: true } } }
+        fields:
+          - { label: "Immagine", name: "image", widget: "image" }
       - { label: "Descrizione", name: "body", widget: "markdown" }
 
   - name: "servizi"

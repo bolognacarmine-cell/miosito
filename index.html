@@ -43,6 +43,8 @@
     }
   </script>
   <script src="https://unpkg.com/feather-icons"></script>
+  <!-- Carica js-yaml per gestire il parsing dei contenuti -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   <!-- Script di Netlify Identity (per il login dalla home) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
@@ -857,17 +859,12 @@
             const text = await productRes.text();
             const fmMatch = text.match(/^---([\s\S]*?)---/);
             if (fmMatch) {
-              const fm = fmMatch[1];
-              product = {};
-              fm.split('\n').forEach(line => {
-                const [key, ...val] = line.split(':');
-                if (key && val) {
-                  const k = key.trim();
-                  const v = val.join(':').trim().replace(/^"(.*)"$/, '$1');
-                  product[k] = v;
-                }
-              });
-              product.body = text.replace(/^---[\s\S]*?---/, '').trim();
+              try {
+                product = jsyaml.load(fmMatch[1]);
+                product.body = text.replace(/^---[\s\S]*?---/, '').trim();
+              } catch (e) {
+                console.error("Errore parsing YAML:", e);
+              }
             }
           }
           
@@ -876,8 +873,10 @@
           // Gestione immagini multiple per carosello prodotto
           let imageList = [];
           if (product.images && Array.isArray(product.images)) {
-            imageList = product.images.map(img => typeof img === 'string' ? img : img.image);
+            // Se è un array di stringhe (nuovo formato) o oggetti (vecchio formato)
+            imageList = product.images.map(img => typeof img === 'string' ? img : (img.image || img));
           } else if (product.image) {
+            // Fallback per vecchi prodotti con singola immagine
             imageList = [product.image];
           } else {
             imageList = ['https://via.placeholder.com/400x300?text=Immagine+non+disponibile'];
