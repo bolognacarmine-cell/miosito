@@ -26,9 +26,11 @@ collections:
       - name: "images"
         label: "Immagini (max 5)"
         widget: "list"
+        summary: "{{fields.image}}"
         min: 1
         max: 5
-        field: { label: "Immagine", name: "image", widget: "image" }
+        add_to_top: false
+        field: { label: "Immagine", name: "image", widget: "image", media_library: { config: { multiple: true } } }
       - { label: "Descrizione", name: "body", widget: "markdown" }
 
   - name: "servizi"
