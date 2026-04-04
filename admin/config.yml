@@ -30,7 +30,7 @@ collections:
         max: 5
         add_to_top: false
         # Usando 'field' (semplice stringa) e abilitando multiple nella libreria media
-        field: { label: "Immagine", widget: "image", media_library: { config: { multiple: true } } }
+        field: { label: "Immagine", name: "image", widget: "image", media_library: { config: { multiple: true } } }
       - { label: "Descrizione", name: "body", widget: "markdown" }
 
   - name: "servizi"
