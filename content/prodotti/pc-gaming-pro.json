@@ -4,8 +4,8 @@
   "price": "€1.200",
   "featured": true,
   "images": [
-    { "image": "/images/laboratorio.png" },
-    { "image": "/images/riparazione.png" }
+    "/images/laboratorio.png",
+    "/images/riparazione.png"
   ],
   "body": "Un potente PC da gaming con processore di ultima generazione e scheda video dedicata. Ideale per ogni tipo di gioco."
 }
