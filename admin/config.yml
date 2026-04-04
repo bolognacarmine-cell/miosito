@@ -64,7 +64,7 @@ collections:
 
   - name: "gallery"
     label: "Caroselli Home"
-    delete: true
+    delete: false
     editor:
       preview: false
     files:
@@ -74,10 +74,12 @@ collections:
         fields:
           - name: "slides"
             label: "Immagini Carosello"
-            label_add: "Aggiungi immagini"
+            label_add: "Aggiungi slide"
             widget: "list"
-            # Usando 'field' invece di 'fields', la lista diventa di semplici stringhe (immagini)
-            field: { label: "Immagine", name: "image", widget: "image", media_library: { config: { multiple: true } } }
+            fields:
+              - { label: "Titolo", name: "title", widget: "string", default: "PC Work Marcianise" }
+              - { label: "Sottotitolo", name: "subtitle", widget: "string", default: "Assistenza e vendita informatica professionale dal 2005." }
+              - { label: "Immagine", name: "image", widget: "image" }
 
   - name: "settings"
     label: "Impostazioni Sito"
