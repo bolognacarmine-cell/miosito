@@ -1,249 +1,291 @@
-    feather.replace();
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PC Work | Eccellenza Informatica 2026</title>
+  <meta name="description" content="Assistenza informatica premium, vendita hardware e sviluppo web di ultima generazione a Marcianise.">
+  
+  <!-- SEO & Social -->
+  <meta property="og:title" content="PC Work - Innovazione Informatica">
+  <meta property="og:description" content="Assistenza e soluzioni tech d'avanguardia a Marcianise.">
+  <meta property="og:image" content="images/uploads/laboratorio.png">
 
-    const owner = 'bolognacarmine-cell';
-    const repo = 'miosito';
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  
+  <!-- Netlify Identity -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="style.css?v=2026">
+  
+  <style>
+    /* --- LUNA THEME EFFECT --- */
+    .moon-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--moon-glow);
+      pointer-events: none;
+      z-index: -1;
+    }
 
-    // Intersection Observer per Reveal on Scroll (Più affidabile per contenuti dinamici)
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
+    .moon-orb {
+      position: fixed;
+      top: 10%;
+      left: 10%;
+      width: 150px;
+      height: 150px;
+      background: var(--moon-color);
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.15;
+      box-shadow: 0 0 100px 20px rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+      z-index: -1;
+      animation: moonFloat 15s ease-in-out infinite alternate;
+    }
 
-    const initReveal = () => {
-      document.querySelectorAll('.reveal, .reveal-in').forEach(el => {
-        revealObserver.observe(el);
-      });
-    };
+    @keyframes moonFloat {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(20px, 40px); }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="moon-bg"></div>
+  <div class="moon-orb"></div>
 
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const target = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', target);
-      themeToggle.innerHTML = target === 'dark' ? '<i data-feather="sun"></i>' : '<i data-feather="moon"></i>';
-      feather.replace();
-    });
+  <!-- Premium Navigation -->
+  <header class="header" id="header">
+    <div class="container flex justify-between items-center">
+      <a href="#" class="logo flex items-center" style="text-decoration: none; gap: var(--space-2);">
+        <img src="images/logo.jpg" alt="PC Work" style="height: 40px; border-radius: var(--radius-sm);">
+        <span style="font-weight: 800; font-size: var(--text-lg); color: var(--pc-blue-600);">PC WORK</span>
+      </a>
 
-    // Scroll Logic
-    const header = document.getElementById('header');
-    const btt = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-        if(btt) btt.style.display = 'flex';
-      } else {
-        header.classList.remove('scrolled');
-        if(btt) btt.style.display = 'none';
-      }
-    });
+      <nav class="nav-desktop">
+        <a href="#hero" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Home</a>
+        <a href="#services" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Servizi</a>
+        <a href="#vetrina" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Vetrina</a>
+        <a href="#web" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Siti Web</a>
+        <a href="#portfolio" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Portfolio</a>
+        <a href="#about" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Chi Siamo</a>
+      </nav>
 
-    if(btt) btt.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+      <div class="nav-actions flex items-center" style="gap: var(--space-4);">
+        <a href="#contact" class="btn btn-primary" style="padding: var(--space-2) var(--space-6); font-size: var(--text-sm);">Contattaci</a>
+      </div>
+    </div>
+  </header>
 
-    // CMS Fetch Logic
-    async function fetchCarousel() {
-      const hero = document.getElementById('hero-dynamic-content');
-      try {
-        const res = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/main/content/gallery.json?t=${Date.now()}`);
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const slide = data.slides[0];
+  <main>
+    <!-- Immersive Hero Section -->
+    <section id="hero" class="hero" style="min-height: 100vh; display: flex; align-items: center; padding-top: 100px; background: radial-gradient(circle at top right, var(--pc-blue-50), transparent);">
+      <div class="container" id="hero-dynamic-content">
+        <!-- Content will be injected by script.js -->
+        <div class="text-center">
+          <h1 class="reveal" style="font-size: var(--text-hero); font-weight: 800; line-height: 1.1; margin-bottom: 24px;">Caricamento in corso...</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title reveal">I Nostri Servizi</h2>
+        <p class="section-subtitle reveal">Dal 2005 offriamo soluzioni tecniche professionali per privati e aziende.</p>
         
-        hero.innerHTML = `
-          <div class="hero-wrapper" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-12); align-items: center;">
-            <div class="hero-content">
-              <div class="badge reveal" style="display: inline-block; padding: 4px 16px; background: var(--pc-blue-100); color: var(--pc-blue-700); border-radius: 99px; font-size: 12px; font-weight: 700; margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;">Tech Excellence Since 2005</div>
-              <h1 class="reveal" style="font-size: var(--text-hero); font-weight: 800; line-height: 1.1; margin-bottom: 24px; background: linear-gradient(to bottom right, var(--text-main), var(--pc-blue-700)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                ${slide.title}
-              </h1>
-              <p class="reveal" style="font-size: var(--text-lg); color: var(--text-muted); margin-bottom: 32px; max-width: 600px;">
-                ${slide.subtitle}
-              </p>
-              <div class="hero-btns reveal" style="display: flex; gap: 16px;">
-                <a href="#contact" class="btn btn-primary">Inizia un Progetto <i data-feather="arrow-right"></i></a>
-                <a href="#services" class="btn btn-outline">I Nostri Servizi</a>
+        <div class="portfolio-grid">
+          <div class="service-card reveal">
+            <img src="images/riparazione.jpg" alt="Assistenza PC" class="service-card-img">
+            <h3 style="margin-bottom: var(--space-2);">Assistenza PC & Mac</h3>
+            <p style="color: var(--text-muted); font-size: var(--text-sm);">Riparazioni hardware, ottimizzazione software, rimozione virus e recupero dati professionale.</p>
+          </div>
+          <div class="service-card reveal">
+            <img src="images/riparazione.png" alt="Smartphone Repair" class="service-card-img">
+            <h3 style="margin-bottom: var(--space-2);">Riparazione Smartphone</h3>
+            <p style="color: var(--text-muted); font-size: var(--text-sm);">Sostituzione schermi, batterie e riparazioni su schede madri per iPhone, Samsung e altre marche.</p>
+          </div>
+          <div class="service-card reveal">
+            <img src="images/riparazioni.jpeg" alt="Console Gaming" class="service-card-img">
+            <h3 style="margin-bottom: var(--space-2);">Console & Gaming</h3>
+            <p style="color: var(--text-muted); font-size: var(--text-sm);">Pulizia interna, pasta termica e riparazioni su PS5, Xbox e Nintendo Switch.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Vetrina Section -->
+    <section id="vetrina" style="background: var(--bg-secondary); display: none;">
+      <div class="container">
+        <h2 class="section-title reveal">Vetrina Hardware</h2>
+        <p class="section-subtitle reveal">Scopri le ultime novità disponibili nel nostro laboratorio.</p>
+        
+        <div id="hardwareGrid" class="portfolio-grid">
+          <!-- Injected by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Web Design Section -->
+    <section id="web">
+      <div class="container">
+        <div class="hero-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
+          <div class="reveal">
+            <div class="badge" style="background: var(--pc-blue-100); color: var(--pc-blue-700); padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 700; margin-bottom: 16px;">WEB SOLUTIONS</div>
+            <h2 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-6);">Creiamo la tua presenza digitale.</h2>
+            <p style="color: var(--text-muted); margin-bottom: var(--space-8);">Sviluppiamo siti web di ultima generazione, veloci, sicuri e ottimizzati per i motori di ricerca. Dall'e-commerce al sito vetrina.</p>
+            
+            <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-8);">
+              <div class="flex items-center gap-2">
+                <i data-feather="check-circle" style="color: #10b981;"></i> <span>Design Responsive Premium</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-feather="check-circle" style="color: #10b981;"></i> <span>SEO & Performance Optimization</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-feather="check-circle" style="color: #10b981;"></i> <span>Pannello di Controllo CMS</span>
               </div>
             </div>
-            <div class="hero-visual reveal-in" style="position: relative;">
-              <div style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; background: var(--pc-blue-200); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; filter: blur(60px); opacity: 0.3; z-index: -1;"></div>
-              <img src="${slide.image}" alt="PC Work" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-premium); transition: var(--transition-smooth);" class="hover-rotate">
+            <a href="#contact" class="btn btn-primary">Richiedi un Preventivo</a>
+          </div>
+          <div class="reveal-in">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Web Development Presence" style="width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-premium);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" style="background: var(--bg-secondary);">
+      <div class="container">
+        <h2 class="section-title reveal">Il Nostro Portfolio</h2>
+        <p class="section-subtitle reveal">Alcuni dei progetti web realizzati per i nostri clienti.</p>
+        
+        <div id="portfolioGrid" class="portfolio-grid">
+          <!-- Injected by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <div class="hero-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
+          <div class="reveal-in">
+            <img src="images/laboratorio.png" alt="Assistenza Informatica Professionale" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-premium);">
+          </div>
+          <div class="reveal">
+            <h2 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-6);">Chi Siamo</h2>
+            <p style="color: var(--text-muted); margin-bottom: var(--space-4);">PC Work nasce dalla passione di <strong>Nicola Iovinella</strong> per l'informatica e l'elettronica. Dal 2005 siamo un punto di riferimento a Marcianise per la riparazione e la vendita di prodotti tecnologici.</p>
+            <p style="color: var(--text-muted); margin-bottom: var(--space-8);">La nostra missione è fornire assistenza rapida e di qualità, garantendo sempre la massima trasparenza e professionalità.</p>
+            
+            <div style="background: var(--bg-secondary); padding: var(--space-6); border-radius: var(--radius-md); border-left: 4px solid var(--pc-blue-600);">
+              <p style="font-weight: 600;">Via Toselli, 107/109<br>Marcianise (CE)</p>
+              <p style="font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-2);">Vieni a trovarci nel nostro laboratorio.</p>
             </div>
           </div>
-        `;
-        feather.replace();
-        document.querySelectorAll('#hero-dynamic-content .reveal, #hero-dynamic-content .reveal-in').forEach(el => revealObserver.observe(el));
-      } catch (e) { console.error("Carousel error", e); }
-    }
-
-    async function fetchContent() {
-      const grid = document.getElementById('hardwareGrid');
-      const vetrinaSection = document.getElementById('vetrina');
-      if (!grid || !vetrinaSection) return;
-
-      try {
-        const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/prodotti?t=${Date.now()}`);
-        if (!res.ok) throw new Error('Fetch failed');
+        </div>
         
-        const files = await res.json();
-        const productFiles = files.filter(f => f.name.endsWith('.md') || f.name.endsWith('.json'));
+        <!-- Google Maps -->
+        <div class="reveal" style="margin-top: var(--space-12); height: 400px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.2325375545224!2d14.2965471!3d41.0311548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b077f687f877f%3A0x7f877f687f877f68!2sVia%20Toselli%2C%20107%2C%2081025%20Marcianise%20CE!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
+                  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
 
-        if (productFiles.length === 0) {
-          vetrinaSection.style.display = 'none';
-          return;
-        }
-
-        vetrinaSection.style.display = 'block';
-        grid.innerHTML = '';
-
-        for (const file of productFiles) {
-          try {
-            const cRes = await fetch(file.download_url);
-            const text = await cRes.text();
-            let p;
-            
-            if (file.name.endsWith('.json')) {
-              p = JSON.parse(text);
-            } else {
-              const m = text.match(/^---([\s\S]*?)---/);
-              if (m) {
-                p = jsyaml.load(m[1]);
-                p.body = text.replace(/^---[\s\S]*?---/, '').trim();
-              }
-            }
-            
-            if (p) {
-              let imgs = [];
-              if (Array.isArray(p.images)) {
-                imgs = p.images.map(i => {
-                  if (Array.isArray(i)) return i[0];
-                  if (typeof i === 'object') return i.image || Object.values(i)[0];
-                  return i;
-                }).filter(i => typeof i === 'string');
-              } else if (p.image) {
-                imgs = [p.image];
-              }
-              
-              if (imgs.length === 0) imgs = ['https://via.placeholder.com/400x300?text=No+Image'];
-
-              const cid = `carousel-${Math.random().toString(36).substr(2,9)}`;
-              const card = document.createElement('div');
-              card.className = 'service-card reveal';
-              card.innerHTML = `
-                <div id="${cid}" class="relative overflow-hidden" style="height: 200px; border-radius: var(--radius-md); margin-bottom: var(--space-4);">
-                  <div class="carousel-inner h-full">
-                    ${imgs.map(img => `<img src="${img}" class="w-full h-full object-cover flex-shrink-0">`).join('')}
-                  </div>
-                  ${imgs.length > 1 ? `
-                    <button onclick="moveC('${cid}', -1)" class="product-carousel-btn" style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%;"><i data-feather="chevron-left"></i></button>
-                    <button onclick="moveC('${cid}', 1)" class="product-carousel-btn" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%;"><i data-feather="chevron-right"></i></button>
-                  ` : ''}
-                </div>
-                <h3 style="font-size: var(--text-lg); margin-bottom: 8px;">${p.title || 'Prodotto'}</h3>
-                <p style="font-size: var(--text-sm); color: var(--text-muted); margin-bottom: 16px; line-clamp: 2; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${p.body || ''}</p>
-                <div class="flex justify-between items-center">
-                  <span style="font-weight: 800; color: var(--pc-blue-600);">${p.price || 'P.R.'}</span>
-                  <a href="https://wa.me/3335920941?text=Interessato a: ${p.title}" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px;">Info</a>
-                </div>
-              `;
-              grid.appendChild(card);
-              revealObserver.observe(card);
-            }
-          } catch (err) { console.error("Error processing file:", file.name, err); }
-        }
-        feather.replace();
-      } catch (e) { 
-        console.error("Content fetch error:", e);
-        vetrinaSection.style.display = 'none';
-      }
-    }
-
-    async function fetchPortfolio() {
-      const grid = document.getElementById('portfolioGrid');
-      if (!grid) return;
-
-      const fallbackProjects = [
-        {
-          title: "Road Runner",
-          description: "Sito web professionale per Road Runner, specializzato in logistica e trasporti rapidi su moto.",
-          image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=800",
-          link: "https://www.road-runner.it"
-        },
-        {
-          title: "DP Cars",
-          description: "Piattaforma web elegante per DP Cars, concessionaria auto di lusso e servizi automotive.",
-          image: "https://raw.githubusercontent.com/bolognacarmine-cell/miosito/main/images/uploads/dpcars-custom.jpg",
-          link: "https://www.dpcars.it"
-        },
-        {
-          title: "Pizzeria La Romana",
-          description: "Sito web per Pizzeria La Romana a Marcianise, con menu digitale e prenotazioni online.",
-          image: "https://images.unsplash.com/photo-1574126154517-d1e0d89ef734?auto=format&fit=crop&q=80&w=800",
-          link: "https://www.pizzerialaromana.it"
-        }
-      ];
-
-      const renderProject = (p) => {
-        const card = document.createElement('div');
-        card.className = 'service-card reveal';
-        card.innerHTML = `
-          <div class="relative overflow-hidden" style="height: 250px; border-radius: var(--radius-md); margin-bottom: var(--space-4);">
-            <img src="${p.image}" class="w-full h-full object-cover transition-smooth hover-rotate" onerror="this.src='https://via.placeholder.com/400x300?text=Portfolio+Image'">
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="text-center reveal" style="margin-bottom: var(--space-12);">
+          <h2 class="section-title">Contattaci</h2>
+          <p class="section-subtitle" style="color: inherit; opacity: 0.8;">Richiedi un preventivo gratuito o assistenza immediata.</p>
+        </div>
+        
+        <div class="portfolio-grid">
+          <div class="reveal contact-card">
+            <i data-feather="phone" class="contact-icon" style="color: var(--accent-orange);"></i>
+            <h3>Chiamaci</h3>
+            <p>+39 333 592 0941</p>
+            <a href="tel:3335920941" class="btn btn-outline">Chiama Ora</a>
           </div>
-          <h3 style="font-size: var(--text-lg); margin-bottom: 8px;">${p.title || 'Progetto'}</h3>
-          <p style="font-size: var(--text-sm); color: var(--text-muted); margin-bottom: 16px;">${p.description || ''}</p>
-          <a href="${p.link || '#'}" target="_blank" class="btn btn-outline w-full" style="font-size: 12px;">Visita Sito</a>
-        `;
-        grid.appendChild(card);
-        revealObserver.observe(card);
-      };
+          <div class="reveal contact-card">
+            <i data-feather="message-circle" class="contact-icon" style="color: #25d366;"></i>
+            <h3>WhatsApp</h3>
+            <p>Assistenza rapida via chat</p>
+            <a href="https://wa.me/3335920941" class="btn btn-primary" style="background: #25d366; border: none;">Scrivici</a>
+          </div>
+          <div class="reveal contact-card">
+            <i data-feather="mail" class="contact-icon" style="color: var(--pc-blue-500);"></i>
+            <h3>Email</h3>
+            <p>info@pc-work.it</p>
+            <a href="mailto:info@pc-work.it" class="btn btn-outline">Invia Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-      try {
-        const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/portfolio?t=${Date.now()}`);
-        if (!res.ok) throw new Error('API failed');
-        
-        const files = await res.json();
-        const portfolioFiles = files.filter(f => f.name.endsWith('.md') || f.name.endsWith('.json'));
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo flex items-center" style="gap: var(--space-2); margin-bottom: var(--space-6);">
+            <img src="images/logo.jpg" alt="PC Work" style="height: 40px; border-radius: var(--radius-sm);">
+            <h4 style="margin-bottom: 0;">PC WORK</h4>
+          </div>
+          <p style="color: var(--footer-text); max-width: 300px;">
+            Eccellenza informatica a Marcianise dal 2005. Riparazioni professionali, vendita e soluzioni web d'avanguardia.
+          </p>
+        </div>
 
-        if (portfolioFiles.length === 0) throw new Error('No files');
+        <div class="footer-links">
+          <h5>Link Rapidi</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 12px;"><a href="#services" style="text-decoration: none; color: var(--footer-text);">Servizi</a></li>
+            <li style="margin-bottom: 12px;"><a href="#vetrina" style="text-decoration: none; color: var(--footer-text);">Vetrina</a></li>
+            <li style="margin-bottom: 12px;"><a href="#portfolio" style="text-decoration: none; color: var(--footer-text);">Portfolio</a></li>
+            <li style="margin-bottom: 12px;"><a href="#about" style="text-decoration: none; color: var(--footer-text);">Chi Siamo</a></li>
+          </ul>
+        </div>
 
-        grid.innerHTML = '';
-        for (const file of portfolioFiles) {
-          try {
-            const cRes = await fetch(file.download_url);
-            const text = await cRes.text();
-            let p;
-            if (file.name.endsWith('.json')) p = JSON.parse(text);
-            else {
-              const m = text.match(/^---([\s\S]*?)---/);
-              if (m) { p = jsyaml.load(m[1]); p.description = text.replace(/^---[\s\S]*?---/, '').trim(); }
-            }
-            if (p) renderProject(p);
-          } catch (e) { console.error("Portfolio item error", e); }
-        }
-      } catch (e) { 
-        console.warn("Using fallback portfolio");
-        grid.innerHTML = '';
-        fallbackProjects.forEach(renderProject);
-      }
-      feather.replace();
-    }
+        <div class="footer-contact">
+          <h5>Contatti</h5>
+          <p style="margin-bottom: 12px;">Via Toselli, 107/109<br>Marcianise (CE)</p>
+          <p style="margin-bottom: 12px;">Tel: +39 333 592 0941</p>
+          <p>Email: info@pc-work.it</p>
+        </div>
 
-    window.moveC = (id, dir) => {
-      const c = document.getElementById(id);
-      const inner = c.querySelector('.carousel-inner');
-      if(!c || !inner) return;
-      let idx = parseInt(c.dataset.idx || 0);
-      idx = (idx + dir + inner.children.length) % inner.children.length;
-      c.dataset.idx = idx;
-      inner.style.transform = `translateX(-${idx * 100}%)`;
-    };
+        <div class="footer-social">
+          <h5>Seguici</h5>
+          <div style="display: flex; gap: var(--space-4);">
+            <a href="#" style="background: rgba(255,255,255,0.05); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s;"><i data-feather="facebook"></i></a>
+            <a href="#" style="background: rgba(255,255,255,0.05); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s;"><i data-feather="instagram"></i></a>
+          </div>
+        </div>
+      </div>
 
-    window.addEventListener('load', () => {
-      fetchCarousel();
-      fetchContent();
-      fetchPortfolio();
-      initReveal();
-    });
+      <div class="footer-bottom">
+        <p style="font-size: var(--text-xs); margin-bottom: 0;">&copy; 2026 PC Work. Tutti i diritti riservati.</p>
+        <p style="font-size: var(--text-xs); margin-bottom: 0;">P.IVA 03212340612</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--pc-blue-600); color: white; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); z-index: 999;">
+    <i data-feather="arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="script.js?v=2026"></script>
+</body>
+</html>
