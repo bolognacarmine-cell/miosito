@@ -1,0 +1,27 @@
+{
+  "name": "mio-sito",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hero-pattern.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./style.css -o ./dist/style.css --minify",
+    "watch": "npx tailwindcss -i ./style.css -o ./dist/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolognacarmine-cell/miosito.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bolognacarmine-cell/miosito/issues"
+  },
+  "homepage": "https://github.com/bolognacarmine-cell/miosito#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.17"
+  }
+}
