@@ -8,15 +8,9 @@ class HeroPattern {
     const w = geom.width;
     const h = geom.height;
 
-<<<<<<< HEAD
     const primary = (props.get('--hero-primary') || '#7c2d12').toString().trim() || '#7c2d12';
     const secondary = (props.get('--hero-secondary') || '#ea580c').toString().trim() || '#ea580c';
     const accent = (props.get('--hero-accent') || '#fbbf24').toString().trim() || '#fbbf24';
-=======
-    const primary = (props.get('--hero-primary') || '#1e40af').toString().trim() || '#1e40af';
-    const secondary = (props.get('--hero-secondary') || '#3b82f6').toString().trim() || '#3b82f6';
-    const accent = (props.get('--hero-accent') || '#facc15').toString().trim() || '#facc15';
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
 
     // background gradient
     const gradient = ctx.createLinearGradient(0, 0, w, h);

@@ -1,0 +1,2 @@
+# Regola per Decap CMS: gestisce i percorsi interni senza bloccare i file reali
+/admin/ /admin/index.html 200

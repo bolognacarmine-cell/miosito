@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="it" class="dark">
 <head>
   <meta charset="UTF-8">
@@ -159,174 +158,11 @@
                 <i data-feather="award" class="w-8 h-8"></i>
               </div>
             </div>
-=======
-<html lang="it" data-theme="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>PC Work | Eccellenza Informatica 2026</title>
-  <meta name="description" content="Assistenza informatica premium, vendita hardware e sviluppo web di ultima generazione a Marcianise.">
-  
-  <!-- SEO & Social -->
-  <meta property="og:title" content="PC Work - Innovazione Informatica">
-  <meta property="og:description" content="Assistenza e soluzioni tech d'avanguardia a Marcianise.">
-  <meta property="og:image" content="images/uploads/laboratorio.png">
-
-  <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/feather-icons"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-  
-  <!-- Netlify Identity -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
-  <!-- Core Styles -->
-  <link rel="stylesheet" href="style.css?v=2026">
-  
-  <style>
-    /* --- LUNA THEME EFFECT --- */
-    .moon-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--moon-glow);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .moon-orb {
-      position: fixed;
-      top: 10%;
-      left: 10%;
-      width: 150px;
-      height: 150px;
-      background: var(--moon-color);
-      border-radius: 50%;
-      filter: blur(40px);
-      opacity: 0.15;
-      box-shadow: 0 0 100px 20px rgba(255, 255, 255, 0.2);
-      pointer-events: none;
-      z-index: -1;
-      animation: moonFloat 15s ease-in-out infinite alternate;
-    }
-
-    @keyframes moonFloat {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(20px, 40px); }
-    }
-  </style>
-</head>
-<body data-theme="dark">
-  <div class="moon-bg"></div>
-  <div class="moon-orb"></div>
-
-  <!-- Premium Navigation -->
-  <header class="header" id="header">
-    <div class="container flex justify-between items-center">
-      <a href="#" class="logo flex items-center" style="text-decoration: none; gap: var(--space-2);">
-        <img src="images/logo.jpg" alt="PC Work" style="height: 40px; border-radius: var(--radius-sm);">
-        <span style="font-weight: 800; font-size: var(--text-lg); color: var(--pc-blue-600);">PC WORK</span>
-      </a>
-
-      <nav class="nav-desktop">
-        <a href="#hero" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Home</a>
-        <a href="#services" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Servizi</a>
-        <a href="#vetrina" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Vetrina</a>
-        <a href="#web" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Siti Web</a>
-        <a href="#portfolio" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Portfolio</a>
-        <a href="#about" class="nav-link" style="margin-right: var(--space-6); text-decoration: none; color: var(--text-main); font-weight: 500; font-size: var(--text-sm);">Chi Siamo</a>
-      </nav>
-
-      <div class="nav-actions flex items-center" style="gap: var(--space-4);">
-        <a href="#contact" class="btn btn-primary" style="padding: var(--space-2) var(--space-6); font-size: var(--text-sm);">Contattaci</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- Immersive Hero Section -->
-    <section id="hero" class="hero" style="min-height: 100vh; display: flex; align-items: center; padding-top: 100px; background: radial-gradient(circle at top right, var(--pc-blue-50), transparent);">
-      <div class="container" id="hero-dynamic-content">
-        <!-- Content will be injected by script.js -->
-        <div class="text-center">
-          <h1 class="reveal" style="font-size: var(--text-hero); font-weight: 800; line-height: 1.1; margin-bottom: 24px;">Caricamento in corso...</h1>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-      <div class="container">
-        <h2 class="section-title reveal">I Nostri Servizi</h2>
-        <p class="section-subtitle reveal">Dal 2005 offriamo soluzioni tecniche professionali per privati e aziende.</p>
-        
-        <div class="portfolio-grid">
-          <div class="service-card reveal">
-            <img src="images/riparazione.jpg" alt="Assistenza PC" class="service-card-img">
-            <h3 style="margin-bottom: var(--space-2);">Assistenza PC & Mac</h3>
-            <p style="color: var(--text-muted); font-size: var(--text-sm);">Riparazioni hardware, ottimizzazione software, rimozione virus e recupero dati professionale.</p>
-          </div>
-          <div class="service-card reveal">
-            <img src="images/riparazione.png" alt="Smartphone Repair" class="service-card-img">
-            <h3 style="margin-bottom: var(--space-2);">Riparazione Smartphone</h3>
-            <p style="color: var(--text-muted); font-size: var(--text-sm);">Sostituzione schermi, batterie e riparazioni su schede madri per iPhone, Samsung e altre marche.</p>
-          </div>
-          <div class="service-card reveal">
-            <img src="images/riparazioni.jpeg" alt="Console Gaming" class="service-card-img">
-            <h3 style="margin-bottom: var(--space-2);">Console & Gaming</h3>
-            <p style="color: var(--text-muted); font-size: var(--text-sm);">Pulizia interna, pasta termica e riparazioni su PS5, Xbox e Nintendo Switch.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Dynamic Vetrina Section -->
-    <section id="vetrina" style="background: var(--bg-secondary); display: none;">
-      <div class="container">
-        <h2 class="section-title reveal">Vetrina Hardware</h2>
-        <p class="section-subtitle reveal">Scopri le ultime novità disponibili nel nostro laboratorio.</p>
-        
-        <div id="hardwareGrid" class="portfolio-grid">
-          <!-- Injected by script.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Web Design Section -->
-    <section id="web">
-      <div class="container">
-        <div class="hero-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
-          <div class="reveal">
-            <div class="badge" style="background: var(--pc-blue-100); color: var(--pc-blue-700); padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 700; margin-bottom: 16px;">WEB SOLUTIONS</div>
-            <h2 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-6);">Creiamo la tua presenza digitale.</h2>
-            <p style="color: var(--text-muted); margin-bottom: var(--space-8);">Sviluppiamo siti web di ultima generazione, veloci, sicuri e ottimizzati per i motori di ricerca. Dall'e-commerce al sito vetrina.</p>
-            
-            <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-8);">
-              <div class="flex items-center gap-2">
-                <i data-feather="check-circle" style="color: #10b981;"></i> <span>Design Responsive Premium</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <i data-feather="check-circle" style="color: #10b981;"></i> <span>SEO & Performance Optimization</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <i data-feather="check-circle" style="color: #10b981;"></i> <span>Pannello di Controllo CMS</span>
-              </div>
-            </div>
-            <a href="#contact" class="btn btn-primary">Richiedi un Preventivo</a>
-          </div>
-          <div class="reveal-in">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Web Development Presence" style="width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-premium);">
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
-          </div>
-        </div>
-      </div>
-    </section>
-
-<<<<<<< HEAD
   <!-- Services Section -->
 <section id="services" class="py-20 px-4 bg-white">
   <div class="container mx-auto">
@@ -658,21 +494,10 @@
               class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">Visita Sito →</a>
           </div>
 
-=======
-    <!-- Portfolio Section -->
-    <section id="portfolio" style="background: var(--bg-secondary);">
-      <div class="container">
-        <h2 class="section-title reveal">Il Nostro Portfolio</h2>
-        <p class="section-subtitle reveal">Alcuni dei progetti web realizzati per i nostri clienti.</p>
-        
-        <div id="portfolioGrid" class="portfolio-grid">
-          <!-- Injected by script.js -->
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
         </div>
       </div>
     </section>
 
-<<<<<<< HEAD
         <!-- Recensioni -->
         <div class="mt-16">
           <div class="text-center mb-10 fade-in-observer">
@@ -1297,118 +1122,5 @@
     }
   </script>
 
-=======
-    <!-- About Section -->
-    <section id="about">
-      <div class="container">
-        <div class="hero-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
-          <div class="reveal-in">
-            <img src="images/laboratorio.png" alt="Assistenza Informatica Professionale" style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-premium);">
-          </div>
-          <div class="reveal">
-            <h2 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-6);">Chi Siamo</h2>
-            <p style="color: var(--text-muted); margin-bottom: var(--space-4);">PC Work nasce dalla passione di <strong>Nicola Iovinella</strong> per l'informatica e l'elettronica. Dal 2005 siamo un punto di riferimento a Marcianise per la riparazione e la vendita di prodotti tecnologici.</p>
-            <p style="color: var(--text-muted); margin-bottom: var(--space-8);">La nostra missione è fornire assistenza rapida e di qualità, garantendo sempre la massima trasparenza e professionalità.</p>
-            
-            <div style="background: var(--bg-secondary); padding: var(--space-6); border-radius: var(--radius-md); border-left: 4px solid var(--pc-blue-600);">
-              <p style="font-weight: 600;">Via Toselli, 107/109<br>Marcianise (CE)</p>
-              <p style="font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-2);">Vieni a trovarci nel nostro laboratorio.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Google Maps -->
-        <div class="reveal" style="margin-top: var(--space-12); height: 400px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.2325375545224!2d14.2965471!3d41.0311548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b077f687f877f%3A0x7f877f687f877f68!2sVia%20Toselli%2C%20107%2C%2081025%20Marcianise%20CE!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
-                  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-      <div class="container">
-        <div class="text-center reveal" style="margin-bottom: var(--space-12);">
-          <h2 class="section-title">Contattaci</h2>
-          <p class="section-subtitle" style="color: inherit; opacity: 0.8;">Richiedi un preventivo gratuito o assistenza immediata.</p>
-        </div>
-        
-        <div class="portfolio-grid">
-          <div class="reveal contact-card">
-            <i data-feather="phone" class="contact-icon" style="color: var(--accent-orange);"></i>
-            <h3>Chiamaci</h3>
-            <p>+39 333 592 0941</p>
-            <a href="tel:3335920941" class="btn btn-outline">Chiama Ora</a>
-          </div>
-          <div class="reveal contact-card">
-            <i data-feather="message-circle" class="contact-icon" style="color: #25d366;"></i>
-            <h3>WhatsApp</h3>
-            <p>Assistenza rapida via chat</p>
-            <a href="https://wa.me/3335920941" class="btn btn-primary" style="background: #25d366; border: none;">Scrivici</a>
-          </div>
-          <div class="reveal contact-card">
-            <i data-feather="mail" class="contact-icon" style="color: var(--pc-blue-500);"></i>
-            <h3>Email</h3>
-            <p>info@pc-work.it</p>
-            <a href="mailto:info@pc-work.it" class="btn btn-outline">Invia Email</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="logo flex items-center" style="gap: var(--space-2); margin-bottom: var(--space-6);">
-            <img src="images/logo.jpg" alt="PC Work" style="height: 40px; border-radius: var(--radius-sm);">
-            <h4 style="margin-bottom: 0;">PC WORK</h4>
-          </div>
-          <p style="color: var(--footer-text); max-width: 300px;">
-            Eccellenza informatica a Marcianise dal 2005. Riparazioni professionali, vendita e soluzioni web d'avanguardia.
-          </p>
-        </div>
-
-        <div class="footer-links">
-          <h5>Link Rapidi</h5>
-          <ul style="list-style: none; padding: 0;">
-            <li style="margin-bottom: 12px;"><a href="#services" style="text-decoration: none; color: var(--footer-text);">Servizi</a></li>
-            <li style="margin-bottom: 12px;"><a href="#vetrina" style="text-decoration: none; color: var(--footer-text);">Vetrina</a></li>
-            <li style="margin-bottom: 12px;"><a href="#portfolio" style="text-decoration: none; color: var(--footer-text);">Portfolio</a></li>
-            <li style="margin-bottom: 12px;"><a href="#about" style="text-decoration: none; color: var(--footer-text);">Chi Siamo</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-contact">
-          <h5>Contatti</h5>
-          <p style="margin-bottom: 12px;">Via Toselli, 107/109<br>Marcianise (CE)</p>
-          <p style="margin-bottom: 12px;">Tel: +39 333 592 0941</p>
-          <p>Email: info@pc-work.it</p>
-        </div>
-
-        <div class="footer-social">
-          <h5>Seguici</h5>
-          <div style="display: flex; gap: var(--space-4);">
-            <a href="#" style="background: rgba(255,255,255,0.05); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s;"><i data-feather="facebook"></i></a>
-            <a href="#" style="background: rgba(255,255,255,0.05); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s;"><i data-feather="instagram"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p style="font-size: var(--text-xs); margin-bottom: 0;">&copy; 2026 PC Work. Tutti i diritti riservati.</p>
-        <p style="font-size: var(--text-xs); margin-bottom: 0;">P.IVA 03212340612</p>
-      </div>
-    </div>
-  </footer>
-
-  <button id="back-to-top" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--pc-blue-600); color: white; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); z-index: 999;">
-    <i data-feather="arrow-up"></i>
-  </button>
-
-  <!-- Scripts -->
-  <script src="script.js?v=2026"></script>
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
 </body>
 </html>
