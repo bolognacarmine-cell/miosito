@@ -1,0 +1,10 @@
+{
+  "title": "Smartphone Ricondizionato",
+  "category": "Hardware",
+  "price": "199",
+  "featured": true,
+  "description": "Smartphone di alta qualità, perfettamente funzionante e garantito 12 mesi.",
+  "images": [
+    "/images/uploads/smartphone.jpg"
+  ]
+}
