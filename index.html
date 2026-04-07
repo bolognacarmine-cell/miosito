@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="it" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Work - Assistenza e Vendita Informatica | Marcianise (CE)</title>
+  <meta name="description" content="PC Work di Iovinella Nicola - Assistenza tecnica, vendita PC, notebook, smartphone e impianti di rete a Marcianise (CE). Professionisti al tuo servizio.">
+   
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="images/logo.jpg">
+
+  <!-- Google Site Verification -->
+  <meta name="google-site-verification" content="dCVvgBbf4pKa8IoMw4YZByEcRL1xJErK7z1Xt14FvWc" />
+
+  <!-- Open Graph meta tags -->
+  <meta property="og:title" content="PC Work - Assistenza Informatica Marcianise" />
+  <meta property="og:description" content="Assistenza tecnica, vendita PC e sviluppo siti web a Marcianise. Dal 2005 al servizio di privati e aziende." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+
+  <!-- Font & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=1.2">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'pc-blue': {
+              50: '#fff7ed',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+              800: '#9a3412',
+              900: '#7c2d12',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <!-- Script di Netlify Identity (per il login dalla home) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    // Forza l'apertura del box se c'è un invito nell'URL
+    if (window.location.hash.includes("invite_token")) {
+      window.netlifyIdentity.on("init", () => {
+        window.netlifyIdentity.open("signup");
+      });
+    }
+  </script>
+  <!-- Houdini worklet per hero se supportato -->
+  <script>
+    if ('paintWorklet' in CSS) {
+      CSS.paintWorklet.addModule('hero-pattern.js').catch(() => {});
+    }
+  </script>
+
+</head>
+<body class="font-inter">
+
+  <!-- Navigation (invariato) -->
+  <nav class="nav-glass sticky top-0 z-50 border-b border-slate-200/70">
+    <div class="container mx-auto">
+      <div class="flex justify-between items-center py-3">
+        <div class="flex items-center space-x-3">
+          <img src="images/logo.jpg" alt="PC Work Logo" class="h-12 w-12 rounded-lg object-cover shadow-md">
+          <div>
+            <h1 class="text-xl font-bold bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent">PC Work</h1>
+            <p class="text-sm text-gray-600">Iovinella Nicola</p>
+          </div>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-gray-100 transition">
+          <i data-feather="menu" class="w-6 h-6"></i>
+        </button>
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <a href="#home" class="text-gray-300 hover:text-orange-500 transition duration-300">Home</a>
+          <a href="#services" class="text-gray-300 hover:text-orange-500 transition duration-300">Servizi</a>
+          <a href="#vetrina" class="text-gray-300 hover:text-orange-500 transition duration-300">Vetrina</a>
+          <a href="#web" class="text-gray-300 hover:text-orange-500 transition duration-300">Siti Web</a>
+          <a href="#portfolio" class="text-gray-300 hover:text-orange-500 transition duration-300">Portfolio</a>
+          <a href="#about" class="text-gray-300 hover:text-orange-500 transition duration-300">Chi Siamo</a>
+          <a href="#contact" class="text-gray-300 hover:text-orange-500 transition duration-300">Contatti</a>
+          <a href="tel:3335920941" class="btn-primary bg-pc-blue-600 text-white px-4 py-2 rounded-lg hover:bg-pc-blue-700 transition duration-300 shadow-md flex items-center">
+            <i data-feather="phone" class="inline w-4 h-4 mr-2"></i>
+            Chiama
+          </a>
+        </div>
+      </div>
+      <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200">
+        <div class="py-4 space-y-2">
+          <a href="#home" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Home</a>
+          <a href="#services" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Servizi</a>
+          <a href="#vetrina" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Vetrina</a>
+          <a href="#web" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Siti Web</a>
+          <a href="#portfolio" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Portfolio</a>
+          <a href="#about" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Chi Siamo</a>
+          <a href="#contact" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Contatti</a>
+          <a href="tel:3335920941" class="block mx-4 mt-4 bg-pc-blue-600 text-white px-4 py-2 rounded-lg text-center hover:bg-pc-blue-700 transition duration-300 btn-primary">
+            <i data-feather="phone" class="inline w-4 h-4 mr-2"></i>
+            Chiama ora
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="relative hero-houdini text-white py-20 px-4 overflow-hidden parallax">
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="container mx-auto relative z-10" id="hero-dynamic-content">
+        <div class="flex flex-col lg:flex-row items-center gap-10">
+          <div class="lg:w-1/2 mb-6 lg:mb-0">
+            <div class="badge reveal inline-block px-4 py-1.5 bg-orange-500/10 border border-orange-500/20 rounded-full text-xs font-bold mb-6 tracking-wider uppercase">
+              <span class="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">Tech Excellence Since 2005</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight animate-ui-reveal bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent">
+              La tua assistenza informatica a Marcianise
+            </h1>
+            
+            <!-- Descrizione Hero (Statica) -->
+            <p class="text-lg md:text-xl lg:text-2xl text-white mb-6 leading-relaxed animate-ui-reveal reveal-delay-1">
+              Professionisti qualificati per riparazioni, vendita e assistenza su PC, smartphone, console e reti. Dal 2005 al servizio di privati e aziende.
+            </p>
+
+            <p class="hero-subtitle mt-4 text-blue-100 text-base md:text-lg max-w-xl animate-ui-reveal reveal-delay-2">
+              Assistenza rapida, consulenza dedicata e soluzioni su misura per ogni esigenza, dal singolo PC
+              all’infrastruttura aziendale.
+            </p>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 animate-ui-reveal reveal-delay-3">
+              <a href="tel:3335920941" class="btn-primary bg-white text-pc-blue-800 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold text-center transition duration-300 shadow-lg transform hover:scale-105 flex items-center justify-center">
+                <i data-feather="phone" class="inline mr-2 w-5 h-5"></i>
+                Chiama ora
+              </a>
+              <a href="#services" class="btn-outline border-2 border-white hover:bg-white hover:text-pc-blue-800 px-8 py-4 rounded-lg font-semibold text-center transition duration-300 transform hover:scale-105 flex items-center justify-center">
+                <i data-feather="info" class="inline mr-2 w-5 h-5"></i>
+                I nostri servizi
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:w-1/2 flex justify-center">
+            <div class="relative hero-device about-photo">
+              <img src="images/laboratorio.png"
+                   alt="Laboratorio PC Work - Assistenza informatica"
+                   class="rounded-2xl shadow-2xl max-w-full h-auto hero-image-styled">
+              <div class="absolute -bottom-4 -right-4 bg-yellow-400 text-pc-blue-800 p-4 rounded-xl shadow-lg">
+                <i data-feather="award" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Services Section -->
+<section id="services" class="py-20 px-4 bg-white">
+  <div class="container mx-auto">
+    <div class="text-center mb-16 fade-in-observer">
+      <h2 class="text-4xl font-extrabold mb-4 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">I nostri servizi</h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Soluzioni complete per tutte le tue esigenze informatiche, dalla riparazione alla vendita, <strong class="text-orange-600">allo sviluppo di siti web professionali</strong>.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <!-- Service Card 1 -->
+      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
+        <div class="h-40 overflow-hidden">
+          <img src="images/riparazione.jpg" alt="Assistenza PC" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+        </div>
+        <div class="p-6">
+          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
+            <i data-feather="cpu" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-white">Assistenza PC & Notebook</h3>
+          <p class="text-gray-600 mb-4 text-sm">
+            Riparazioni hardware e software per fissi e portatili. Diagnosi rapida e preventivi trasparenti.
+          </p>
+          <a href="#contact" class="text-orange-500 font-medium hover:text-orange-400 transition duration-300 text-sm">
+            Scopri di più →
+          </a>
+        </div>
+      </div>
+
+      <!-- Service Card 2 -->
+      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=600" alt="Smartphone Repair" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+        </div>
+        <div class="p-6">
+          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
+            <i data-feather="smartphone" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-white">Smartphone & Tablet</h3>
+          <p class="text-gray-600 mb-4 text-sm">
+            Riparazione e assistenza su dispositivi mobili. Sostituzione schermi, batterie e componenti.
+          </p>
+          <a href="#contact" class="text-orange-500 font-medium hover:text-orange-400 transition duration-300 text-sm">
+            Scopri di più →
+          </a>
+        </div>
+      </div>
+
+      <!-- Service Card 3 -->
+      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=600" alt="Vendita Hardware" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+        </div>
+        <div class="p-6">
+          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
+            <i data-feather="hard-drive" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-white">Vendita Hardware</h3>
+          <p class="text-gray-600 mb-4 text-sm">
+            PC, notebook, console, periferiche e accessori nuovi e ricondizionati. Configurazioni su misura.
+          </p>
+          <a href="#contact" class="text-orange-500 font-medium hover:text-orange-400 transition duration-300 text-sm">
+            Scopri di più →
+          </a>
+        </div>
+      </div>
+
+      <!-- Service Card 4 -->
+      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=600" alt="Reti e Telefonia" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+        </div>
+        <div class="p-6">
+          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
+            <i data-feather="wifi" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-white">Reti & Telefonia</h3>
+          <p class="text-gray-600 mb-4 text-sm">
+            Impianti LAN, Wi-Fi e soluzioni telefoniche per aziende. Progettazione e installazione complete.
+          </p>
+          <a href="#contact" class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300 text-sm">
+            Scopri di più →
+          </a>
+        </div>
+      </div>
+
+      <!-- Service Card 5: Sviluppo Siti Web -->
+      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" alt="Sviluppo Web" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+        </div>
+        <div class="p-6">
+          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
+            <i data-feather="code" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-white">Sviluppo Siti Web</h3>
+          <p class="text-gray-600 mb-4 text-sm">Siti moderni responsive, da statici a fullstack con admin. SEO e hosting inclusi.</p>
+          <a href="#web" class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300 text-sm">
+            Scopri di più →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hardware Showcase Section (Dynamic) -->
+<section id="vetrina" class="py-20 px-4 bg-gray-50 border-t border-gray-200">
+  <div class="container mx-auto">
+    <div class="text-center mb-12 fade-in-observer">
+      <h2 class="text-4xl font-extrabold mb-4 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">Vetrina Hardware & Offerte</h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Le ultime disponibilità e promozioni speciali su hardware, accessori e servizi di assistenza.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="hardwareGrid">
+      <!-- Dynamic Content from Admin Panel -->
+    </div>
+  </div>
+</section>
+
+<!-- Web Development Section -->
+<section id="web" class="py-24 px-4 bg-slate-900 text-white relative overflow-hidden">
+  <!-- Sfondo decorativo -->
+  <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-pc-blue-600 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -right-24 w-80 h-80 bg-purple-600 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="container mx-auto relative z-10">
+    <div class="text-center mb-16 fade-in-observer">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent">Soluzioni Digitali & Web</h2>
+      <p class="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+        Trasformiamo la tua attività con siti web moderni, veloci e ottimizzati per convertire i visitatori in clienti.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      <!-- Promo 1: Siti Statici -->
+      <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-3xl p-8 md:p-10 hover:border-blue-500/50 transition-all duration-500 group shadow-2xl">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+          <div>
+            <span class="text-xs font-bold tracking-widest uppercase text-blue-400 mb-2 block">Entry Level</span>
+            <h3 class="text-3xl font-bold text-white">Siti Vetrina Statici</h3>
+          </div>
+          <div class="text-right">
+            <span class="text-sm text-slate-400 block">A partire da</span>
+            <span class="text-4xl font-black bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">€200</span>
+          </div>
+        </div>
+        
+        <p class="text-slate-400 mb-8 text-lg">Ideale per professionisti e piccole attività che desiderano una presenza online professionale e immediata.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+          <div class="flex items-center gap-3">
+            <div class="bg-blue-500/20 p-2 rounded-lg"><i data-feather="check" class="w-4 h-4 text-blue-400"></i></div>
+            <span class="text-slate-200">Design Responsive</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="bg-blue-500/20 p-2 rounded-lg"><i data-feather="check" class="w-4 h-4 text-blue-400"></i></div>
+            <span class="text-slate-200">SEO Base incluso</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="bg-blue-500/20 p-2 rounded-lg"><i data-feather="check" class="w-4 h-4 text-blue-400"></i></div>
+            <span class="text-slate-200">Contatti & Mappe</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="bg-blue-500/20 p-2 rounded-lg"><i data-feather="check" class="w-4 h-4 text-blue-400"></i></div>
+            <span class="text-slate-200">Hosting 3 mesi</span>
+          </div>
+        </div>
+
+        <a href="#contact" class="w-full py-4 bg-white text-slate-900 rounded-2xl font-bold text-center hover:bg-blue-50 transition-colors shadow-lg shadow-white/10 flex items-center justify-center gap-2">
+          Richiedi preventivo <i data-feather="arrow-right" class="w-5 h-5"></i>
+        </a>
+      </div>
+
+      <!-- Promo 2: Fullstack -->
+      <div class="bg-gradient-to-br from-pc-blue-600 to-blue-800 border border-blue-400/30 rounded-3xl p-8 md:p-10 hover:shadow-blue-500/20 transition-all duration-500 shadow-2xl relative overflow-hidden group">
+        <!-- Decorazione interna -->
+        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
+          <i data-feather="zap" class="w-32 h-32 text-white"></i>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 relative z-10">
+          <div>
+            <span class="text-xs font-bold tracking-widest uppercase text-blue-200 mb-2 block">Business Plus</span>
+            <h3 class="text-3xl font-bold text-white">Fullstack Dinamici</h3>
+          </div>
+          <div class="text-right">
+            <span class="text-sm text-blue-200 block">A partire da</span>
+            <span class="text-4xl font-black bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">€500</span>
+          </div>
+        </div>
+        
+        <p class="text-blue-100 mb-8 text-lg relative z-10">Siti complessi con pannello di controllo per gestire in autonomia prodotti, news e contenuti.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 relative z-10">
+          <div class="flex items-center gap-3">
+            <div class="bg-white/20 p-2 rounded-lg"><i data-feather="check" class="w-4 h-4 text-white"></i></div>
+            <span class="text-white">Admin Panel Custom</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="bg-white/20 p-2 rounded-lg"><i data-feather="check" class="w-4 h-4 text-white"></i></div>
+            <span class="text-white">Catalogo Dinamico</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="bg-white/20 p-2 rounded-lg"><i data-feather="check" class="w-4 h-4 text-white"></i></div>
+            <span class="text-white">Blog / News System</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="bg-white/20 p-2 rounded-lg"><i data-feather="check" class="w-4 h-4 text-white"></i></div>
+            <span class="text-white">Hosting 6 mesi</span>
+          </div>
+        </div>
+
+        <a href="#contact" class="w-full py-4 bg-blue-400 text-slate-900 rounded-2xl font-bold text-center hover:bg-white transition-colors shadow-lg flex items-center justify-center gap-2 relative z-10">
+          Configura ora <i data-feather="settings" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Features Web Section -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 fade-in-observer">
+      <div class="text-center p-4">
+        <div class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-700 group-hover:border-blue-500 transition-colors">
+          <i data-feather="zap" class="w-8 h-8 text-yellow-400"></i>
+        </div>
+        <h4 class="font-bold text-lg mb-1">Velocità</h4>
+        <p class="text-slate-400 text-sm">Caricamento ultra rapido</p>
+      </div>
+      <div class="text-center p-4">
+        <div class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-700">
+          <i data-feather="shield" class="w-8 h-8 text-blue-400"></i>
+        </div>
+        <h4 class="font-bold text-lg mb-1">Sicurezza</h4>
+        <p class="text-slate-400 text-sm">Certificati SSL inclusi</p>
+      </div>
+      <div class="text-center p-4">
+        <div class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-700">
+          <i data-feather="search" class="w-8 h-8 text-green-400"></i>
+        </div>
+        <h4 class="font-bold text-lg mb-1">SEO</h4>
+        <p class="text-slate-400 text-sm">Primi su Google</p>
+      </div>
+      <div class="text-center p-4">
+        <div class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-700">
+          <i data-feather="smartphone" class="w-8 h-8 text-purple-400"></i>
+        </div>
+        <h4 class="font-bold text-lg mb-1">Responsive</h4>
+        <p class="text-slate-400 text-sm">Perfetto ovunque</p>
+      </div>
+    </div>
+  </div>
+</section>
+        
+<!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-4 bg-white">
+      <div class="container mx-auto">
+        <div class="text-center mb-12 fade-in-observer">
+          <h2 class="text-4xl font-extrabold mb-4 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">Portfolio Progetti</h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">Progetti reali sviluppati per attività commerciali e professionisti.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Pizzeria La Romana (Sito Vetrina) -->
+          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg service-card fade-in-observer">
+            <a href="https://pizzerialaromana.netlify.app" target="_blank" rel="noopener" class="block" aria-label="Anteprima Pizzeria La Romana">
+              <div class="mb-4 overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600" alt="Anteprima Pizzeria La Romana" loading="lazy" class="w-full h-40 object-cover rounded-lg shadow-md" />
+              </div>
+            </a>
+
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold bg-orange-100 text-orange-700 px-2 py-1 rounded">Sito Vetrina</span>
+              <i data-feather="external-link" class="w-4 h-4 text-gray-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800">Pizzeria La Romana</h3>
+            <p class="text-gray-600 mt-2 mb-4">
+              Sito per pizzeria con presentazione, menu, contatti e indicazioni, pensato per facilitare prenotazioni.
+            </p>
+            <p class="text-sm text-gray-500 mb-4">HTML5 • CSS3 • JavaScript</p>
+            <a href="https://pizzerialaromana.netlify.app" target="_blank" rel="noopener"
+              class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">Visita Sito →</a>
+          </div>
+
+          <!-- DP Cars (Full Stack) -->
+          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg service-card fade-in-observer">
+            <a href="https://www.dpcars.it" target="_blank" rel="noopener" class="block" aria-label="Anteprima DP Cars">
+              <div class="mb-4 overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=600" alt="Anteprima DP Cars" loading="lazy" class="w-full h-40 object-cover rounded-lg shadow-md" />
+              </div>
+            </a>
+
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold bg-pc-blue-100 text-pc-blue-700 px-2 py-1 rounded">Full Stack App</span>
+              <i data-feather="external-link" class="w-4 h-4 text-gray-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800">DP Cars</h3>
+            <p class="text-gray-600 mt-2 mb-4">
+              Piattaforma gestionale per rivendita auto con catalogo dinamico, area admin per gestione veicoli e filtri avanzati.
+            </p>
+            <p class="text-sm text-gray-500 mb-4">Vue.js • Node.js • Database • Dashboard Admin</p>
+            <a href="https://www.dpcars.it" target="_blank" rel="noopener"
+              class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">Visita Sito →</a>
+          </div>
+
+          <!-- Road Runner (Full Stack) -->
+          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg service-card fade-in-observer">
+            <a href="https://www.road-runner.it" target="_blank" rel="noopener" class="block" aria-label="Anteprima Road Runner">
+              <div class="mb-4 overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=600" alt="Anteprima Road Runner" loading="lazy" class="w-full h-40 object-cover rounded-lg shadow-md" />
+              </div>
+            </a>
+
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded">Full Stack App</span>
+              <i data-feather="external-link" class="w-4 h-4 text-gray-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800">Road Runner</h3>
+            <p class="text-gray-600 mt-2 mb-4">
+              Piattaforma gestionale per la rivendita di moto nuove e usate con catalogo dinamico e dashboard per la gestione stock.
+            </p>
+            <p class="text-sm text-gray-500 mb-4">React • Node.js • Inventory Management • SEO Optimized</p>
+            <a href="https://www.road-runner.it" target="_blank" rel="noopener"
+              class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">Visita Sito →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+        <!-- Recensioni -->
+        <div class="mt-16">
+          <div class="text-center mb-10 fade-in-observer">
+            <h3 class="text-3xl font-extrabold bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block mb-3">Recensioni Clienti</h3>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Feedback reali da chi ha scelto i miei siti per far crescere la propria attività.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
+              <div class="flex items-center justify-between">
+                <h4 class="font-semibold text-gray-800">Roberto</h4>
+                <span class="text-yellow-500">★★★★★</span>
+              </div>
+              <p class="text-gray-600 mt-3">
+                "Sito bellissimo su mobile e curato nei dettagli. Ottima presentazione delle esperienze e contatti semplici da usare."
+              </p>
+              <a href="https://pizzerialaromana.netlify.app" target="_blank" rel="noopener"
+                class="inline-block mt-4 text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">
+                Vedi il sito →
+              </a>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
+              <div class="flex items-center justify-between">
+                <h4 class="font-semibold text-gray-800">Gaetano</h4>
+                <span class="text-yellow-500">★★★★★</span>
+              </div>
+              <p class="text-gray-600 mt-3">
+                "Sito veloce, chiaro e con CTA efficaci. Ho ricevuto più contatti già nelle prime settimane."
+              </p>
+              <a href="#contact" class="inline-block mt-4 text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">
+                Richiedi info →
+              </a>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
+              <div class="flex items-center justify-between">
+                <h4 class="font-semibold text-gray-800">Salvatore</h4>
+                <span class="text-yellow-500">★★★★★</span>
+              </div>
+              <p class="text-gray-600 mt-3">
+                "Grafica pulita e professionale. Perfetto su smartphone, tempi di consegna rapidi."
+              </p>
+              <a href="#contact" class="inline-block mt-4 text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">
+                Contattami →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="mt-16">
+          <div class="text-center mb-10 fade-in-observer">
+            <h3 class="text-3xl font-extrabold bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block mb-3">Competenze & Tecnologie</h3>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Le competenze tecniche e i tool che stiamo sviluppando per essere sempre aggiornati.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
+              <h4 class="text-xl font-semibold text-gray-800 mb-6">Competenze Tecniche</h4>
+
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>HTML & CSS</span><span>85%</span></div>
+                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:85%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>JavaScript</span><span>75%</span></div>
+                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:75%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>React</span><span>70%</span></div>
+                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:70%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>Responsive Design</span><span>80%</span></div>
+                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:80%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>Python</span><span>65%</span></div>
+                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:65%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>Git & GitHub</span><span>75%</span></div>
+                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:75%"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
+              <h4 class="text-xl font-semibold text-gray-800 mb-6">Tools & Altro</h4>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
+                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">VS Code</div>
+                  <div class="text-gray-500 text-xs">Editor principale</div>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
+                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Tailwind</div>
+                  <div class="text-gray-500 text-xs">Styling veloce</div>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
+                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Netlify</div>
+                  <div class="text-gray-500 text-xs">Hosting & CD</div>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
+                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Figma</div>
+                  <div class="text-gray-500 text-xs">UI/UX Design</div>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
+                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Node.js</div>
+                  <div class="text-gray-500 text-xs">Backend dev</div>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
+                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Postman</div>
+                  <div class="text-gray-500 text-xs">API Testing</div>
+                </div>
+              </div>
+
+              <div class="mt-8 p-6 bg-pc-blue-600 rounded-xl text-white">
+                <h5 class="font-bold mb-2">In fase di apprendimento:</h5>
+                <p class="text-blue-100 text-sm">
+                  Attualmente sto approfondendo <strong>Next.js</strong> e <strong>TypeScript</strong> per offrire soluzioni ancora più performanti e scalabili.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chi Siamo Section -->
+        <section id="about" class="py-20 px-4 bg-white">
+          <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+              <div class="lg:w-1/2 about-photo">
+                <div class="relative">
+                  <img src="images/riparazione.jpg" alt="Nicola Iovinella - PC Work" class="rounded-2xl shadow-2xl w-full">
+                  <div class="absolute -top-6 -left-6 w-24 h-24 bg-pc-blue-600/10 rounded-full -z-10"></div>
+                  <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-orange-400/10 rounded-full -z-10"></div>
+                </div>
+              </div>
+              <div class="lg:w-1/2 fade-in-observer">
+                <h2 class="text-4xl font-extrabold mb-6 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">Oltre 15 anni di esperienza</h2>
+                <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                  Mi chiamo <strong>Nicola Iovinella</strong> e dal 2005 gestisco PC Work a Marcianise. La mia missione è fornire assistenza tecnica di alta qualità, risolvendo problemi complessi con precisione e onestà.
+                </p>
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                  Che si tratti di un computer lento, di uno smartphone con lo schermo rotto o di una rete aziendale da progettare, metto la mia esperienza al tuo servizio per garantirti la migliore soluzione nel minor tempo possibile.
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-pc-blue-100 rounded-lg flex items-center justify-center">
+                      <i data-feather="check" class="text-pc-blue-600"></i>
+                    </div>
+                    <span class="font-semibold text-gray-700">Affidabilità</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-pc-blue-100 rounded-lg flex items-center justify-center">
+                      <i data-feather="clock" class="text-pc-blue-600"></i>
+                    </div>
+                    <span class="font-semibold text-gray-700">Rapidità</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-pc-blue-100 rounded-lg flex items-center justify-center">
+                      <i data-feather="shield" class="text-pc-blue-600"></i>
+                    </div>
+                    <span class="font-semibold text-gray-700">Garanzia</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-pc-blue-100 rounded-lg flex items-center justify-center">
+                      <i data-feather="smile" class="text-pc-blue-600"></i>
+                    </div>
+                    <span class="font-semibold text-gray-700">Cortesia</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 bg-gray-50">
+          <div class="container mx-auto">
+          <div class="text-center mb-16 fade-in-observer">
+            <h2 class="text-4xl font-extrabold mb-4 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">Contattaci</h2>
+            <p class="text-xl text-gray-600">Siamo qui per aiutarti. Scegli il modo che preferisci per comunicare con noi.</p>
+          </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <!-- Card Telefono -->
+              <div class="group relative bg-slate-900 rounded-2xl shadow-xl overflow-hidden contact-card fade-in-observer">
+                <div class="absolute inset-0 z-0">
+                  <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=600" alt="Telefono" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700">
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                </div>
+                <div class="relative z-10 p-8">
+                  <div class="w-14 h-14 bg-pc-blue-600/20 text-pc-blue-400 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-pc-blue-600 group-hover:text-white transition-all duration-300">
+                    <i data-feather="phone" class="w-7 h-7"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold mb-3 text-white">Telefono</h3>
+                  <p class="text-slate-300 mb-6 leading-relaxed font-medium">Chiama per assistenza immediata o informazioni sui nostri servizi.</p>
+                  <a href="tel:3335920941" class="inline-block text-2xl font-black text-pc-blue-400 hover:text-white transition transform hover:translate-x-1">333 592 0941</a>
+                </div>
+              </div>
+
+              <!-- Card WhatsApp -->
+              <div class="group relative bg-slate-900 rounded-2xl shadow-xl overflow-hidden contact-card fade-in-observer">
+                <div class="absolute inset-0 z-0">
+                  <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&q=80&w=600" alt="WhatsApp" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700">
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                </div>
+                <div class="relative z-10 p-8">
+                  <div class="w-14 h-14 bg-green-500/20 text-green-400 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
+                    <i data-feather="message-circle" class="w-7 h-7"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold mb-3 text-white">WhatsApp</h3>
+                  <p class="text-slate-300 mb-6 leading-relaxed font-medium">Scrivici un messaggio per un preventivo veloce o supporto tecnico.</p>
+                  <a href="https://wa.me/3335920941" class="w-full py-4 bg-green-500 text-white rounded-xl font-bold text-center hover:bg-green-600 transition shadow-lg flex items-center justify-center gap-2">
+                    <i data-feather="send" class="w-5 h-5"></i> Chatta ora
+                  </a>
+                </div>
+              </div>
+
+              <!-- Card Dove Siamo -->
+              <div class="group relative bg-slate-900 rounded-2xl shadow-xl overflow-hidden contact-card fade-in-observer">
+                <div class="absolute inset-0 z-0">
+                  <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=600" alt="Dove siamo" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700">
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                </div>
+                <div class="relative z-10 p-8">
+                  <div class="w-14 h-14 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+                    <i data-feather="map-pin" class="w-7 h-7"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold mb-3 text-white">Dove siamo</h3>
+                  <p class="text-slate-300 mb-6 leading-relaxed font-medium">Vieni a trovarci nel nostro laboratorio specializzato a Marcianise.</p>
+                  <div class="p-4 bg-slate-800/60 backdrop-blur-md rounded-xl border border-slate-700 group-hover:border-orange-500/50 transition-all">
+                    <p class="font-bold text-white text-lg">Via Toselli</p>
+                    <p class="text-slate-400">81025 Marcianise (CE)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Google Maps -->
+            <div class="mt-12 rounded-2xl overflow-hidden shadow-2xl h-96 fade-in-observer">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.2325375545224!2d14.2965471!3d41.0311548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b077f687f877f%3A0x7f877f687f877f68!2sVia%20Toselli%2C%2081025%20Marcianise%20CE!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
+                      width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </section>
+  </main>
+
+  <footer class="bg-slate-900 text-white py-12 px-4">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div class="col-span-1 md:col-span-2">
+        <div class="flex items-center space-x-3 mb-6">
+          <img src="images/logo.jpg" alt="PC Work Logo" class="h-10 w-10 rounded-lg">
+          <h2 class="text-2xl font-bold bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent">PC Work</h2>
+        </div>
+        <p class="text-gray-400 max-w-md leading-relaxed">
+          Esperti in assistenza informatica dal 2005. Risolviamo ogni tuo problema tecnologico con professionalità e passione.
+        </p>
+        <div class="flex space-x-4 mt-6">
+          <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-pc-blue-600 transition duration-300">
+            <i data-feather="facebook" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-pc-blue-600 transition duration-300">
+            <i data-feather="instagram" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-6">Link Rapidi</h3>
+        <ul class="space-y-4 text-gray-400">
+          <li><a href="#home" class="hover:text-pc-blue-500 transition duration-300">Home</a></li>
+          <li><a href="#services" class="hover:text-pc-blue-500 transition duration-300">Servizi</a></li>
+          <li><a href="#vetrina" class="hover:text-pc-blue-500 transition duration-300">Vetrina</a></li>
+          <li><a href="#about" class="hover:text-pc-blue-500 transition duration-300">Chi Siamo</a></li>
+          <li><a href="#contact" class="hover:text-pc-blue-500 transition duration-300">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-6">Contatti</h3>
+        <div class="space-y-4 text-gray-400">
+          <p class="flex items-center gap-3">
+            <i data-feather="phone" class="w-5 h-5 text-pc-blue-500"></i>
+            333 592 0941
+          </p>
+          <p class="flex items-center gap-3">
+            <i data-feather="mail" class="w-5 h-5 text-pc-blue-500"></i>
+            info@pc-work.it
+          </p>
+          <p class="flex items-center gap-3">
+            <i data-feather="map-pin" class="w-5 h-5 text-pc-blue-500"></i>
+            Marcianise (CE)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 pt-8 text-center text-gray-400">      
+      <p class="mb-3">© 2026 PC Work - Iovinella Nicola. Tutti i diritti riservati.</p>
+      <div class="flex flex-wrap justify-center gap-4 text-sm">
+        <a href="privacy-policy.html" class="hover:text-white transition duration-300">Privacy Policy</a>
+        <span class="text-gray-600">•</span>
+        <a href="cookie-policy.html" class="hover:text-white transition duration-300">Cookie Policy</a>
+        <span class="text-gray-600">•</span>
+        <a href="sitemap.html" class="hover:text-white transition duration-300">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/3335920941" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 z-50 transform hover:scale-110 no-print" aria-label="Contattaci su WhatsApp">
+    <i data-feather="message-circle" class="w-6 h-6"></i>
+  </a>
+
+  <!-- Back to top button -->
+  <button id="back-to-top" class="fixed bottom-6 left-6 bg-pc-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-pc-blue-700 transition duration-300 z-50 transform hover:scale-110 opacity-0 invisible no-print" aria-label="Torna su">  
+    <i data-feather="chevron-up" class="w-5 h-5"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Feather icons
+    feather.replace();
+
+    const owner = 'bolognacarmine-cell';
+    const repo = 'miosito';
+
+    // Intersection Observer per Reveal on Scroll (Più affidabile per contenuti dinamici e statici)
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          entry.target.classList.add('animate-fade-in'); // Assicura che l'animazione parta
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    const initObservers = () => {
+      // Osserva tutti gli elementi che devono apparire al caricamento o scroll
+      document.querySelectorAll('.fade-in-observer, .service-card, .contact-card, .reveal, .reveal-in').forEach(el => {
+        revealObserver.observe(el);
+      });
+    };
+
+    // Scroll Logic
+    const header = document.querySelector('nav');
+    const btt = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header?.classList.add('nav-scrolled');
+        if(btt) {
+          btt.classList.remove('opacity-0', 'invisible');
+          btt.classList.add('opacity-100', 'visible');
+        }
+      } else {
+        header?.classList.remove('nav-scrolled');
+        if(btt) {
+          btt.classList.add('opacity-0', 'invisible');
+          btt.classList.remove('opacity-100', 'visible');
+        }
+      }
+    });
+
+    if(btt) btt.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+
+    // Funzione globale per muovere il carosello del prodotto
+    window.moveProductCarousel = function(id, direction) {
+      const container = document.getElementById(id);
+      if (!container) return;
+      
+      const inner = container.querySelector('.carousel-inner');
+      const slides = inner.children;
+      const total = slides.length;
+      
+      let current = parseInt(container.dataset.currentIndex || 0);
+      current = (current + direction + total) % total;
+      
+      container.dataset.currentIndex = current;
+      inner.style.transform = `translateX(-${current * 100}%)`;
+      
+      // Update dots
+      const dots = container.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, i) => {
+        if (i === current) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    };
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // CMS Fetch Logic
+    let heroSlides = [];
+    let currentHeroSlide = 0;
+    let heroInterval;
+
+    const renderHeroSlide = (index) => {
+      const hero = document.getElementById('hero-dynamic-content');
+      if (!hero || heroSlides.length === 0) return;
+      
+      const slide = heroSlides[index];
+      
+      // Animazione di uscita
+      const content = hero.querySelector('.hero-wrapper');
+      if (content) {
+        content.classList.remove('animate-ui-reveal');
+        content.style.opacity = '0';
+      }
+
+      setTimeout(() => {
+        hero.innerHTML = `
+          <div class="hero-wrapper flex flex-col lg:flex-row gap-10 lg:gap-16 items-center animate-ui-reveal">
+            <div class="hero-content lg:w-3/5">
+              <div class="badge reveal inline-block px-4 py-1.5 bg-orange-500/10 border border-orange-500/20 rounded-full text-xs font-bold mb-6 tracking-wider uppercase">
+                <span class="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">Tech Excellence Since 2005</span>
+              </div>
+              <h1 class="reveal text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 bg-gradient-to-br from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent">
+                ${slide.title}
+              </h1>
+              <p class="reveal text-lg md:text-xl text-blue-50 mb-8 max-w-xl leading-relaxed">
+                ${slide.subtitle}
+              </p>
+              <div class="hero-btns reveal flex flex-wrap gap-4">
+                <a href="#contact" class="btn btn-primary bg-pc-blue-600 text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:bg-pc-blue-700 hover:-translate-y-1 transition duration-300 flex items-center">
+                  Contattaci <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                </a>
+                <a href="#services" class="btn btn-outline border-2 border-pc-blue-600 text-pc-blue-700 dark:text-blue-400 px-8 py-4 rounded-xl font-bold hover:bg-pc-blue-600 hover:text-white hover:-translate-y-1 transition duration-300">
+                  Scopri i Servizi
+                </a>
+              </div>
+              <!-- Hero Dots -->
+              <div class="mt-10 flex gap-2">
+                ${heroSlides.map((_, i) => `
+                  <div onclick="goToHeroSlide(${i})" class="w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${i === index ? 'bg-pc-blue-500 w-8' : 'bg-white/30 hover:bg-white/50'}"></div>
+                `).join('')}
+              </div>
+            </div>
+            <div class="hero-visual lg:w-2/5 reveal-in relative">
+              <div class="absolute -inset-4 bg-pc-blue-200/30 dark:bg-blue-500/10 rounded-[2rem] blur-2xl -z-10 animate-pulse"></div>
+              <img src="${slide.image}" alt="PC Work" class="w-full h-auto object-cover rounded-2xl shadow-2xl hover:scale-[1.02] transition duration-500 border border-white/20 hero-image-styled">
+            </div>
+          </div>
+        `;
+        feather.replace();
+        document.querySelectorAll('#hero-dynamic-content .reveal, #hero-dynamic-content .reveal-in').forEach(el => revealObserver.observe(el));
+      }, 300);
+    };
+
+    window.goToHeroSlide = (index) => {
+      currentHeroSlide = index;
+      renderHeroSlide(currentHeroSlide);
+      resetHeroInterval();
+    };
+
+    const resetHeroInterval = () => {
+      if (heroInterval) clearInterval(heroInterval);
+      if (heroSlides.length > 1) {
+        heroInterval = setInterval(() => {
+          currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+          renderHeroSlide(currentHeroSlide);
+        }, 6000);
+      }
+    };
+
+    async function fetchCarousel() {
+      const hero = document.getElementById('hero-dynamic-content');
+      if (!hero) return;
+      
+      try {
+        const res = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/main/content/gallery.json?t=${Date.now()}`);
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        heroSlides = data.slides || [];
+        
+        if (heroSlides.length > 0) {
+          renderHeroSlide(0);
+          resetHeroInterval();
+        }
+      } catch (e) { 
+        console.error("Carousel error", e);
+      }
+    }
+
+    async function fetchContent() {
+      const grid = document.getElementById('hardwareGrid');
+      const vetrinaSection = document.getElementById('vetrina');
+      if (!grid || !vetrinaSection) return;
+
+      try {
+        const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/prodotti?t=${Date.now()}`);
+        if (!res.ok) throw new Error('Fetch failed');
+        
+        const files = await res.json();
+        // Carica solo i file .json per coerenza con la configurazione del CMS
+        const productFiles = files.filter(f => f.name.endsWith('.json'));
+
+        if (productFiles.length === 0) {
+          vetrinaSection.style.display = 'none';
+          return;
+        }
+
+        vetrinaSection.style.display = 'block';
+        grid.innerHTML = '';
+
+        for (const file of productFiles) {
+          const productRes = await fetch(file.download_url + '?t=' + Date.now());
+          const product = await productRes.json();
+          
+          if (!product) continue;
+          
+          // Gestione immagini multiple per carosello prodotto
+          let imageList = [];
+          if (product.images && Array.isArray(product.images)) {
+            imageList = product.images.map(img => typeof img === 'string' ? img : img.image);
+          } else if (product.image) {
+            imageList = [product.image];
+          } else {
+            imageList = ['https://via.placeholder.com/400x300?text=Immagine+non+disponibile'];
+          }
+          
+          const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
+          const card = document.createElement('div');
+          card.className = 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 service-card fade-in-observer visible';
+          
+          let imageSection = '';
+          if (imageList.length > 1) {
+            imageSection = `
+              <div id="${carouselId}" class="relative h-48 md:h-64 lg:h-72 overflow-hidden group bg-slate-100">
+                <div class="carousel-inner">
+                  ${imageList.map(img => `
+                    <div class="carousel-item">
+                      <img src="${img}" loading="lazy" alt="${product.title}">
+                    </div>
+                  `).join('')}
+                </div>
+                <button onclick="event.preventDefault(); moveProductCarousel('${carouselId}', -1)" class="absolute left-3 top-1/2 -translate-y-1/2 product-carousel-btn z-10">
+                  <i data-feather="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button onclick="event.preventDefault(); moveProductCarousel('${carouselId}', 1)" class="absolute right-3 top-1/2 -translate-y-1/2 product-carousel-btn z-10">
+                  <i data-feather="chevron-right" class="w-5 h-5"></i>
+                </button>
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                  ${imageList.map((_, i) => `<div class="carousel-dot" data-index="${i}"></div>`).join('')}
+                </div>
+              </div>
+            `;
+          } else {
+            imageSection = `
+              <div class="h-48 md:h-64 lg:h-72 overflow-hidden relative group bg-slate-100">
+                <img src="${imageList[0]}" 
+                     loading="lazy"
+                     alt="${product.title}" 
+                     class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition duration-500"></div>
+              </div>
+            `;
+          }
+
+          card.innerHTML = `
+            ${imageSection}
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-[10px] font-bold tracking-widest uppercase bg-pc-blue-100 dark:bg-blue-900/40 text-pc-blue-700 dark:text-blue-300 px-3 py-1 rounded-full">${product.category || 'Hardware'}</span>
+                <span class="text-xl font-black text-pc-blue-600 dark:text-blue-400">${product.price || 'P.R.'}</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">${product.title}</h3>
+              <p class="text-gray-600 dark:text-slate-400 text-sm mb-6 line-clamp-3 leading-relaxed">${product.body || ''}</p>
+              <a href="https://wa.me/3335920941?text=Ciao,%20sono%20interessato%20a:%20${encodeURIComponent(product.title)}" 
+                 class="w-full block bg-pc-blue-600 hover:bg-pc-blue-700 text-white text-center py-3 rounded-xl font-bold shadow-lg hover:shadow-pc-blue-500/30 transition-all duration-300 transform active:scale-95">
+                Richiedi Info
+              </a>
+            </div>
+          `;
+          grid.appendChild(card);
+        }
+        feather.replace();
+        // Set first dot active for all carousels
+        document.querySelectorAll('.carousel-dot[data-index="0"]').forEach(dot => {
+          dot.classList.add('active');
+        });
+      } catch (error) {
+        console.error('Errore nel caricamento dei contenuti:', error);
+        vetrinaSection.style.display = 'none';
+      }
+    }
+
+    // Initialize content
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+      initObservers(); // Inizializza gli osservatori per gli elementi statici
+      fetchContent();
+      fetchCarousel();
+    });
+
+    // Netlify Identity Redirect (Crucial for Decap CMS)
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
