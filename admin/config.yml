@@ -12,47 +12,25 @@ public_folder: "/images/uploads"
 extension: json
 format: json
 
-<<<<<<< HEAD
-=======
-# Assicuriamoci che i percorsi siano sempre trattati come stringhe pulite
-slug:
-  encoding: "ascii"
-  clean_accents: true
-  sanitize_replacement: "-"
-
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
 collections:
   - name: "prodotti"
     label: "Prodotti"
     folder: "content/prodotti"
     create: true
     slug: "{{slug}}"
-<<<<<<< HEAD
     extension: "json"
     format: "json"
-=======
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
     fields:
       - { label: "Titolo", name: "title", widget: "string" }
       - { label: "Categoria", name: "category", widget: "select", options: ["Hardware", "Software", "Accessori", "Altro"] }
       - { label: "Prezzo", name: "price", widget: "string" }
       - { label: "In Evidenza", name: "featured", widget: "boolean", default: false }
       - name: "images"
-<<<<<<< HEAD
         label: "Immagini Prodotto"
         widget: "list"
         min: 1
         max: 5
         field: { label: "Immagine", name: "image", widget: "image" }
-=======
-        label: "Immagini (max 5)"
-        widget: "list"
-        min: 1
-        max: 5
-        add_to_top: false
-        # Usando 'field' (semplice stringa) e abilitando multiple nella libreria media
-        field: { label: "Immagine", name: "image", widget: "image", media_library: { config: { multiple: true } } }
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
       - { label: "Descrizione", name: "body", widget: "markdown" }
 
   - name: "servizi"
@@ -60,11 +38,8 @@ collections:
     folder: "content/servizi"
     create: true
     slug: "{{slug}}"
-<<<<<<< HEAD
     extension: "json"
     format: "json"
-=======
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
     fields:
       - { label: "Titolo", name: "title", widget: "string" }
       - { label: "Icona", name: "icon", widget: "string", hint: "Nome icona Feather (es. tool, monitor, etc.)" }
@@ -77,11 +52,8 @@ collections:
     folder: "content/portfolio"
     create: true
     slug: "{{slug}}"
-<<<<<<< HEAD
     extension: "json"
     format: "json"
-=======
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
     fields:
       - { label: "Titolo Progetto", name: "title", widget: "string" }
       - { label: "Link", name: "link", widget: "string" }
@@ -90,10 +62,6 @@ collections:
 
   - name: "gallery"
     label: "Caroselli Home"
-<<<<<<< HEAD
-=======
-    delete: false
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
     editor:
       preview: false
     files:
@@ -112,10 +80,6 @@ collections:
 
   - name: "settings"
     label: "Impostazioni Sito"
-<<<<<<< HEAD
-=======
-    delete: true
->>>>>>> 4cd2927512e8686ce90aaf1cfc1dca3ec59fed98
     editor:
       preview: false
     files:
