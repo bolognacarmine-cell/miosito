@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
@@ -251,54 +247,400 @@ img[loading="lazy"] {
   transition: opacity 0.3s;
 }
 
-/* CAROUSEL PRODUCT - CSS Explicit Layout Fix */
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Button hover effects */
+.btn-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-hover:hover::before {
+  left: 100%;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Product Carousel Styles */
 .carousel-inner {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  width: 100% !important;
-  height: 100% !important;
-  will-change: transform;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  width: 100%;
 }
 
 .carousel-item {
-  flex: 0 0 100% !important; /* Forza ogni slide a occupare esattamente il 100% */
-  width: 100% !important;
-  height: 100% !important;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8fafc; /* Fallback background */
 }
 
 .carousel-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover !important; /* Garantisce che l'immagine riempia la slide senza deformarsi */
+  object-fit: cover; /* Ensures consistent grid look */
+  transition: transform 0.5s ease;
 }
 
-/* Dots e pulsanti carosello prodotto */
+/* For products where seeing the whole image is crucial, we can use contain on hover or specific class */
+.carousel-item.contain img {
+  object-fit: contain;
+}
+
 .carousel-dot {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.4);
   transition: all 0.3s ease;
 }
 
 .carousel-dot.active {
-  background-color: #ffffff;
-  width: 1rem !important;
+  background: rgba(255, 255, 255, 1) !important;
+  width: 12px;
 }
 
+/* Custom Navigation Arrows for Product Carousel */
 .product-carousel-btn {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  color: white;
+  border-radius: 9999px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .group:hover .product-carousel-btn {
   opacity: 1;
 }
 
-/* Hero Carousel - Fluidità transizione */
-#hero-dynamic-content {
-  min-height: 400px; /* Evita salti di layout durante il caricamento */
+.product-carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: scale(1.1);
 }
 
-.hero-wrapper {
-  transition: opacity 0.4s ease-in-out;
+/* Hero Carousel Image Optimization */
+.hero-visual img {
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .hero-visual img {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* Parallax effect for hero section */
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}
+
+/* Focus states for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-gray-50 {
+    background-color: white;
+  }
+  .text-gray-600 {
+    color: #000;
+  }
+  .border-gray-200 {
+    border-color: #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+  }
+}
+
+/* Performance optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Intersection observer fade in */
+.fade-in-observer {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-observer.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile-first responsive design */
+.container {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) { .container { max-width: 640px; padding-left: 1.5rem; padding-right: 1.5rem; } }
+@media (min-width: 768px) { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; padding-left: 2rem; padding-right: 2rem; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+@media (min-width: 1536px) { .container { max-width: 1536px; } }
+
+/* Utility classes */
+.transform-gpu { transform: translateZ(0); }
+.backface-hidden { backface-visibility: hidden; }
+.perspective-1000 { perspective: 1000px; }
+
+/* Loading states */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Error / Success states */
+.error-state {
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.success-state {
+  background-color: #dcfce7;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Custom animations for service cards */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.service-card .icon-container {
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .icon-container {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Optimized font loading removed since we use Google Fonts link in index.html */
+
+/* HERO BACKGROUND – versione CSS pura (Houdini rimosso) */
+.hero-houdini {
+  background: linear-gradient(135deg, #7c2d12 0%, #431407 50%, #0f172a 100%);
+  background-image:
+    linear-gradient(135deg, #7c2d12 0%, #431407 50%, #0f172a 100%),
+    radial-gradient(circle at 20% 30%, rgba(249, 115, 22, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(253, 186, 116, 0.1) 0%, transparent 50%);
+  background-blend-mode: overlay;
+}
+
+/* Navbar glass + transizioni */
+.nav-glass {
+  backdrop-filter: blur(14px);
+  background-color: rgba(255, 255, 255, 0.85);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.nav-glass.nav-scrolled {
+  background-color: rgba(15, 23, 42, 0.96);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.45);
+  transform: translateY(-1px);
+}
+
+/* Hero image float */
+.hero-device {
+  animation: floatDevice 5s ease-in-out infinite;
+}
+
+.hero-image-styled {
+  filter: brightness(1.05) contrast(1.05) saturate(1.1);
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.hero-image-styled:hover {
+  filter: brightness(1.1) contrast(1.1) saturate(1.2);
+}
+
+@keyframes floatDevice {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.01); }
+}
+
+/* Pulsanti principali con shine */
+.btn-primary,
+.btn-outline {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after,
+.btn-outline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.25), transparent 40%, rgba(255, 255, 255, 0.25));
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+
+.btn-primary:hover::after,
+.btn-outline:hover::after {
+  transform: translateX(120%);
+}
+
+/* About image reveal */
+.about-photo {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.about-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1e40af, transparent);
+  transform: translateX(-100%);
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  mix-blend-mode: screen;
+}
+
+.about-photo.revealed::before {
+  transform: translateX(100%);
+}
+
+/* CTA cards subtle hover */
+.contact-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+  background-color: rgba(30, 64, 175, 0.95);
+}
+
+/* GOOGLE MAPS - SEZIONE DOVE SIAMO */
+.google-map-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 56.25%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.google-map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }

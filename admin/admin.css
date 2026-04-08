@@ -195,4 +195,79 @@ button[class*="Button"][class*="primary"]:hover {
     background: #f8fafc !important;
     border-radius: 8px !important;
   }
+
+  /* Make the header more compact but functional */
+  header[class*="AppHeader"] {
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+
+  /* Floating Action Button style for Save/Publish if possible */
+  /* Since we can't easily move them, we at least make them full width in the footer */
+  [class*="EditorFooter"] button {
+    flex: 1 !important;
+    margin: 4px !important;
+  }
+}
+
+/* Specific fix for very small screens */
+@media (max-width: 480px) {
+  /* Make collection cards even more compact */
+  [class*="Card"] {
+    margin-bottom: 8px !important;
+    padding: 12px !important;
+  }
+
+  /* Header buttons */
+  [class*="AppHeaderButton"] {
+    padding: 0 8px !important;
+    font-size: 12px !important;
+    min-width: auto !important;
+  }
+
+  /* Hide non-essential text in header */
+  header[class*="AppHeader"] span[class*="label"] {
+    display: none !important;
+  }
+
+  /* Collection list item adjustments */
+  [class*="CollectionCard"] {
+    height: auto !important;
+    min-height: 100px !important;
+  }
+  /* Back button in Editor */
+  [class*="BackLink"] {
+    margin: 8px !important;
+    padding: 8px 12px !important;
+    background: #f1f5f9 !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    font-size: 14px !important;
+    color: #475569 !important;
+  }
+
+  /* Dropdown and Select elements on mobile */
+  select {
+    width: 100% !important;
+    background-position: right 12px center !important;
+  }
+
+  /* Workflow/Status bar on mobile */
+  [class*="Workflow"] {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  /* Fix for overlapping elements in editor footer */
+  [class*="EditorFooter"] div[class*="Container"] {
+    padding: 8px !important;
+  }
+}
+
+/* iOS Specific Overrides for better Safari feel */
+@supports (-webkit-touch-callout: none) {
+  input, textarea, select {
+    font-size: 16px !important; /* Absolute prevention of auto-zoom on iOS Safari */
+  }
 }
