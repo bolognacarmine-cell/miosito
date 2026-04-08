@@ -7,7 +7,9 @@ logo_url: "/images/logo.jpg"
 display_url: "https://pc-work.it"
 
 media_folder: "images/uploads"
-public_folder: "/images/uploads"
+public_folder: "images/uploads"
+
+publish_mode: editorial_workflow
 
 extension: json
 format: json

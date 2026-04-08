@@ -135,11 +135,15 @@ const carouselRegistry = new Map();
 const processImagePath = (path) => {
   if (!path) return 'https://via.placeholder.com/400x300?text=Immagine+non+disponibile';
   if (path.startsWith('http')) return path;
-  // If it starts with /images/uploads, we can load it from GitHub raw to ensure it's in sync with the metadata
-  if (path.startsWith('/images/uploads/')) {
-    return `https://raw.githubusercontent.com/${owner}/${repo}/main${path}`;
+  
+  // Rendi il percorso relativo alla root se non lo è
+  let cleanPath = path.startsWith('/') ? path : '/' + path;
+  
+  // Se è un'immagine caricata dal CMS, prova a caricarla da GitHub per sincronizzazione immediata
+  if (cleanPath.startsWith('/images/uploads/')) {
+    return `https://raw.githubusercontent.com/${owner}/${repo}/main${cleanPath}`;
   }
-  return path;
+  return cleanPath;
 };
 
 // Mobile menu toggle
