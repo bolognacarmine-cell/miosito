@@ -15,9 +15,9 @@
     <div class="container mx-auto px-4 flex justify-between items-center">
       <a href="index.html" class="flex items-center space-x-3 group">
         <img src="images/logo.jpg" alt="PC Work Logo" class="h-10 w-10 rounded-lg group-hover:scale-110 transition-transform duration-300">
-        <span class="text-2xl font-black bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent">PC WORK</span>
+        <span class="text-2xl font-black bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent uppercase tracking-tighter">PC WORK</span>
       </a>
-      <a href="index.html" class="text-sm font-bold hover:text-orange-500 transition-colors flex items-center gap-2">
+      <a href="index.html" class="text-xs font-black hover:text-orange-500 transition-colors flex items-center gap-2 uppercase tracking-widest">
         <i data-feather="arrow-left" class="w-4 h-4"></i> Torna alla Home
       </a>
     </div>
@@ -25,43 +25,44 @@
 
   <main class="pt-32 pb-20">
     <div class="container mx-auto px-4 max-w-4xl">
-      <h1 class="text-4xl md:text-5xl font-black mb-8 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Mappa del Sito</h1>
+      <h1 class="text-4xl md:text-5xl font-black mb-12 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent uppercase tracking-tighter">Mappa del Sito</h1>
       
-      <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 md:p-12 shadow-2xl">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="bg-slate-900/50 border border-slate-800 rounded-[2.5rem] p-8 md:p-16 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-orange-600/5 blur-[100px] rounded-full -z-0"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
           <section>
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-              <i data-feather="home" class="text-orange-500"></i> Pagine Principali
+            <h2 class="text-xl font-black text-white mb-8 flex items-center gap-3 uppercase tracking-widest">
+              <i data-feather="home" class="text-orange-500"></i> Principali
             </h2>
-            <ul class="space-y-4">
-              <li><a href="index.html" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2">Home Page</a></li>
-              <li><a href="index.html#services" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2">Servizi</a></li>
-              <li><a href="index.html#vetrina" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2">Vetrina Hardware</a></li>
-              <li><a href="index.html#about" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2">Chi Siamo</a></li>
-              <li><a href="index.html#contact" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2">Contatti</a></li>
+            <ul class="space-y-6">
+              <li><a href="index.html" class="text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-3 font-bold uppercase tracking-widest text-xs">Home Page</a></li>
+              <li><a href="index.html#services" class="text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-3 font-bold uppercase tracking-widest text-xs">Servizi</a></li>
+              <li><a href="index.html#vetrina" class="text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-3 font-bold uppercase tracking-widest text-xs">Vetrina</a></li>
+              <li><a href="index.html#about" class="text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-3 font-bold uppercase tracking-widest text-xs">Chi Siamo</a></li>
+              <li><a href="index.html#contact" class="text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-3 font-bold uppercase tracking-widest text-xs">Contatti</a></li>
             </ul>
           </section>
 
           <section>
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-              <i data-feather="shield" class="text-orange-500"></i> Note Legali
+            <h2 class="text-xl font-black text-white mb-8 flex items-center gap-3 uppercase tracking-widest">
+              <i data-feather="shield" class="text-orange-500"></i> Legali
             </h2>
-            <ul class="space-y-4">
-              <li><a href="privacy-policy.html" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2">Privacy Policy</a></li>
-              <li><a href="cookie-policy.html" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2">Cookie Policy</a></li>
+            <ul class="space-y-6">
+              <li><a href="privacy-policy.html" class="text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-3 font-bold uppercase tracking-widest text-xs">Privacy Policy</a></li>
+              <li><a href="cookie-policy.html" class="text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-3 font-bold uppercase tracking-widest text-xs">Cookie Policy</a></li>
             </ul>
           </section>
         </div>
 
-        <div class="mt-16 pt-12 border-t border-slate-800">
-          <h2 class="text-2xl font-bold text-white mb-6">Informazioni Aziendali</h2>
-          <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
-            <p class="font-bold text-orange-400 mb-4">PC WORK DI IOVINELLA NICOLA</p>
-            <p class="text-sm md:text-base text-slate-400 leading-relaxed">
+        <div class="mt-20 pt-16 border-t border-slate-800 relative z-10">
+          <h2 class="text-xl font-black text-white mb-8 uppercase tracking-widest">Azienda</h2>
+          <div class="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
+            <p class="font-black text-orange-500 mb-4 uppercase tracking-widest text-xs">PC WORK DI IOVINELLA NICOLA</p>
+            <p class="text-xs md:text-sm text-slate-400 font-bold uppercase tracking-widest leading-loose">
               Via Toselli 19 - 81025 Marcianise (CE)<br>
               Partita IVA: 03418500611<br>
-              Codice Fiscale: VNLNCL*****I197S<br>
-              REA: 243774
+              Codice Fiscale: VNLNCL*****I197S
             </p>
           </div>
         </div>

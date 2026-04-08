@@ -65,46 +65,46 @@
   </script>
 
 </head>
-<body class="font-inter">
+<body class="font-inter bg-slate-950 text-slate-200">
 
   <!-- Navigation (invariato) -->
-  <nav class="nav-glass sticky top-0 z-50 border-b border-slate-200/70">
-    <div class="container mx-auto">
-      <div class="flex justify-between items-center py-3">
+  <nav class="nav-glass sticky top-0 z-50 border-b border-slate-800/50 bg-slate-900/80 backdrop-blur-md">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
         <div class="flex items-center space-x-3">
-          <img src="images/logo.jpg" alt="PC Work Logo" class="h-12 w-12 rounded-lg object-cover shadow-md">
+          <img src="images/logo.jpg" alt="PC Work Logo" class="h-12 w-12 rounded-lg object-cover shadow-lg border border-slate-700">
           <div>
-            <h1 class="text-xl font-bold bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent">PC Work</h1>
-            <p class="text-sm text-gray-600">Iovinella Nicola</p>
+            <h1 class="text-xl font-black bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent">PC Work</h1>
+            <p class="text-xs text-slate-400 font-medium tracking-wider uppercase">Iovinella Nicola</p>
           </div>
         </div>
-        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-gray-100 transition">
-          <i data-feather="menu" class="w-6 h-6"></i>
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl hover:bg-slate-800 transition-colors border border-slate-700">
+          <i data-feather="menu" class="w-6 h-6 text-slate-200"></i>
         </button>
-        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
-          <a href="#home" class="text-gray-300 hover:text-orange-500 transition duration-300">Home</a>
-          <a href="#services" class="text-gray-300 hover:text-orange-500 transition duration-300">Servizi</a>
-          <a href="#vetrina" class="text-gray-300 hover:text-orange-500 transition duration-300">Vetrina</a>
-          <a href="#web" class="text-gray-300 hover:text-orange-500 transition duration-300">Siti Web</a>
-          <a href="#portfolio" class="text-gray-300 hover:text-orange-500 transition duration-300">Portfolio</a>
-          <a href="#about" class="text-gray-300 hover:text-orange-500 transition duration-300">Chi Siamo</a>
-          <a href="#contact" class="text-gray-300 hover:text-orange-500 transition duration-300">Contatti</a>
-          <a href="tel:3335920941" class="btn-primary bg-pc-blue-600 text-white px-4 py-2 rounded-lg hover:bg-pc-blue-700 transition duration-300 shadow-md flex items-center">
+        <div class="hidden md:flex items-center space-x-8 text-sm font-bold">
+          <a href="#home" class="text-slate-300 hover:text-orange-500 transition-colors uppercase tracking-tight">Home</a>
+          <a href="#services" class="text-slate-300 hover:text-orange-500 transition-colors uppercase tracking-tight">Servizi</a>
+          <a href="#vetrina" class="text-slate-300 hover:text-orange-500 transition-colors uppercase tracking-tight">Vetrina</a>
+          <a href="#web" class="text-slate-300 hover:text-orange-500 transition-colors uppercase tracking-tight">Siti Web</a>
+          <a href="#portfolio" class="text-slate-300 hover:text-orange-500 transition-colors uppercase tracking-tight">Portfolio</a>
+          <a href="#about" class="text-slate-300 hover:text-orange-500 transition-colors uppercase tracking-tight">Chi Siamo</a>
+          <a href="#contact" class="text-slate-300 hover:text-orange-500 transition-colors uppercase tracking-tight">Contatti</a>
+          <a href="tel:3335920941" class="bg-pc-blue-600 text-white px-6 py-2.5 rounded-xl hover:bg-pc-blue-700 transition-all shadow-lg shadow-orange-600/20 flex items-center active:scale-95">
             <i data-feather="phone" class="inline w-4 h-4 mr-2"></i>
             Chiama
           </a>
         </div>
       </div>
-      <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200">
-        <div class="py-4 space-y-2">
-          <a href="#home" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Home</a>
-          <a href="#services" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Servizi</a>
-          <a href="#vetrina" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Vetrina</a>
-          <a href="#web" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Siti Web</a>
-          <a href="#portfolio" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Portfolio</a>
-          <a href="#about" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Chi Siamo</a>
-          <a href="#contact" class="block px-4 py-2 text-gray-300 hover:bg-gray-800 rounded">Contatti</a>
-          <a href="tel:3335920941" class="block mx-4 mt-4 bg-pc-blue-600 text-white px-4 py-2 rounded-lg text-center hover:bg-pc-blue-700 transition duration-300 btn-primary">
+      <div id="mobile-menu" class="md:hidden hidden border-t border-slate-800 bg-slate-900/95">
+        <div class="py-6 px-4 space-y-4">
+          <a href="#home" class="block text-lg font-bold text-slate-300 hover:text-orange-500 transition-colors">Home</a>
+          <a href="#services" class="block text-lg font-bold text-slate-300 hover:text-orange-500 transition-colors">Servizi</a>
+          <a href="#vetrina" class="block text-lg font-bold text-slate-300 hover:text-orange-500 transition-colors">Vetrina</a>
+          <a href="#web" class="block text-lg font-bold text-slate-300 hover:text-orange-500 transition-colors">Siti Web</a>
+          <a href="#portfolio" class="block text-lg font-bold text-slate-300 hover:text-orange-500 transition-colors">Portfolio</a>
+          <a href="#about" class="block text-lg font-bold text-slate-300 hover:text-orange-500 transition-colors">Chi Siamo</a>
+          <a href="#contact" class="block text-lg font-bold text-slate-300 hover:text-orange-500 transition-colors">Contatti</a>
+          <a href="tel:3335920941" class="block w-full bg-pc-blue-600 text-white py-4 rounded-xl text-center font-bold shadow-lg shadow-orange-600/20 active:scale-95">
             <i data-feather="phone" class="inline w-4 h-4 mr-2"></i>
             Chiama ora
           </a>
@@ -115,172 +115,146 @@
 
   <main>
     <!-- Hero Section -->
-    <section id="home" class="relative hero-houdini text-white py-20 px-4 overflow-hidden parallax">
-      <div class="absolute inset-0 bg-black/40"></div>
+    <section id="home" class="relative min-h-[90vh] flex items-center py-20 px-4 overflow-hidden bg-slate-950">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.1),transparent_50%)]"></div>
       <div class="container mx-auto relative z-10" id="hero-dynamic-content">
-        <div class="flex flex-col lg:flex-row items-center gap-10">
-          <div class="lg:w-1/2 mb-6 lg:mb-0">
-            <div class="badge reveal inline-block px-4 py-1.5 bg-orange-500/10 border border-orange-500/20 rounded-full text-xs font-bold mb-6 tracking-wider uppercase">
-              <span class="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">Tech Excellence Since 2005</span>
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div class="lg:w-3/5 text-center lg:text-left">
+            <div class="inline-block px-4 py-1.5 bg-orange-500/10 border border-orange-500/20 rounded-full text-xs font-bold mb-8 tracking-widest uppercase text-orange-400">
+              Tech Excellence Since 2005
             </div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight animate-ui-reveal bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent">
-              La tua assistenza informatica a Marcianise
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-8 leading-[1.1] bg-gradient-to-br from-white via-slate-200 to-slate-500 bg-clip-text text-transparent">
+              La tua assistenza informatica a <span class="bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent">Marcianise</span>
             </h1>
             
-            <!-- Descrizione Hero (Statica) -->
-            <p class="text-lg md:text-xl lg:text-2xl text-white mb-6 leading-relaxed animate-ui-reveal reveal-delay-1">
-              Professionisti qualificati per riparazioni, vendita e assistenza su PC, smartphone, console e reti. Dal 2005 al servizio di privati e aziende.
+            <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Professionisti qualificati per riparazioni, vendita e assistenza su PC, smartphone, console e reti. Dal 2005 al servizio di privati e aziende con soluzioni su misura.
             </p>
 
-            <p class="hero-subtitle mt-4 text-blue-100 text-base md:text-lg max-w-xl animate-ui-reveal reveal-delay-2">
-              Assistenza rapida, consulenza dedicata e soluzioni su misura per ogni esigenza, dal singolo PC
-              all’infrastruttura aziendale.
-            </p>
-
-            <div class="mt-8 flex flex-col sm:flex-row gap-4 animate-ui-reveal reveal-delay-3">
-              <a href="tel:3335920941" class="btn-primary bg-white text-pc-blue-800 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold text-center transition duration-300 shadow-lg transform hover:scale-105 flex items-center justify-center">
-                <i data-feather="phone" class="inline mr-2 w-5 h-5"></i>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
+              <a href="tel:3335920941" class="bg-pc-blue-600 text-white px-10 py-5 rounded-2xl font-bold shadow-2xl shadow-orange-600/20 hover:bg-pc-blue-700 hover:-translate-y-1 transition-all flex items-center justify-center group">
+                <i data-feather="phone" class="mr-3 w-5 h-5 group-hover:rotate-12 transition-transform"></i>
                 Chiama ora
               </a>
-              <a href="#services" class="btn-outline border-2 border-white hover:bg-white hover:text-pc-blue-800 px-8 py-4 rounded-lg font-semibold text-center transition duration-300 transform hover:scale-105 flex items-center justify-center">
-                <i data-feather="info" class="inline mr-2 w-5 h-5"></i>
+              <a href="#services" class="bg-slate-900 text-slate-200 border border-slate-700 px-10 py-5 rounded-2xl font-bold hover:bg-slate-800 hover:border-slate-600 transition-all flex items-center justify-center">
                 I nostri servizi
               </a>
             </div>
           </div>
 
-          <div class="lg:w-1/2 flex justify-center">
-            <div class="relative hero-device about-photo">
-              <img src="images/laboratorio.png"
-                   alt="Laboratorio PC Work - Assistenza informatica"
-                   class="rounded-2xl shadow-2xl max-w-full h-auto hero-image-styled">
-              <div class="absolute -bottom-4 -right-4 bg-yellow-400 text-pc-blue-800 p-4 rounded-xl shadow-lg">
-                <i data-feather="award" class="w-8 h-8"></i>
-              </div>
+          <div class="lg:w-2/5 relative">
+            <div class="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border border-slate-800 group">
+              <img src="images/laboratorio.png" alt="Laboratorio PC Work" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
             </div>
+            <!-- Decorative element -->
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-orange-600/20 blur-[80px] rounded-full"></div>
+            <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-600/10 blur-[80px] rounded-full"></div>
           </div>
         </div>
       </div>
     </section>
 
   <!-- Services Section -->
-<section id="services" class="py-20 px-4 bg-white">
+<section id="services" class="py-24 px-4 bg-slate-900/30">
   <div class="container mx-auto">
-    <div class="text-center mb-16 fade-in-observer">
-      <h2 class="text-4xl font-extrabold mb-4 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">I nostri servizi</h2>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        Soluzioni complete per tutte le tue esigenze informatiche, dalla riparazione alla vendita, <strong class="text-orange-600">allo sviluppo di siti web professionali</strong>.
+    <div class="text-center mb-20">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent inline-block uppercase tracking-tighter">I nostri servizi</h2>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        Soluzioni tecnologiche all'avanguardia: dalla riparazione hardware allo sviluppo web professionale.
       </p>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
       <!-- Service Card 1 -->
-      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
-        <div class="h-40 overflow-hidden">
-          <img src="images/riparazione.jpg" alt="Assistenza PC" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+      <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 hover:border-orange-500/50 transition-all duration-500 group relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-orange-600/5 blur-2xl rounded-full group-hover:bg-orange-600/10 transition-colors"></div>
+        <div class="bg-orange-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+          <i data-feather="cpu" class="w-8 h-8 text-orange-500"></i>
         </div>
-        <div class="p-6">
-          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
-            <i data-feather="cpu" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-white">Assistenza PC & Notebook</h3>
-          <p class="text-gray-600 mb-4 text-sm">
-            Riparazioni hardware e software per fissi e portatili. Diagnosi rapida e preventivi trasparenti.
-          </p>
-          <a href="#contact" class="text-orange-500 font-medium hover:text-orange-400 transition duration-300 text-sm">
-            Scopri di più →
-          </a>
-        </div>
+        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tight">Assistenza PC</h3>
+        <p class="text-slate-400 mb-8 text-sm leading-relaxed">
+          Riparazioni hardware e software per fissi e portatili. Diagnosi rapida e preventivi trasparenti.
+        </p>
+        <a href="#contact" class="text-orange-500 font-bold hover:text-orange-400 transition-colors inline-flex items-center gap-2 group/link">
+          Scopri di più <i data-feather="chevron-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+        </a>
       </div>
 
       <!-- Service Card 2 -->
-      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
-        <div class="h-40 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=600" alt="Smartphone Repair" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+      <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 hover:border-orange-500/50 transition-all duration-500 group relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-orange-600/5 blur-2xl rounded-full group-hover:bg-orange-600/10 transition-colors"></div>
+        <div class="bg-orange-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+          <i data-feather="smartphone" class="w-8 h-8 text-orange-500"></i>
         </div>
-        <div class="p-6">
-          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
-            <i data-feather="smartphone" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-white">Smartphone & Tablet</h3>
-          <p class="text-gray-600 mb-4 text-sm">
-            Riparazione e assistenza su dispositivi mobili. Sostituzione schermi, batterie e componenti.
-          </p>
-          <a href="#contact" class="text-orange-500 font-medium hover:text-orange-400 transition duration-300 text-sm">
-            Scopri di più →
-          </a>
-        </div>
+        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tight">Smartphone</h3>
+        <p class="text-slate-400 mb-8 text-sm leading-relaxed">
+          Riparazione e assistenza su dispositivi mobili. Sostituzione schermi, batterie e componenti.
+        </p>
+        <a href="#contact" class="text-orange-500 font-bold hover:text-orange-400 transition-colors inline-flex items-center gap-2 group/link">
+          Scopri di più <i data-feather="chevron-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+        </a>
       </div>
 
       <!-- Service Card 3 -->
-      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
-        <div class="h-40 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=600" alt="Vendita Hardware" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+      <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 hover:border-orange-500/50 transition-all duration-500 group relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-orange-600/5 blur-2xl rounded-full group-hover:bg-orange-600/10 transition-colors"></div>
+        <div class="bg-orange-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+          <i data-feather="hard-drive" class="w-8 h-8 text-orange-500"></i>
         </div>
-        <div class="p-6">
-          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
-            <i data-feather="hard-drive" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-white">Vendita Hardware</h3>
-          <p class="text-gray-600 mb-4 text-sm">
-            PC, notebook, console, periferiche e accessori nuovi e ricondizionati. Configurazioni su misura.
-          </p>
-          <a href="#contact" class="text-orange-500 font-medium hover:text-orange-400 transition duration-300 text-sm">
-            Scopri di più →
-          </a>
-        </div>
+        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tight">Vendita</h3>
+        <p class="text-slate-400 mb-8 text-sm leading-relaxed">
+          PC, notebook, console, periferiche e accessori nuovi e ricondizionati. Configurazioni su misura.
+        </p>
+        <a href="#contact" class="text-orange-500 font-bold hover:text-orange-400 transition-colors inline-flex items-center gap-2 group/link">
+          Scopri di più <i data-feather="chevron-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+        </a>
       </div>
 
       <!-- Service Card 4 -->
-      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
-        <div class="h-40 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=600" alt="Reti e Telefonia" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+      <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 hover:border-orange-500/50 transition-all duration-500 group relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-orange-600/5 blur-2xl rounded-full group-hover:bg-orange-600/10 transition-colors"></div>
+        <div class="bg-orange-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+          <i data-feather="wifi" class="w-8 h-8 text-orange-500"></i>
         </div>
-        <div class="p-6">
-          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
-            <i data-feather="wifi" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-white">Reti & Telefonia</h3>
-          <p class="text-gray-600 mb-4 text-sm">
-            Impianti LAN, Wi-Fi e soluzioni telefoniche per aziende. Progettazione e installazione complete.
-          </p>
-          <a href="#contact" class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300 text-sm">
-            Scopri di più →
-          </a>
-        </div>
+        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tight">Reti & Tel</h3>
+        <p class="text-slate-400 mb-8 text-sm leading-relaxed">
+          Impianti LAN, Wi-Fi e soluzioni telefoniche per aziende. Progettazione e installazione complete.
+        </p>
+        <a href="#contact" class="text-orange-500 font-bold hover:text-orange-400 transition-colors inline-flex items-center gap-2 group/link">
+          Scopri di più <i data-feather="chevron-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+        </a>
       </div>
 
-      <!-- Service Card 5: Sviluppo Siti Web -->
-      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg service-card fade-in-observer">
-        <div class="h-40 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" alt="Sviluppo Web" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+      <!-- Service Card 5 -->
+      <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 hover:border-orange-500/50 transition-all duration-500 group relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-orange-600/5 blur-2xl rounded-full group-hover:bg-orange-600/10 transition-colors"></div>
+        <div class="bg-orange-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+          <i data-feather="code" class="w-8 h-8 text-orange-500"></i>
         </div>
-        <div class="p-6">
-          <div class="bg-gradient-to-br from-orange-500 to-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 icon-container shadow-lg shadow-orange-500/20">
-            <i data-feather="code" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-white">Sviluppo Siti Web</h3>
-          <p class="text-gray-600 mb-4 text-sm">Siti moderni responsive, da statici a fullstack con admin. SEO e hosting inclusi.</p>
-          <a href="#web" class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300 text-sm">
-            Scopri di più →
-          </a>
-        </div>
+        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tight">Siti Web</h3>
+        <p class="text-slate-400 mb-8 text-sm leading-relaxed">
+          Siti moderni responsive, da statici a fullstack con admin. SEO e hosting inclusi.
+        </p>
+        <a href="#web" class="text-orange-500 font-bold hover:text-orange-400 transition-colors inline-flex items-center gap-2 group/link">
+          Scopri di più <i data-feather="chevron-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Hardware Showcase Section (Dynamic) -->
-<section id="vetrina" class="py-20 px-4 bg-gray-50 border-t border-gray-200">
+<section id="vetrina" class="py-24 px-4 bg-slate-950 border-t border-slate-800">
   <div class="container mx-auto">
-    <div class="text-center mb-12 fade-in-observer">
-      <h2 class="text-4xl font-extrabold mb-4 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">Vetrina Hardware & Offerte</h2>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+    <div class="text-center mb-20">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent inline-block uppercase tracking-tighter">Vetrina Hardware</h2>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
         Le ultime disponibilità e promozioni speciali su hardware, accessori e servizi di assistenza.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="hardwareGrid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="hardwareGrid">
       <!-- Dynamic Content from Admin Panel -->
     </div>
   </div>
@@ -422,76 +396,88 @@
 </section>
         
 <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 px-4 bg-white">
+    <section id="portfolio" class="py-24 px-4 bg-slate-900/30">
       <div class="container mx-auto">
-        <div class="text-center mb-12 fade-in-observer">
-          <h2 class="text-4xl font-extrabold mb-4 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">Portfolio Progetti</h2>
-          <p class="text-xl text-gray-600 max-w-2xl mx-auto">Progetti reali sviluppati per attività commerciali e professionisti.</p>
+        <div class="text-center mb-20">
+          <h2 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent inline-block uppercase tracking-tighter">Portfolio Progetti</h2>
+          <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">Progetti reali sviluppati per attività commerciali e professionisti.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <!-- Pizzeria La Romana (Sito Vetrina) -->
-          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg service-card fade-in-observer">
-            <a href="https://pizzerialaromana.netlify.app" target="_blank" rel="noopener" class="block" aria-label="Anteprima Pizzeria La Romana">
-              <div class="mb-4 overflow-hidden rounded-lg">
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600" alt="Anteprima Pizzeria La Romana" loading="lazy" class="w-full h-40 object-cover rounded-lg shadow-md" />
-              </div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 hover:border-orange-500/50 transition-all duration-500 group">
+            <a href="https://pizzerialaromana.netlify.app" target="_blank" rel="noopener" class="block mb-6 overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600" alt="Pizzeria La Romana" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
             </a>
-
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-semibold bg-orange-100 text-orange-700 px-2 py-1 rounded">Sito Vetrina</span>
-              <i data-feather="external-link" class="w-4 h-4 text-gray-500"></i>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[10px] font-bold bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full uppercase tracking-widest">Sito Vetrina</span>
+              <i data-feather="external-link" class="w-4 h-4 text-slate-500"></i>
             </div>
-            <h3 class="text-lg font-semibold text-gray-800">Pizzeria La Romana</h3>
-            <p class="text-gray-600 mt-2 mb-4">
+            <h3 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">Pizzeria La Romana</h3>
+            <p class="text-slate-400 text-sm mb-6 leading-relaxed">
               Sito per pizzeria con presentazione, menu, contatti e indicazioni, pensato per facilitare prenotazioni.
             </p>
-            <p class="text-sm text-gray-500 mb-4">HTML5 • CSS3 • JavaScript</p>
-            <a href="https://pizzerialaromana.netlify.app" target="_blank" rel="noopener"
-              class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">Visita Sito →</a>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">HTML5</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">•</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">CSS3</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">•</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">JS</span>
+            </div>
+            <a href="https://pizzerialaromana.netlify.app" target="_blank" rel="noopener" class="text-orange-500 font-bold hover:text-orange-400 transition-colors inline-flex items-center gap-2">
+              Visita Sito <i data-feather="chevron-right" class="w-4 h-4"></i>
+            </a>
           </div>
 
           <!-- DP Cars (Full Stack) -->
-          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg service-card fade-in-observer">
-            <a href="https://www.dpcars.it" target="_blank" rel="noopener" class="block" aria-label="Anteprima DP Cars">
-              <div class="mb-4 overflow-hidden rounded-lg">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=600" alt="Anteprima DP Cars" loading="lazy" class="w-full h-40 object-cover rounded-lg shadow-md" />
-              </div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 hover:border-orange-500/50 transition-all duration-500 group">
+            <a href="https://www.dpcars.it" target="_blank" rel="noopener" class="block mb-6 overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=600" alt="DP Cars" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
             </a>
-
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-semibold bg-pc-blue-100 text-pc-blue-700 px-2 py-1 rounded">Full Stack App</span>
-              <i data-feather="external-link" class="w-4 h-4 text-gray-500"></i>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[10px] font-bold bg-pc-blue-500/10 text-orange-400 px-3 py-1 rounded-full uppercase tracking-widest">Full Stack App</span>
+              <i data-feather="external-link" class="w-4 h-4 text-slate-500"></i>
             </div>
-            <h3 class="text-lg font-semibold text-gray-800">DP Cars</h3>
-            <p class="text-gray-600 mt-2 mb-4">
+            <h3 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">DP Cars</h3>
+            <p class="text-slate-400 text-sm mb-6 leading-relaxed">
               Piattaforma gestionale per rivendita auto con catalogo dinamico, area admin per gestione veicoli e filtri avanzati.
             </p>
-            <p class="text-sm text-gray-500 mb-4">Vue.js • Node.js • Database • Dashboard Admin</p>
-            <a href="https://www.dpcars.it" target="_blank" rel="noopener"
-              class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">Visita Sito →</a>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Vue.js</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">•</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Node.js</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">•</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">DB</span>
+            </div>
+            <a href="https://www.dpcars.it" target="_blank" rel="noopener" class="text-orange-500 font-bold hover:text-orange-400 transition-colors inline-flex items-center gap-2">
+              Visita Sito <i data-feather="chevron-right" class="w-4 h-4"></i>
+            </a>
           </div>
 
           <!-- Road Runner (Full Stack) -->
-          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg service-card fade-in-observer">
-            <a href="https://www.road-runner.it" target="_blank" rel="noopener" class="block" aria-label="Anteprima Road Runner">
-              <div class="mb-4 overflow-hidden rounded-lg">
-                <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=600" alt="Anteprima Road Runner" loading="lazy" class="w-full h-40 object-cover rounded-lg shadow-md" />
-              </div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 hover:border-orange-500/50 transition-all duration-500 group">
+            <a href="https://www.road-runner.it" target="_blank" rel="noopener" class="block mb-6 overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=600" alt="Road Runner" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
             </a>
-
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded">Full Stack App</span>
-              <i data-feather="external-link" class="w-4 h-4 text-gray-500"></i>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[10px] font-bold bg-green-500/10 text-green-400 px-3 py-1 rounded-full uppercase tracking-widest">Full Stack App</span>
+              <i data-feather="external-link" class="w-4 h-4 text-slate-500"></i>
             </div>
-            <h3 class="text-lg font-semibold text-gray-800">Road Runner</h3>
-            <p class="text-gray-600 mt-2 mb-4">
+            <h3 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">Road Runner</h3>
+            <p class="text-slate-400 text-sm mb-6 leading-relaxed">
               Piattaforma gestionale per la rivendita di moto nuove e usate con catalogo dinamico e dashboard per la gestione stock.
             </p>
-            <p class="text-sm text-gray-500 mb-4">React • Node.js • Inventory Management • SEO Optimized</p>
-            <a href="https://www.road-runner.it" target="_blank" rel="noopener"
-              class="text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">Visita Sito →</a>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">React</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">•</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Node.js</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">•</span>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">SEO</span>
+            </div>
+            <a href="https://www.road-runner.it" target="_blank" rel="noopener" class="text-orange-500 font-bold hover:text-orange-400 transition-colors inline-flex items-center gap-2">
+              Visita Sito <i data-feather="chevron-right" class="w-4 h-4"></i>
+            </a>
           </div>
 
         </div>
@@ -499,66 +485,107 @@
     </section>
 
         <!-- Recensioni -->
-        <div class="mt-16">
-          <div class="text-center mb-10 fade-in-observer">
-            <h3 class="text-3xl font-extrabold bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block mb-3">Recensioni Clienti</h3>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        <div class="py-24 px-4 bg-slate-950">
+          <div class="text-center mb-20">
+            <h3 class="text-3xl md:text-4xl font-black mb-6 bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent inline-block uppercase tracking-tighter">Recensioni Clienti</h3>
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
               Feedback reali da chi ha scelto i miei siti per far crescere la propria attività.
             </p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
-              <div class="flex items-center justify-between">
-                <h4 class="font-semibold text-gray-800">Roberto</h4>
-                <span class="text-yellow-500">★★★★★</span>
+            <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 hover:border-orange-500/30 transition-all">
+              <div class="flex items-center justify-between mb-6">
+                <h4 class="font-bold text-white uppercase tracking-tight">Roberto</h4>
+                <div class="flex gap-1">
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                </div>
               </div>
-              <p class="text-gray-600 mt-3">
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 italic">
                 "Sito bellissimo su mobile e curato nei dettagli. Ottima presentazione delle esperienze e contatti semplici da usare."
               </p>
-              <a href="https://pizzerialaromana.netlify.app" target="_blank" rel="noopener"
-                class="inline-block mt-4 text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">
+              <a href="https://pizzerialaromana.netlify.app" target="_blank" rel="noopener" class="text-orange-500 font-bold text-xs uppercase tracking-widest hover:text-orange-400 transition-colors">
                 Vedi il sito →
               </a>
             </div>
 
-            <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
-            <div class="flex items-center justify-between">
-              <h4 class="font-semibold text-gray-800">Gaetano</h4>
-              <span class="text-yellow-500">★★★★★</span>
+            <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 hover:border-orange-500/30 transition-all">
+              <div class="flex items-center justify-between mb-6">
+                <h4 class="font-bold text-white uppercase tracking-tight">Gaetano</h4>
+                <div class="flex gap-1">
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                </div>
+              </div>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 italic">
+                "Sito veloce, chiaro e con CTA efficaci. Ho ricevuto più contatti già nelle prime settimane."
+              </p>
+              <a href="#contact" class="text-orange-500 font-bold text-xs uppercase tracking-widest hover:text-orange-400 transition-colors">
+                Richiedi info →
+              </a>
             </div>
-            <p class="text-gray-600 mt-3">
-              "Sito veloce, chiaro e con CTA efficaci. Ho ricevuto più contatti già nelle prime settimane."
-            </p>
-            <a href="#contact" class="inline-block mt-4 text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">
-              Richiedi info →
-            </a>
-          </div>
 
-          <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
-            <div class="flex items-center justify-between">
-              <h4 class="font-semibold text-gray-800">Salvatore</h4>
-              <span class="text-yellow-500">★★★★★</span>
+            <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 hover:border-orange-500/30 transition-all">
+              <div class="flex items-center justify-between mb-6">
+                <h4 class="font-bold text-white uppercase tracking-tight">Salvatore</h4>
+                <div class="flex gap-1">
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                  <i data-feather="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                </div>
+              </div>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 italic">
+                "Grafica pulita e professionale. Perfetto su smartphone, tempi di consegna rapidi."
+              </p>
+              <a href="#contact" class="text-orange-500 font-bold text-xs uppercase tracking-widest hover:text-orange-400 transition-colors">
+                Contattami →
+              </a>
             </div>
-            <p class="text-gray-600 mt-3">
-              "Grafica pulita e professionale. Perfetto su smartphone, tempi di consegna rapidi."
-            </p>
-            <a href="#contact" class="inline-block mt-4 text-pc-blue-600 font-medium hover:text-pc-blue-700 transition duration-300">
-              Contattami →
-            </a>
           </div>
         </div>
-      </div>
 
       <!-- Form di Contatto con Checkbox Privacy -->
-      <div class="mt-16 max-w-3xl mx-auto bg-white border border-gray-200 rounded-3xl p-8 md:p-12 shadow-2xl fade-in-observer">
-        <h3 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Inviaci un messaggio</h3>
-        <form action="#" method="POST" class="space-y-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Nome e Cognome</label>
-              <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-pc-blue-500 focus:border-transparent transition-all outline-none" placeholder="Il tuo nome">
+      <div class="mt-24 max-w-4xl mx-auto bg-slate-900/50 border border-slate-800 rounded-[2.5rem] p-8 md:p-16 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-orange-600/5 blur-[100px] rounded-full"></div>
+        <h3 class="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">Inviaci un messaggio</h3>
+        <form action="#" method="POST" class="space-y-8 relative z-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-3">
+              <label for="name" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Nome e Cognome</label>
+              <input type="text" id="name" name="name" required class="w-full px-6 py-4 bg-slate-800/50 border border-slate-700 rounded-2xl text-white focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all" placeholder="Il tuo nome">
             </div>
+            <div class="space-y-3">
+              <label for="email" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Email</label>
+              <input type="email" id="email" name="email" required class="w-full px-6 py-4 bg-slate-800/50 border border-slate-700 rounded-2xl text-white focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all" placeholder="tua@email.com">
+            </div>
+          </div>
+          <div class="space-y-3">
+            <label for="message" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Messaggio</label>
+            <textarea id="message" name="message" rows="5" required class="w-full px-6 py-4 bg-slate-800/50 border border-slate-700 rounded-2xl text-white focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 outline-none transition-all resize-none" placeholder="Come possiamo aiutarti?"></textarea>
+          </div>
+          <div class="flex items-start gap-4 p-4 bg-orange-500/5 border border-orange-500/10 rounded-2xl">
+            <input type="checkbox" id="privacy" name="privacy" required class="mt-1 w-5 h-5 text-orange-600 bg-slate-800 border-slate-700 rounded-lg focus:ring-orange-500">
+            <label for="privacy" class="text-xs text-slate-400 leading-relaxed">
+              Dichiaro di aver letto e accettato l'informativa sulla <a href="privacy-policy.html" class="text-orange-400 font-bold hover:underline">Privacy Policy</a> per il trattamento dei miei dati personali.
+            </label>
+          </div>
+          <button type="submit" class="w-full py-5 bg-pc-blue-600 hover:bg-pc-blue-700 text-white rounded-2xl font-black uppercase tracking-widest shadow-2xl shadow-orange-600/20 transition-all active:scale-[0.98]">
+            Invia Messaggio
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
             <div>
               <label for="email" class="block text-sm font-bold text-gray-700 mb-2">Email</label>
               <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-pc-blue-500 focus:border-transparent transition-all outline-none" placeholder="tua@email.com">
@@ -583,130 +610,91 @@
   </div>
 </div>
 
-        <!-- Skills -->
-        <div class="mt-16">
-          <div class="text-center mb-10 fade-in-observer">
-            <h3 class="text-3xl font-extrabold bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block mb-3">Competenze & Tecnologie</h3>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Le competenze tecniche e i tool che stiamo sviluppando per essere sempre aggiornati.
+        <!-- Skills Section -->
+        <div class="py-24 px-4 bg-slate-950">
+          <div class="text-center mb-20">
+            <h3 class="text-3xl md:text-4xl font-black mb-6 bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent inline-block uppercase tracking-tighter">Competenze & Tech</h3>
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Le tecnologie che utilizziamo per garantirti il massimo delle performance.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
-              <h4 class="text-xl font-semibold text-gray-800 mb-6">Competenze Tecniche</h4>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-10 shadow-2xl">
+              <h4 class="text-xl font-bold text-white mb-10 uppercase tracking-widest flex items-center gap-3">
+                <i data-feather="code" class="text-orange-500"></i> Sviluppo Web
+              </h4>
 
-              <div class="space-y-5">
+              <div class="space-y-8">
                 <div>
-                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>HTML & CSS</span><span>85%</span></div>
-                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:85%"></div></div>
+                  <div class="flex justify-between text-xs font-black text-slate-400 mb-3 uppercase tracking-widest"><span>Frontend (HTML/CSS/JS)</span><span>95%</span></div>
+                  <div class="w-full bg-slate-800 rounded-full h-1.5"><div class="bg-gradient-to-r from-orange-500 to-yellow-400 h-1.5 rounded-full" style="width:95%"></div></div>
                 </div>
                 <div>
-                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>JavaScript</span><span>75%</span></div>
-                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:75%"></div></div>
+                  <div class="flex justify-between text-xs font-black text-slate-400 mb-3 uppercase tracking-widest"><span>React / Vue.js</span><span>85%</span></div>
+                  <div class="w-full bg-slate-800 rounded-full h-1.5"><div class="bg-gradient-to-r from-orange-500 to-yellow-400 h-1.5 rounded-full" style="width:85%"></div></div>
                 </div>
                 <div>
-                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>React</span><span>70%</span></div>
-                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:70%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>Responsive Design</span><span>80%</span></div>
-                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:80%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>Python</span><span>65%</span></div>
-                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:65%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-sm font-medium text-gray-700 mb-2"><span>Git & GitHub</span><span>75%</span></div>
-                  <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-pc-blue-600 h-2 rounded-full" style="width:75%"></div></div>
+                  <div class="flex justify-between text-xs font-black text-slate-400 mb-3 uppercase tracking-widest"><span>SEO & Performance</span><span>90%</span></div>
+                  <div class="w-full bg-slate-800 rounded-full h-1.5"><div class="bg-gradient-to-r from-orange-500 to-yellow-400 h-1.5 rounded-full" style="width:90%"></div></div>
                 </div>
               </div>
             </div>
 
-            <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg fade-in-observer">
-              <h4 class="text-xl font-semibold text-gray-800 mb-6">Tools & Altro</h4>
+            <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-10 shadow-2xl">
+              <h4 class="text-xl font-bold text-white mb-10 uppercase tracking-widest flex items-center gap-3">
+                <i data-feather="tool" class="text-orange-500"></i> Hardware & Support
+              </h4>
 
-              <div class="grid grid-cols-2 gap-4">
-                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
-                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">VS Code</div>
-                  <div class="text-gray-500 text-xs">Editor principale</div>
+              <div class="grid grid-cols-2 gap-6">
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700 text-center group hover:border-orange-500/50 transition-all">
+                  <div class="text-orange-500 font-black text-xl mb-1">PC/Mac</div>
+                  <div class="text-slate-500 text-[10px] uppercase tracking-widest">Riparazioni</div>
                 </div>
-                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
-                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Tailwind</div>
-                  <div class="text-gray-500 text-xs">Styling veloce</div>
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700 text-center group hover:border-orange-500/50 transition-all">
+                  <div class="text-orange-500 font-black text-xl mb-1">Mobile</div>
+                  <div class="text-slate-500 text-[10px] uppercase tracking-widest">Assistenza</div>
                 </div>
-                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
-                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Netlify</div>
-                  <div class="text-gray-500 text-xs">Hosting & CD</div>
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700 text-center group hover:border-orange-500/50 transition-all">
+                  <div class="text-orange-500 font-black text-xl mb-1">Networks</div>
+                  <div class="text-slate-500 text-[10px] uppercase tracking-widest">Networking</div>
                 </div>
-                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
-                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Figma</div>
-                  <div class="text-gray-500 text-xs">UI/UX Design</div>
+                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700 text-center group hover:border-orange-500/50 transition-all">
+                  <div class="text-orange-500 font-black text-xl mb-1">Security</div>
+                  <div class="text-slate-500 text-[10px] uppercase tracking-widest">Hardening</div>
                 </div>
-                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
-                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Node.js</div>
-                  <div class="text-gray-500 text-xs">Backend dev</div>
-                </div>
-                <div class="p-4 bg-gray-50 rounded-lg text-center border border-gray-100">
-                  <div class="text-pc-blue-600 font-bold text-2xl mb-1">Postman</div>
-                  <div class="text-gray-500 text-xs">API Testing</div>
-                </div>
-              </div>
-
-              <div class="mt-8 p-6 bg-pc-blue-600 rounded-xl text-white">
-                <h5 class="font-bold mb-2">In fase di apprendimento:</h5>
-                <p class="text-blue-100 text-sm">
-                  Attualmente sto approfondendo <strong>Next.js</strong> e <strong>TypeScript</strong> per offrire soluzioni ancora più performanti e scalabili.
-                </p>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Chi Siamo Section -->
-        <section id="about" class="py-20 px-4 bg-white">
+        <section id="about" class="py-24 px-4 bg-slate-900/30">
           <div class="container mx-auto">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-              <div class="lg:w-1/2 about-photo">
-                <div class="relative">
-                  <img src="images/riparazione.jpg" alt="Nicola Iovinella - PC Work" class="rounded-2xl shadow-2xl w-full">
-                  <div class="absolute -top-6 -left-6 w-24 h-24 bg-pc-blue-600/10 rounded-full -z-10"></div>
-                  <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-orange-400/10 rounded-full -z-10"></div>
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+              <div class="lg:w-1/2 relative group">
+                <div class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-800">
+                  <img src="images/riparazione.jpg" alt="Nicola Iovinella" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
                 </div>
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-orange-600/10 blur-[80px] rounded-full"></div>
               </div>
-              <div class="lg:w-1/2 fade-in-observer">
-                <h2 class="text-4xl font-extrabold mb-6 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">Oltre 15 anni di esperienza</h2>
-                <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+              <div class="lg:w-1/2">
+                <h2 class="text-4xl md:text-5xl font-black mb-8 bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent inline-block uppercase tracking-tighter">Oltre 15 anni di esperienza</h2>
+                <p class="text-lg text-slate-400 mb-8 leading-relaxed">
                   Mi chiamo <strong>Nicola Iovinella</strong> e dal 2005 gestisco PC Work a Marcianise. La mia missione è fornire assistenza tecnica di alta qualità, risolvendo problemi complessi con precisione e onestà.
                 </p>
-                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                  Che si tratti di un computer lento, di uno smartphone con lo schermo rotto o di una rete aziendale da progettare, metto la mia esperienza al tuo servizio per garantirti la migliore soluzione nel minor tempo possibile.
-                </p>
-                <div class="grid grid-cols-2 gap-6">
-                  <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-pc-blue-100 rounded-lg flex items-center justify-center">
-                      <i data-feather="check" class="text-pc-blue-600"></i>
+                <div class="grid grid-cols-2 gap-8">
+                  <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center border border-orange-500/20">
+                      <i data-feather="shield" class="text-orange-500 w-6 h-6"></i>
                     </div>
-                    <span class="font-semibold text-gray-700">Affidabilità</span>
+                    <span class="font-bold text-white uppercase tracking-widest text-xs">Affidabilità</span>
                   </div>
-                  <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-pc-blue-100 rounded-lg flex items-center justify-center">
-                      <i data-feather="clock" class="text-pc-blue-600"></i>
+                  <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center border border-orange-500/20">
+                      <i data-feather="clock" class="text-orange-500 w-6 h-6"></i>
                     </div>
-                    <span class="font-semibold text-gray-700">Rapidità</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-pc-blue-100 rounded-lg flex items-center justify-center">
-                      <i data-feather="shield" class="text-pc-blue-600"></i>
-                    </div>
-                    <span class="font-semibold text-gray-700">Garanzia</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-pc-blue-100 rounded-lg flex items-center justify-center">
-                      <i data-feather="smile" class="text-pc-blue-600"></i>
-                    </div>
-                    <span class="font-semibold text-gray-700">Cortesia</span>
+                    <span class="font-bold text-white uppercase tracking-widest text-xs">Rapidità</span>
                   </div>
                 </div>
               </div>
@@ -715,70 +703,53 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 px-4 bg-gray-50">
+        <section id="contact" class="py-24 px-4 bg-slate-950">
           <div class="container mx-auto">
-          <div class="text-center mb-16 fade-in-observer">
-            <h2 class="text-4xl font-extrabold mb-4 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent inline-block">Contattaci</h2>
-            <p class="text-xl text-gray-600">Siamo qui per aiutarti. Scegli il modo che preferisci per comunicare con noi.</p>
-          </div>
+            <div class="text-center mb-20">
+              <h2 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent inline-block uppercase tracking-tighter">Contattaci</h2>
+              <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">Siamo pronti a risolvere ogni tuo problema tecnologico.</p>
+            </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <!-- Card Telefono -->
-              <div class="group relative bg-slate-900 rounded-2xl shadow-xl overflow-hidden contact-card fade-in-observer">
-                <div class="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=600" alt="Telefono" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700">
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+              <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-10 hover:border-orange-500/50 transition-all group">
+                <div class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                  <i data-feather="phone" class="text-orange-500 w-8 h-8"></i>
                 </div>
-                <div class="relative z-10 p-8">
-                  <div class="w-14 h-14 bg-pc-blue-600/20 text-pc-blue-400 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-pc-blue-600 group-hover:text-white transition-all duration-300">
-                    <i data-feather="phone" class="w-7 h-7"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold mb-3 text-white">Telefono</h3>
-                  <p class="text-slate-300 mb-6 leading-relaxed font-medium">Chiama per assistenza immediata o informazioni sui nostri servizi.</p>
-                  <a href="tel:3335920941" class="inline-block text-2xl font-black text-pc-blue-400 hover:text-white transition transform hover:translate-x-1">333 592 0941</a>
-                </div>
+                <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">Telefono</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Chiamaci per assistenza immediata.</p>
+                <a href="tel:3335920941" class="text-2xl font-black text-orange-500 hover:text-orange-400 transition-colors">333 592 0941</a>
               </div>
 
               <!-- Card WhatsApp -->
-              <div class="group relative bg-slate-900 rounded-2xl shadow-xl overflow-hidden contact-card fade-in-observer">
-                <div class="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&q=80&w=600" alt="WhatsApp" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700">
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+              <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-10 hover:border-green-500/50 transition-all group">
+                <div class="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                  <i data-feather="message-circle" class="text-green-500 w-8 h-8"></i>
                 </div>
-                <div class="relative z-10 p-8">
-                  <div class="w-14 h-14 bg-green-500/20 text-green-400 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
-                    <i data-feather="message-circle" class="w-7 h-7"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold mb-3 text-white">WhatsApp</h3>
-                  <p class="text-slate-300 mb-6 leading-relaxed font-medium">Scrivici un messaggio per un preventivo veloce o supporto tecnico.</p>
-                  <a href="https://wa.me/3335920941" class="w-full py-4 bg-green-500 text-white rounded-xl font-bold text-center hover:bg-green-600 transition shadow-lg flex items-center justify-center gap-2">
-                    <i data-feather="send" class="w-5 h-5"></i> Chatta ora
-                  </a>
-                </div>
+                <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">WhatsApp</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Preventivo rapido via chat.</p>
+                <a href="https://wa.me/3335920941" class="inline-block w-full py-4 bg-green-600 hover:bg-green-700 text-white rounded-2xl font-black text-center uppercase tracking-widest transition-all">Chatta ora</a>
               </div>
 
               <!-- Card Dove Siamo -->
-              <div class="group relative bg-slate-900 rounded-2xl shadow-xl overflow-hidden contact-card fade-in-observer">
-                <div class="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=600" alt="Dove siamo" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700">
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+              <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-10 hover:border-orange-500/50 transition-all group">
+                <div class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                  <i data-feather="map-pin" class="text-orange-500 w-8 h-8"></i>
                 </div>
-                <div class="relative z-10 p-8">
-                  <div class="w-14 h-14 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
-                    <i data-feather="map-pin" class="w-7 h-7"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold mb-3 text-white">Dove siamo</h3>
-                  <p class="text-slate-300 mb-6 leading-relaxed font-medium">Vieni a trovarci nel nostro laboratorio specializzato a Marcianise.</p>
-                  <div class="p-4 bg-slate-800/60 backdrop-blur-md rounded-xl border border-slate-700 group-hover:border-orange-500/50 transition-all">
-                    <p class="font-bold text-white text-lg">Via Toselli</p>
-                    <p class="text-slate-400">81025 Marcianise (CE)</p>
-                  </div>
-                </div>
+                <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">Dove siamo</h3>
+                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Via Toselli 19, Marcianise (CE)</p>
+                <div class="text-xs font-black text-orange-500 uppercase tracking-widest">Aperti Lun-Sab</div>
               </div>
             </div>
             <!-- Google Maps -->
-            <div class="mt-12 rounded-2xl overflow-hidden shadow-2xl h-96 fade-in-observer">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.2325375545224!2d14.2965471!3d41.0311548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b077f687f877f%3A0x7f877f687f877f68!2sVia%20Toselli%2C%2081025%20Marcianise%20CE!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
-                      width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="mt-16 relative group">
+              <div class="rounded-[2.5rem] overflow-hidden shadow-2xl h-96 border border-slate-800 relative z-10">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.2325375545224!2d14.2965471!3d41.0311548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b077f687f877f%3A0x7f877f687f877f68!2sVia%20Toselli%2C%20107%2C%2081025%20Marcianise%20CE!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <p class="mt-4 text-center text-[10px] text-slate-500 uppercase tracking-widest">
+                L'utilizzo della mappa comporta l'accettazione dei cookie di terze parti di Google. Consulta la <a href="cookie-policy.html" class="text-orange-500 hover:underline">Cookie Policy</a>.
+              </p>
+              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-600/5 blur-[80px] rounded-full -z-0"></div>
             </div>
           </div>
         </section>
@@ -982,36 +953,46 @@
       }
 
       setTimeout(() => {
+        // Applica l'effetto venature all'ultima parola del titolo dinamico
+        const titleParts = slide.title.split(' ');
+        const lastWord = titleParts.pop();
+        const processedTitle = `${titleParts.join(' ')} <span class="hero-accent">${lastWord}</span>`;
+
         hero.innerHTML = `
           <div class="hero-wrapper flex flex-col lg:flex-row gap-10 lg:gap-16 items-center animate-ui-reveal">
             <div class="hero-content lg:w-3/5">
               <div class="badge reveal inline-block px-4 py-1.5 bg-orange-500/10 border border-orange-500/20 rounded-full text-xs font-bold mb-6 tracking-wider uppercase">
                 <span class="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">Tech Excellence Since 2005</span>
               </div>
-              <h1 class="reveal text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 bg-gradient-to-br from-orange-500 via-yellow-400 to-orange-600 bg-clip-text text-transparent">
-                ${slide.title}
+              <h1 class="reveal text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] mb-8 bg-gradient-to-br from-white via-slate-200 to-slate-500 bg-clip-text text-transparent">
+                ${processedTitle}
               </h1>
-              <p class="reveal text-lg md:text-xl text-blue-50 mb-8 max-w-xl leading-relaxed">
+              <p class="reveal text-lg md:text-xl text-slate-400 mb-10 max-w-xl leading-relaxed">
                 ${slide.subtitle}
               </p>
-              <div class="hero-btns reveal flex flex-wrap gap-4">
-                <a href="#contact" class="btn btn-primary bg-pc-blue-600 text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:bg-pc-blue-700 hover:-translate-y-1 transition duration-300 flex items-center">
-                  Contattaci <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+              <div class="hero-btns reveal flex flex-wrap gap-5">
+                <a href="#contact" class="bg-pc-blue-600 text-white px-10 py-5 rounded-2xl font-bold shadow-2xl shadow-orange-600/20 hover:bg-pc-blue-700 hover:-translate-y-1 transition-all flex items-center group">
+                  <i data-feather="phone" class="mr-3 w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+                  Chiama ora
                 </a>
-                <a href="#services" class="btn btn-outline border-2 border-pc-blue-600 text-pc-blue-700 dark:text-blue-400 px-8 py-4 rounded-xl font-bold hover:bg-pc-blue-600 hover:text-white hover:-translate-y-1 transition duration-300">
-                  Scopri i Servizi
+                <a href="#services" class="bg-slate-900 text-slate-200 border border-slate-700 px-10 py-5 rounded-2xl font-bold hover:bg-slate-800 hover:border-slate-600 transition-all flex items-center justify-center">
+                  I nostri servizi
                 </a>
               </div>
               <!-- Hero Dots -->
-              <div class="mt-10 flex gap-2">
+              <div class="mt-12 flex gap-3">
                 ${heroSlides.map((_, i) => `
-                  <div onclick="goToHeroSlide(${i})" class="w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${i === index ? 'bg-pc-blue-500 w-8' : 'bg-white/30 hover:bg-white/50'}"></div>
+                  <div onclick="goToHeroSlide(${i})" class="h-1.5 rounded-full cursor-pointer transition-all duration-500 ${i === index ? 'bg-orange-500 w-10' : 'bg-slate-800 w-4 hover:bg-slate-700'}"></div>
                 `).join('')}
               </div>
             </div>
             <div class="hero-visual lg:w-2/5 reveal-in relative">
-              <div class="absolute -inset-4 bg-pc-blue-200/30 dark:bg-blue-500/10 rounded-[2rem] blur-2xl -z-10 animate-pulse"></div>
-              <img src="${slide.image}" alt="PC Work" class="w-full h-auto object-cover rounded-2xl shadow-2xl hover:scale-[1.02] transition duration-500 border border-white/20 hero-image-styled">
+              <div class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-800 group">
+                <img src="${slide.image}" alt="PC Work" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+              </div>
+              <div class="absolute -top-10 -right-10 w-40 h-40 bg-orange-600/20 blur-[80px] rounded-full"></div>
+              <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-600/10 blur-[80px] rounded-full"></div>
             </div>
           </div>
         `;

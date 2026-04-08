@@ -15,9 +15,9 @@
     <div class="container mx-auto px-4 flex justify-between items-center">
       <a href="index.html" class="flex items-center space-x-3 group">
         <img src="images/logo.jpg" alt="PC Work Logo" class="h-10 w-10 rounded-lg group-hover:scale-110 transition-transform duration-300">
-        <span class="text-2xl font-black bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent">PC WORK</span>
+        <span class="text-2xl font-black bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent uppercase tracking-tighter">PC WORK</span>
       </a>
-      <a href="index.html" class="text-sm font-bold hover:text-orange-500 transition-colors flex items-center gap-2">
+      <a href="index.html" class="text-xs font-black hover:text-orange-500 transition-colors flex items-center gap-2 uppercase tracking-widest">
         <i data-feather="arrow-left" class="w-4 h-4"></i> Torna alla Home
       </a>
     </div>
@@ -25,42 +25,41 @@
 
   <main class="pt-32 pb-20">
     <div class="container mx-auto px-4 max-w-4xl">
-      <h1 class="text-4xl md:text-5xl font-black mb-8 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Cookie Policy</h1>
+      <h1 class="text-4xl md:text-5xl font-black mb-12 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent uppercase tracking-tighter">Cookie Policy</h1>
       
-      <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 md:p-12 shadow-2xl space-y-8">
-        <section>
-          <h2 class="text-2xl font-bold text-white mb-4">Cosa sono i Cookie</h2>
-          <p>I cookie sono stringhe di testo di piccole dimensioni che i siti visitati dall'utente inviano al suo terminale, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla successiva visita del medesimo utente.</p>
+      <div class="bg-slate-900/50 border border-slate-800 rounded-[2.5rem] p-8 md:p-16 shadow-2xl space-y-12 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-orange-600/5 blur-[100px] rounded-full -z-0"></div>
+
+        <section class="relative z-10">
+          <h2 class="text-xl font-black text-white mb-6 uppercase tracking-widest flex items-center gap-3">
+            <i data-feather="info" class="text-orange-500 w-5 h-5"></i> Cosa sono i Cookie
+          </h2>
+          <p class="text-slate-400 text-sm leading-relaxed">I cookie sono stringhe di testo di piccole dimensioni che i siti visitati dall'utente inviano al suo terminale, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla successiva visita del medesimo utente.</p>
         </section>
 
-        <section>
-          <h2 class="text-2xl font-bold text-white mb-4">Tipologia di Cookie utilizzati</h2>
-          <div class="space-y-4">
+        <section class="relative z-10">
+          <h2 class="text-xl font-black text-white mb-6 uppercase tracking-widest flex items-center gap-3">
+            <i data-feather="settings" class="text-orange-500 w-5 h-5"></i> Tipologia di Cookie
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
-              <h3 class="font-bold text-orange-400 mb-2">Cookie Tecnici</h3>
-              <p class="text-sm">I cookie tecnici sono quelli utilizzati al solo fine di effettuare la trasmissione di una comunicazione su una rete di comunicazione elettronica, o nella misura strettamente necessaria al fornitore di un servizio della società dell'informazione esplicitamente richiesto dall'abbonato o dall'utente a erogare tale servizio.</p>
+              <h3 class="font-black text-orange-500 mb-4 uppercase tracking-widest text-xs">Cookie Tecnici</h3>
+              <p class="text-slate-400 text-xs leading-relaxed">Necessari al corretto funzionamento del sito e alla navigazione sicura.</p>
             </div>
             <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
-              <h3 class="font-bold text-orange-400 mb-2">Cookie di Terze Parti</h3>
-              <p class="text-sm">Attraverso la navigazione su questo sito possono essere ricevuti cookie gestiti da altre organizzazioni (Terze Parti). Un esempio è rappresentato dalla presenza di "social plugin" per Facebook o Instagram, o sistemi di visualizzazione di mappe (Google Maps).</p>
+              <h3 class="font-black text-orange-500 mb-4 uppercase tracking-widest text-xs">Terze Parti</h3>
+              <p class="text-slate-400 text-xs leading-relaxed">Cookie gestiti da altre organizzazioni (Google Maps, Social Plugin).</p>
             </div>
           </div>
         </section>
 
-        <section>
-          <h2 class="text-2xl font-bold text-white mb-4">Gestione dei Cookie</h2>
-          <p>L'utente può decidere se accettare o meno i cookie utilizzando le impostazioni del proprio browser. La disabilitazione dei cookie "terze parti" non pregiudica in alcun modo la navigabilità del sito.</p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-white mb-4">Titolare del Trattamento</h2>
-          <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
-            <p class="font-bold text-orange-400 mb-2">DATI DELLA SOCIETÀ</p>
-            <ul class="space-y-2 text-sm md:text-base">
-              <li><span class="text-slate-400">Ragione Sociale:</span> PC WORK DI IOVINELLA NICOLA</li>
-              <li><span class="text-slate-400">Partita IVA:</span> 03418500611</li>
-              <li><span class="text-slate-400">Indirizzo:</span> VIA TOSELLI 19 - 81025 - MARCIANISE (CE)</li>
-            </ul>
+        <section class="relative z-10">
+          <h2 class="text-xl font-black text-white mb-6 uppercase tracking-widest flex items-center gap-3">
+            <i data-feather="user" class="text-orange-500 w-5 h-5"></i> Titolare
+          </h2>
+          <div class="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
+            <p class="font-black text-orange-500 mb-4 uppercase tracking-widest text-xs">PC WORK DI IOVINELLA NICOLA</p>
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">VIA TOSELLI 19 - MARCIANISE (CE)</p>
           </div>
         </section>
       </div>
