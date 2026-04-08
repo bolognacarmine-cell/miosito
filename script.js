@@ -185,6 +185,11 @@ async function fetchContent() {
 
   try {
     const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/prodotti?t=${Date.now()}`);
+    if (res.status === 404) {
+      console.log('Cartella prodotti non trovata o vuota su GitHub.');
+      vetrinaSection.style.display = 'none';
+      return;
+    }
     if (!res.ok) throw new Error('Fetch failed');
     
     const files = await res.json();
