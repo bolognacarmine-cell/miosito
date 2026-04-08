@@ -719,12 +719,22 @@
             </div>
             <!-- Google Maps -->
             <div class="mt-16 relative group">
-              <div class="rounded-[2.5rem] overflow-hidden shadow-2xl h-96 border border-slate-800 relative z-10">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.2325375545224!2d14.2965471!3d41.0311548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b077f687f877f%3A0x7f877f687f877f68!2sVia%20Toselli%2C%20107%2C%2081025%20Marcianise%20CE!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div id="map-container" class="rounded-[2.5rem] overflow-hidden shadow-2xl h-96 border border-slate-800 relative z-10 bg-slate-900">
+                <!-- Consent Overlay -->
+                <div id="map-consent" class="map-consent-wrapper">
+                  <i data-feather="map"></i>
+                  <h4 class="font-black uppercase tracking-tighter">Visualizza la Mappa</h4>
+                  <p>Per visualizzare la mappa interattiva di Google, è necessario accettare i cookie di terze parti di Google Maps.</p>
+                  <label class="flex items-center gap-3 p-4 bg-slate-800/50 border border-slate-700 rounded-2xl cursor-pointer hover:bg-slate-800 transition-all">
+                    <input type="checkbox" id="map-checkbox" class="w-5 h-5 text-orange-600 bg-slate-900 border-slate-700 rounded-lg focus:ring-orange-500">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-300">Autorizzo Google Maps</span>
+                  </label>
+                </div>
+                <!-- Iframe placeholder (loaded via JS) -->
+                <div id="map-iframe-container" class="w-full h-full hidden"></div>
               </div>
               <p class="mt-4 text-center text-[10px] text-slate-500 uppercase tracking-widest">
-                L'utilizzo della mappa comporta l'accettazione dei cookie di terze parti di Google. Consulta la <a href="cookie-policy.html" class="text-orange-500 hover:underline">Cookie Policy</a>.
+                Consulta la <a href="cookie-policy.html" class="text-orange-500 hover:underline">Cookie Policy</a> per maggiori informazioni.
               </p>
               <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-600/5 blur-[80px] rounded-full -z-0"></div>
             </div>
@@ -1124,6 +1134,35 @@
         banner.style.transform = 'translateY(100%)';
       }
     };
+
+    // Gestione Google Maps Consent
+    const mapCheckbox = document.getElementById('map-checkbox');
+    const mapConsent = document.getElementById('map-consent');
+    const mapIframeContainer = document.getElementById('map-iframe-container');
+
+    const loadGoogleMap = () => {
+      mapConsent.classList.add('hidden');
+      mapIframeContainer.classList.remove('hidden');
+      mapIframeContainer.innerHTML = `
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.2325375545224!2d14.2965471!3d41.0311548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b077f687f877f%3A0x7f877f687f877f68!2sVia%20Toselli%2C%20107%2C%2081025%20Marcianise%20CE!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      `;
+    };
+
+    if (mapCheckbox) {
+      mapCheckbox.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          localStorage.setItem('google-maps-consent', 'true');
+          loadGoogleMap();
+        }
+      });
+
+      // Carica se già accettato in precedenza
+      if (localStorage.getItem('google-maps-consent') === 'true') {
+        mapCheckbox.checked = true;
+        loadGoogleMap();
+      }
+    }
 
     // Initialize content
     window.addEventListener('load', () => {

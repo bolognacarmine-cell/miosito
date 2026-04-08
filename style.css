@@ -184,6 +184,39 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
 }
 
+/* --- GOOGLE MAPS CONSENT --- */
+.map-consent-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  padding: 2rem;
+  text-align: center;
+  z-index: 20;
+}
+
+.map-consent-wrapper i {
+  color: var(--accent-orange);
+  margin-bottom: 1.5rem;
+  width: 48px;
+  height: 48px;
+}
+
+.map-consent-wrapper h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.map-consent-wrapper p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
 /* --- FOOTER --- */
 footer {
   background-color: #020617;
