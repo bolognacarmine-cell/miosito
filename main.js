@@ -7,6 +7,130 @@ if (window.feather) {
 const owner = 'bolognacarmine-cell';
 const repo = 'miosito';
 
+// Professional Carousel Logic
+class ProfessionalCarousel {
+  constructor(el) {
+    this.el = el;
+    this.inner = el.querySelector('.pro-carousel-inner');
+    this.slides = Array.from(el.querySelectorAll('.pro-carousel-item'));
+    this.dots = Array.from(el.querySelectorAll('.pro-dot'));
+    this.toggleBtn = el.querySelector('.pro-carousel-toggle');
+    this.prevBtn = el.querySelector('.prev');
+    this.nextBtn = el.querySelector('.next');
+    
+    this.currentIndex = 0;
+    this.totalSlides = this.slides.length;
+    this.autoplayInterval = null;
+    this.isPlaying = this.totalSlides > 1;
+    this.startX = 0;
+    this.isDragging = false;
+
+    if (this.totalSlides <= 1) {
+      this.el.classList.add('single-slide');
+      return;
+    }
+
+    this.init();
+  }
+
+  init() {
+    // Event Listeners
+    this.prevBtn?.addEventListener('click', () => this.prev());
+    this.nextBtn?.addEventListener('click', () => this.next());
+    this.toggleBtn?.addEventListener('click', () => this.toggleAutoplay());
+    
+    this.dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => this.goTo(i));
+    });
+
+    // Touch events for swipe
+    this.el.addEventListener('touchstart', (e) => this.touchStart(e), { passive: true });
+    this.el.addEventListener('touchmove', (e) => this.touchMove(e), { passive: true });
+    this.el.addEventListener('touchend', () => this.touchEnd());
+
+    // Pause on interaction
+    this.el.addEventListener('mouseenter', () => this.pause());
+    this.el.addEventListener('mouseleave', () => { if (this.isPlaying) this.start(); });
+    this.el.addEventListener('focusin', () => this.pause());
+
+    // Keyboard support
+    this.el.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') this.prev();
+      if (e.key === 'ArrowRight') this.next();
+    });
+
+    this.start();
+    this.updateUI();
+  }
+
+  goTo(index) {
+    this.currentIndex = (index + this.totalSlides) % this.totalSlides;
+    this.inner.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+    this.updateUI();
+  }
+
+  next() { this.goTo(this.currentIndex + 1); }
+  prev() { this.goTo(this.currentIndex - 1); }
+
+  start() {
+    this.stop();
+    if (this.isPlaying) {
+      this.autoplayInterval = setInterval(() => this.next(), 4000);
+    }
+  }
+
+  stop() {
+    if (this.autoplayInterval) clearInterval(this.autoplayInterval);
+  }
+
+  pause() { this.stop(); }
+
+  toggleAutoplay() {
+    this.isPlaying = !this.isPlaying;
+    this.isPlaying ? this.start() : this.stop();
+    this.updateToggleIcon();
+  }
+
+  updateUI() {
+    this.dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === this.currentIndex);
+      dot.setAttribute('aria-selected', i === this.currentIndex);
+    });
+    this.updateToggleIcon();
+  }
+
+  updateToggleIcon() {
+    if (!this.toggleBtn) return;
+    const icon = this.isPlaying ? 'pause' : 'play';
+    this.toggleBtn.innerHTML = `<i data-feather="${icon}" class="w-4 h-4"></i>`;
+    if (window.feather) feather.replace();
+  }
+
+  touchStart(e) {
+    this.startX = e.touches[0].clientX;
+    this.isDragging = true;
+    this.pause();
+  }
+
+  touchMove(e) {
+    if (!this.isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const diff = this.startX - currentX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? this.next() : this.prev();
+      this.isDragging = false;
+    }
+  }
+
+  touchEnd() {
+    this.isDragging = false;
+    if (this.isPlaying) this.start();
+  }
+}
+
+// Global registry for carousels
+const carouselRegistry = new Map();
+
 // Helper to handle image paths (especially from CMS)
 const processImagePath = (path) => {
   if (!path) return 'https://via.placeholder.com/400x300?text=Immagine+non+disponibile';
@@ -243,39 +367,36 @@ async function fetchContent() {
       const card = document.createElement('div');
       card.className = 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 service-card fade-in-observer visible';
       
-      let imageSection = '';
-      if (imageList.length > 1) {
-        imageSection = `
-          <div id="${carouselId}" class="relative h-48 md:h-64 lg:h-72 overflow-hidden group bg-slate-100">
-            <div class="carousel-inner">
-              ${imageList.map(img => `
-                <div class="carousel-item">
-                  <img src="${img}" loading="lazy" alt="${product.title}">
-                </div>
-              `).join('')}
-            </div>
-            <button onclick="event.preventDefault(); moveProductCarousel('${carouselId}', -1)" class="absolute left-3 top-1/2 -translate-y-1/2 product-carousel-btn z-10">
-              <i data-feather="chevron-left" class="w-5 h-5"></i>
-            </button>
-            <button onclick="event.preventDefault(); moveProductCarousel('${carouselId}', 1)" class="absolute right-3 top-1/2 -translate-y-1/2 product-carousel-btn z-10">
-              <i data-feather="chevron-right" class="w-5 h-5"></i>
-            </button>
-            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-              ${imageList.map((_, i) => `<div class="carousel-dot" data-index="${i}"></div>`).join('')}
-            </div>
+      const hasMultipleImages = imageList.length > 1;
+      
+      const imageSection = `
+        <div id="${carouselId}" class="pro-carousel ${!hasMultipleImages ? 'single-slide' : ''}" role="region" aria-label="Galleria immagini ${product.title}">
+          <div class="pro-carousel-inner">
+            ${imageList.map(img => `
+              <div class="pro-carousel-item">
+                <img src="${img}" loading="lazy" alt="${product.title}" onerror="this.src='https://via.placeholder.com/400x300?text=Errore+caricamento'">
+              </div>
+            `).join('')}
           </div>
-        `;
-      } else {
-        imageSection = `
-          <div class="h-48 md:h-64 lg:h-72 overflow-hidden relative group bg-slate-100">
-            <img src="${imageList[0]}" 
-                 loading="lazy"
-                 alt="${product.title}" 
-                 class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-            <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition duration-500"></div>
+          
+          <button class="pro-carousel-btn prev" aria-label="Immagine precedente">
+            <i data-feather="chevron-left"></i>
+          </button>
+          <button class="pro-carousel-btn next" aria-label="Immagine successiva">
+            <i data-feather="chevron-right"></i>
+          </button>
+          
+          <button class="pro-carousel-toggle" aria-label="Play/Pausa carosello">
+            <i data-feather="pause"></i>
+          </button>
+          
+          <div class="pro-carousel-dots" role="tablist">
+            ${imageList.map((_, i) => `
+              <button class="pro-dot" role="tab" aria-label="Vai a immagine ${i+1}" aria-selected="${i === 0}"></button>
+            `).join('')}
           </div>
-        `;
-      }
+        </div>
+      `;
 
       card.innerHTML = `
         ${imageSection}
@@ -293,40 +414,21 @@ async function fetchContent() {
         </div>
       `;
       grid.appendChild(card);
+      
+      // Initialize the professional carousel for this card
+      if (hasMultipleImages) {
+        carouselRegistry.set(carouselId, new ProfessionalCarousel(card.querySelector('.pro-carousel')));
+      }
     }
-    feather.replace();
-    document.querySelectorAll('.carousel-dot[data-index="0"]').forEach(dot => {
-      dot.classList.add('active');
-    });
+    if (window.feather) feather.replace();
   } catch (error) {
     console.error('Errore nel caricamento dei contenuti:', error);
     vetrinaSection.style.display = 'none';
   }
 }
 
-window.moveProductCarousel = function(id, direction) {
-  const container = document.getElementById(id);
-  if (!container) return;
-  
-  const inner = container.querySelector('.carousel-inner');
-  const slides = inner.children;
-  const total = slides.length;
-  
-  let current = parseInt(container.dataset.currentIndex || 0);
-  current = (current + direction + total) % total;
-  
-  container.dataset.currentIndex = current;
-  inner.style.transform = `translateX(-${current * 100}%)`;
-  
-  const dots = container.querySelectorAll('.carousel-dot');
-  dots.forEach((dot, i) => {
-    if (i === current) {
-      dot.classList.add('active');
-    } else {
-      dot.classList.remove('active');
-    }
-  });
-};
+// Old carousel logic removed
+// window.moveProductCarousel = function(id, direction) { ... }
 
 window.acceptCookies = function() {
   localStorage.setItem('cookies-accepted', 'true');
