@@ -7,6 +7,17 @@ if (window.feather) {
 const owner = 'bolognacarmine-cell';
 const repo = 'miosito';
 
+// Helper to handle image paths (especially from CMS)
+const processImagePath = (path) => {
+  if (!path) return 'https://via.placeholder.com/400x300?text=Immagine+non+disponibile';
+  if (path.startsWith('http')) return path;
+  // If it starts with /images/uploads, we can load it from GitHub raw to ensure it's in sync with the metadata
+  if (path.startsWith('/images/uploads/')) {
+    return `https://raw.githubusercontent.com/${owner}/${repo}/main${path}`;
+  }
+  return path;
+};
+
 // Mobile menu toggle
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -130,7 +141,7 @@ const renderHeroSlide = (index) => {
         </div>
         <div class="hero-visual lg:w-2/5 reveal-in relative">
           <div class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-800 group">
-            <img src="${slide.image}" alt="PC Work" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+            <img src="${processImagePath(slide.image)}" alt="PC Work" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
           </div>
           <div class="absolute -top-10 -right-10 w-40 h-40 bg-orange-600/20 blur-[80px] rounded-full"></div>
@@ -164,7 +175,8 @@ async function fetchCarousel() {
   if (!hero) return;
   
   try {
-    const res = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/main/content/gallery.json?t=${Date.now()}`);
+    // Fetch from local site to ensure sync with deployed images
+    const res = await fetch(`/content/gallery.json?t=${Date.now()}`);
     if (!res.ok) throw new Error();
     const data = await res.json();
     heroSlides = data.slides || [];
@@ -215,10 +227,14 @@ async function fetchContent() {
       if (!product) continue;
       
       let imageList = [];
+
       if (product.images && Array.isArray(product.images)) {
-        imageList = product.images.map(img => typeof img === 'string' ? img : img.image);
+        imageList = product.images.map(img => {
+          const path = typeof img === 'string' ? img : img.image;
+          return processImagePath(path);
+        });
       } else if (product.image) {
-        imageList = [product.image];
+        imageList = [processImagePath(product.image)];
       } else {
         imageList = ['https://via.placeholder.com/400x300?text=Immagine+non+disponibile'];
       }
