@@ -72,6 +72,12 @@
     </div>
   </footer>
 
-  <script>feather.replace();</script>
+  <script>
+    feather.replace();
+    // Aggiunge la classe loaded per nascondere il loader di style.css
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+  </script>
 </body>
 </html>
