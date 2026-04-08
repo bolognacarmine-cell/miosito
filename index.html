@@ -688,33 +688,54 @@
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <!-- Card Telefono -->
-              <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-10 hover:border-orange-500/50 transition-all group">
-                <div class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <i data-feather="phone" class="text-orange-500 w-8 h-8"></i>
+              <div class="group relative bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-800 transition-all duration-500">
+                <div class="absolute inset-0 z-0">
+                  <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=600" alt="Telefono" class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700">
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">Telefono</h3>
-                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Chiamaci per assistenza immediata.</p>
-                <a href="tel:3335920941" class="text-2xl font-black text-orange-500 hover:text-orange-400 transition-colors">333 592 0941</a>
+                <div class="relative z-10 p-10">
+                  <div class="w-16 h-16 bg-orange-500/20 text-orange-500 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+                    <i data-feather="phone" class="w-8 h-8"></i>
+                  </div>
+                  <h3 class="text-xl font-black text-white mb-4 uppercase tracking-tight">Telefono</h3>
+                  <p class="text-slate-300 text-sm mb-8 leading-relaxed font-medium">Chiamaci per assistenza immediata o informazioni sui nostri servizi.</p>
+                  <a href="tel:3335920941" class="inline-block text-2xl font-black text-orange-500 hover:text-orange-400 transition-colors">333 592 0941</a>
+                </div>
               </div>
 
               <!-- Card WhatsApp -->
-              <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-10 hover:border-green-500/50 transition-all group">
-                <div class="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <i data-feather="message-circle" class="text-green-500 w-8 h-8"></i>
+              <div class="group relative bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-800 transition-all duration-500">
+                <div class="absolute inset-0 z-0">
+                  <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&q=80&w=600" alt="WhatsApp" class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700">
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">WhatsApp</h3>
-                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Preventivo rapido via chat.</p>
-                <a href="https://wa.me/3335920941" class="inline-block w-full py-4 bg-green-600 hover:bg-green-700 text-white rounded-2xl font-black text-center uppercase tracking-widest transition-all">Chatta ora</a>
+                <div class="relative z-10 p-10">
+                  <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
+                    <i data-feather="message-circle" class="w-8 h-8"></i>
+                  </div>
+                  <h3 class="text-xl font-black text-white mb-4 uppercase tracking-tight">WhatsApp</h3>
+                  <p class="text-slate-300 text-sm mb-8 leading-relaxed font-medium">Scrivici un messaggio per un preventivo veloce o supporto tecnico.</p>
+                  <a href="https://wa.me/3335920941" class="inline-block w-full py-4 bg-green-600 hover:bg-green-700 text-white rounded-2xl font-black text-center uppercase tracking-widest transition-all shadow-lg active:scale-95">Chatta ora</a>
+                </div>
               </div>
 
               <!-- Card Dove Siamo -->
-              <div class="bg-slate-900/50 border border-slate-800 rounded-3xl p-10 hover:border-orange-500/50 transition-all group">
-                <div class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <i data-feather="map-pin" class="text-orange-500 w-8 h-8"></i>
+              <div class="group relative bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-800 transition-all duration-500">
+                <div class="absolute inset-0 z-0">
+                  <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=600" alt="Dove siamo" class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700">
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-tight">Dove siamo</h3>
-                <p class="text-slate-400 text-sm mb-8 leading-relaxed">Via Toselli 19, Marcianise (CE)</p>
-                <div class="text-xs font-black text-orange-500 uppercase tracking-widest">Aperti Lun-Sab</div>
+                <div class="relative z-10 p-10">
+                  <div class="w-16 h-16 bg-orange-500/20 text-orange-500 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+                    <i data-feather="map-pin" class="w-8 h-8"></i>
+                  </div>
+                  <h3 class="text-xl font-black text-white mb-4 uppercase tracking-tight">Dove siamo</h3>
+                  <p class="text-slate-300 text-sm mb-8 leading-relaxed font-medium">Vieni a trovarci nel nostro laboratorio specializzato a Marcianise.</p>
+                  <div class="p-4 bg-slate-800/40 backdrop-blur-md rounded-2xl border border-slate-700/50 group-hover:border-orange-500/50 transition-all">
+                    <p class="font-black text-white text-lg">Via Toselli 19</p>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-[10px]">81025 Marcianise (CE)</p>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- Google Maps -->
