@@ -62,6 +62,14 @@
     if ('paintWorklet' in CSS) {
       CSS.paintWorklet.addModule('hero-pattern.js').catch(() => {});
     }
+    // Diagnostica caricamento Tailwind
+    window.addEventListener('load', () => {
+      if (!window.tailwind) {
+        console.error("Tailwind non caricato correttamente. Controllare connessione o CSP.");
+      } else {
+        console.log("Tailwind caricato con successo.");
+      }
+    });
   </script>
 
 </head>

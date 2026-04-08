@@ -185,12 +185,17 @@ async function fetchContent() {
 
   try {
     const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/prodotti?t=${Date.now()}`);
+    if (res.status === 403) {
+      console.warn('GitHub API Rate Limit raggiunto. Impossibile caricare i prodotti dinamici.');
+      vetrinaSection.style.display = 'none';
+      return;
+    }
     if (res.status === 404) {
       console.log('Cartella prodotti non trovata o vuota su GitHub.');
       vetrinaSection.style.display = 'none';
       return;
     }
-    if (!res.ok) throw new Error('Fetch failed');
+    if (!res.ok) throw new Error(`Fetch failed with status: ${res.status}`);
     
     const files = await res.json();
     const productFiles = files.filter(f => f.name.endsWith('.json'));
