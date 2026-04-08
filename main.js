@@ -3,6 +3,33 @@ if (window.feather) {
   feather.replace();
 }
 
+// Reveal on Scroll Logic (IntersectionObserver)
+const initReveal = () => {
+  const revealElements = document.querySelectorAll('.reveal-left, .fade-in-observer');
+  
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Use proper classes based on the element
+        if (entry.target.classList.contains('reveal-left')) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.add('visible');
+        }
+        // Stop observing once visible to save performance
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1, // Trigger when 10% is visible
+    rootMargin: '0px 0px -50px 0px' // Slightly earlier trigger
+  });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+};
+
+document.addEventListener('DOMContentLoaded', initReveal);
+
 // Global owner/repo
 const owner = 'bolognacarmine-cell';
 const repo = 'miosito';
