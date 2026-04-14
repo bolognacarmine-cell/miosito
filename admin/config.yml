@@ -1,98 +1,15 @@
-backend:
-  name: git-gateway
-  branch: main
-
-locale: "it"
-logo_url: "/images/logo.jpg"
-display_url: "https://pc-work.it"
-
-media_folder: "images/uploads"
-public_folder: "images/uploads"
-
-publish_mode: editorial_workflow
-
-extension: json
-format: json
-
-collections:
-  - name: "prodotti"
-    label: "Prodotti"
-    folder: "content/prodotti"
-    create: true
-    slug: "{{slug}}"
-    extension: "json"
-    format: "json"
-    fields:
-      - { label: "Titolo", name: "title", widget: "string" }
-      - { label: "Categoria", name: "category", widget: "select", options: ["Hardware", "Software", "Accessori", "Altro"] }
-      - { label: "Prezzo", name: "price", widget: "string" }
-      - { label: "In Evidenza", name: "featured", widget: "boolean", default: false }
-      - name: "images"
-        label: "Immagini Prodotto"
-        widget: "list"
-        min: 1
-        max: 5
-        field: { label: "Immagine", name: "image", widget: "image" }
-      - { label: "Descrizione", name: "body", widget: "markdown" }
-
-  - name: "servizi"
-    label: "Servizi"
-    folder: "content/servizi"
-    create: true
-    slug: "{{slug}}"
-    extension: "json"
-    format: "json"
-    fields:
-      - { label: "Titolo", name: "title", widget: "string" }
-      - { label: "Icona", name: "icon", widget: "string", hint: "Nome icona Feather (es. tool, monitor, etc.)" }
-      - { label: "Descrizione Breve", name: "description", widget: "text" }
-      - { label: "Immagine", name: "image", widget: "image" }
-      - { label: "Dettagli", name: "body", widget: "markdown" }
-
-  - name: "portfolio"
-    label: "Portfolio Siti Web"
-    folder: "content/portfolio"
-    create: true
-    slug: "{{slug}}"
-    extension: "json"
-    format: "json"
-    fields:
-      - { label: "Titolo Progetto", name: "title", widget: "string" }
-      - { label: "Link", name: "link", widget: "string" }
-      - { label: "Immagine Preview", name: "image", widget: "image" }
-      - { label: "Descrizione", name: "body", widget: "markdown" }
-
-  - name: "gallery"
-    label: "Caroselli Home"
-    editor:
-      preview: false
-    files:
-      - name: "home_slides"
-        label: "Slide Home Page"
-        file: "content/gallery.json"
-        fields:
-          - name: "slides"
-            label: "Immagini Carosello"
-            label_add: "Aggiungi slide"
-            widget: "list"
-            fields:
-              - { label: "Titolo", name: "title", widget: "string", default: "PC Work Marcianise" }
-              - { label: "Sottotitolo", name: "subtitle", widget: "string", default: "Assistenza e vendita informatica professionale dal 2005." }
-              - { label: "Immagine", name: "image", widget: "image" }
-
-  - name: "settings"
-    label: "Impostazioni Sito"
-    editor:
-      preview: false
-    files:
-      - name: "general"
-        label: "Informazioni Generali"
-        file: "content/settings.json"
-        fields:
-          - { label: "Nome Sito", name: "site_name", widget: "string" }
-          - { label: "Email Contatto", name: "contact_email", widget: "string" }
-          - { label: "Telefono", name: "contact_phone", widget: "string" }
-          - { label: "Indirizzo", name: "address", widget: "string" }
-          - { label: "WhatsApp Link", name: "whatsapp_link", widget: "string" }
-          - { label: "Facebook Link", name: "facebook_link", widget: "string" }
-          - { label: "Instagram Link", name: "instagram_link", widget: "string" }
+social_media_publishing:
+  enabled: true
+  platforms:
+    - name: Facebook
+      enabled: true
+    - name: Twitter
+      enabled: true
+    - name: Instagram
+      enabled: true
+categories:
+  promotions:
+    - name: Seasonal Sales
+      description: Promotions during seasonal sales
+    - name: Holiday Sales
+      description: Promotions during holidays
