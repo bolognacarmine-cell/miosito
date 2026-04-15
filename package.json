@@ -1,1 +1,16 @@
-{"name": "miosito","version": "1.0.0","description": "A project for social media integration using axios.","main": "index.js","dependencies": {"axios": "^0.21.1","facebook-graph-api": "^1.0.0","social-media-integration": "^1.0.0"},"scripts": {"test": "echo 'Error: no test specified' && exit 1}","author": "bolognacarmine-cell","license": "ISC"}
+{
+  "name": "miosito",
+  "version": "1.0.0",
+  "description": "A project for social media integration using axios.",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "facebook-graph-api": "^1.0.0",
+    "social-media-integration": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bolognacarmine-cell",
+  "license": "ISC"
+}
