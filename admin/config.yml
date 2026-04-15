@@ -7,6 +7,8 @@ social_media_publishing:
       enabled: true
     - name: Instagram
       enabled: true
+    - name: Telegram
+      enabled: true
 categories:
   promotions:
     - name: Seasonal Sales

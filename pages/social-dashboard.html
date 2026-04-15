@@ -24,6 +24,38 @@
 <body>
     <div class="container">
         <h1 class="text-center">Social Dashboard</h1>
+        
+        <!-- Connection Status Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0">Status Collegamento Social</h4>
+                        <button id="verifyConnections" class="btn btn-primary btn-sm">Verifica Ora</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center" id="connectionResults">
+                            <div class="col-md-4">
+                                <h5>Facebook</h5>
+                                <div id="fb-status" class="badge badge-secondary">In attesa...</div>
+                                <p id="fb-msg" class="small mt-1 text-muted"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Instagram</h5>
+                                <div id="ig-status" class="badge badge-secondary">In attesa...</div>
+                                <p id="ig-msg" class="small mt-1 text-muted"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Telegram</h5>
+                                <div id="tg-status" class="badge badge-secondary">In attesa...</div>
+                                <p id="tg-msg" class="small mt-1 text-muted"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -74,8 +106,49 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#verifyConnections').click(function() {
+                const btn = $(this);
+                btn.prop('disabled', true).text('Verifica in corso...');
+                
+                // Reset status
+                ['fb', 'ig', 'tg'].forEach(s => {
+                    $(`#${s}-status`).removeClass('badge-success badge-danger').addClass('badge-secondary').text('Verifica...');
+                    $(`#${s}-msg`).text('');
+                });
+
+                fetch('/.netlify/functions/verify-connection')
+                    .then(res => res.json())
+                    .then(data => {
+                        const updateUI = (id, info) => {
+                            const statusEl = $(`#${id}-status`);
+                            const msgEl = $(`#${id}-msg`);
+                            
+                            if (info.status === 'success') {
+                                statusEl.removeClass('badge-secondary').addClass('badge-success').text('Connesso');
+                            } else {
+                                statusEl.removeClass('badge-secondary').addClass('badge-danger').text('Errore');
+                            }
+                            msgEl.text(info.message);
+                        };
+
+                        updateUI('fb', data.facebook);
+                        updateUI('ig', data.instagram);
+                        updateUI('tg', data.telegram);
+                    })
+                    .catch(err => {
+                        alert('Errore durante la verifica: ' + err.message);
+                    })
+                    .finally(() => {
+                        btn.prop('disabled', false).text('Verifica Ora');
+                    });
+            });
+        });
+    </script>
 </body>
 </html>
