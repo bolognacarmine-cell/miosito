@@ -9,5 +9,10 @@
   "title": "d",
   "category": "Hardware",
   "price": "100",
-  "body": "dddddd"
+  "body": "dddddd",
+  "images": [
+    {
+      "image": "/images/uploads/642495057_1545086823756090_3610763156703075448_n.jpg"
+    }
+  ]
 }
