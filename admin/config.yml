@@ -2,15 +2,20 @@ backend:
   name: git-gateway
   branch: main
 
+locale: 'it'
+
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
   - name: "settings"
     label: "Impostazioni Sito"
+    delete: false
+    editor:
+      preview: false
     files:
       - name: "general"
-        label: "Generale"
+        label: "Informazioni Generali"
         file: "content/settings.json"
         fields:
           - {label: "Nome Sito", name: "site_name", widget: "string"}
@@ -20,35 +25,51 @@ collections:
           - {label: "Link WhatsApp", name: "whatsapp_link", widget: "string"}
           - {label: "Link Facebook", name: "facebook_link", widget: "string"}
           - {label: "Link Instagram", name: "instagram_link", widget: "string"}
+      
       - name: "social_publishing"
-        label: "Social Publishing Config"
+        label: "Configurazione Social"
         file: "content/social_settings.json"
         fields:
-          - {label: "Abilitato", name: "enabled", widget: "boolean"}
-          - label: "Piattaforme"
+          - {label: "Abilitato", name: "enabled", widget: "boolean", hint: "Attiva/Disattiva la pubblicazione automatica"}
+          - label: "Link Rapidi"
+            name: "links"
+            widget: "object"
+            fields:
+              - {label: "Vai alla Dashboard Social", name: "dashboard_url", widget: "hidden", default: "/pages/social-dashboard.html"}
+          - label: "Piattaforme Attive"
             name: "platforms"
             widget: "list"
             fields:
-              - {label: "Nome", name: "name", widget: "string"}
-              - {label: "Attivo", name: "enabled", widget: "boolean"}
+              - {label: "Nome Piattaforma", name: "name", widget: "string"}
+              - {label: "Stato Attivo", name: "enabled", widget: "boolean"}
 
-  - name: "gallery"
-    label: "Galleria Hero"
-    files:
-      - name: "slides"
-        label: "Slides"
-        file: "content/gallery.json"
+  - name: "offerte"
+    label: "Offerte Speciali"
+    label_singular: "Offerta"
+    folder: "content/offerte"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{title}}"
+    fields:
+      - {label: "Attiva", name: "active", widget: "boolean", default: true}
+      - {label: "Titolo Offerta", name: "title", widget: "string"}
+      - {label: "Sottotitolo / Breve descrizione", name: "subtitle", widget: "string"}
+      - {label: "Prezzo Scontato", name: "price", widget: "string"}
+      - {label: "Scadenza Offerta", name: "expiry", widget: "datetime", required: false}
+      - label: "Galleria Immagini (Carosello)"
+        name: "images"
+        widget: "list"
+        summary: "{{fields.image}} {{fields.url}}"
         fields:
-          - label: "Slides"
-            name: "slides"
-            widget: "list"
-            fields:
-              - {label: "Titolo", name: "title", widget: "string"}
-              - {label: "Sottotitolo", name: "subtitle", widget: "text"}
-              - {label: "Immagine", name: "image", widget: "image"}
+          - {label: "Carica Immagine (Drag & Drop)", name: "image", widget: "image", required: false}
+          - {label: "Oppure Incolla URL Immagine", name: "url", widget: "string", required: false}
+      - {label: "Dettagli Offerta", name: "body", widget: "markdown"}
+      - {label: "Pubblica sui Social", name: "publish_to_social", widget: "boolean", default: true}
 
   - name: "prodotti"
     label: "Prodotti in Vetrina"
+    label_singular: "Prodotto"
     folder: "content/prodotti"
     create: true
     extension: "json"
@@ -56,38 +77,41 @@ collections:
     slug: "{{title}}"
     fields:
       - {label: "In evidenza", name: "featured", widget: "boolean", default: true}
-      - {label: "Titolo", name: "title", widget: "string"}
+      - {label: "Titolo Prodotto", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "select", options: ["Hardware", "Smartphone", "Console", "Accessori", "Altro"]}
       - {label: "Prezzo", name: "price", widget: "string"}
-      - label: "Immagini"
+      - label: "Galleria Immagini (Carosello)"
         name: "images"
         widget: "list"
-        field: {label: "Immagine", name: "image", widget: "image"}
-      - {label: "Descrizione", name: "body", widget: "text"}
+        fields:
+          - {label: "Immagine (Upload)", name: "image", widget: "image", required: false}
+          - {label: "URL Immagine", name: "url", widget: "string", required: false}
+      - {label: "Descrizione Completa", name: "body", widget: "text"}
+      - {label: "Pubblica sui Social", name: "publish_to_social", widget: "boolean", default: true}
 
   - name: "servizi"
-    label: "Servizi"
+    label: "Servizi Offerti"
     folder: "content/servizi"
     create: true
     extension: "json"
     format: "json"
     slug: "{{title}}"
     fields:
-      - {label: "Titolo", name: "title", widget: "string"}
-      - {label: "Icona (Feather)", name: "icon", widget: "string"}
-      - {label: "Descrizione", name: "body", widget: "text"}
-      - {label: "Immagine", name: "image", widget: "image"}
+      - {label: "Nome Servizio", name: "title", widget: "string"}
+      - {label: "Icona (es. cpu, code, settings)", name: "icon", widget: "string"}
+      - {label: "Descrizione Breve", name: "body", widget: "text"}
+      - {label: "Immagine Rappresentativa", name: "image", widget: "image"}
 
   - name: "portfolio"
-    label: "Portfolio"
+    label: "Portfolio Lavori"
     folder: "content/portfolio"
     create: true
     extension: "json"
     format: "json"
     slug: "{{title}}"
     fields:
-      - {label: "Titolo", name: "title", widget: "string"}
-      - {label: "Tipo Progetto", name: "type", widget: "string"}
-      - {label: "Descrizione", name: "body", widget: "text"}
-      - {label: "Immagine", name: "image", widget: "image"}
-      - {label: "Link Progetto", name: "link", widget: "string"}
+      - {label: "Titolo Progetto", name: "title", widget: "string"}
+      - {label: "Tipo di Lavoro", name: "type", widget: "string"}
+      - {label: "Descrizione Progetto", name: "body", widget: "text"}
+      - {label: "Immagine Copertina", name: "image", widget: "image"}
+      - {label: "Link Esterno", name: "link", widget: "string", required: false}

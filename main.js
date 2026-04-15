@@ -385,7 +385,7 @@ async function fetchContent() {
 
       if (product.images && Array.isArray(product.images)) {
         imageList = product.images.map(img => {
-          const path = typeof img === 'string' ? img : img.image;
+          const path = typeof img === 'string' ? img : (img.url || img.image);
           return processImagePath(path);
         });
       } else if (product.image) {
@@ -469,11 +469,118 @@ window.acceptCookies = function() {
   }
 };
 
+async function fetchOfferte() {
+  const grid = document.getElementById('offerteGrid');
+  const offerteSection = document.getElementById('offerte');
+  if (!grid || !offerteSection) return;
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/offerte?t=${Date.now()}`);
+    if (!res.ok) {
+      offerteSection.classList.add('hidden');
+      return;
+    }
+    
+    const files = await res.json();
+    const offerteFiles = files.filter(f => f.name.endsWith('.json'));
+
+    if (offerteFiles.length === 0) {
+      offerteSection.classList.add('hidden');
+      return;
+    }
+
+    offerteSection.classList.remove('hidden');
+    grid.innerHTML = '';
+
+    for (const file of offerteFiles) {
+      const offerRes = await fetch(file.download_url + '?t=' + Date.now());
+      const offer = await offerRes.json();
+      
+      if (!offer || !offer.active) continue;
+      
+      let imageList = [];
+      if (offer.images && Array.isArray(offer.images)) {
+        imageList = offer.images.map(img => {
+          const path = typeof img === 'string' ? img : (img.url || img.image);
+          return processImagePath(path);
+        });
+      } else if (offer.image) {
+        imageList = [processImagePath(offer.image)];
+      } else {
+        imageList = ['https://via.placeholder.com/400x300?text=Immagine+non+disponibile'];
+      }
+      
+      const carouselId = `carousel-offer-${Math.random().toString(36).substr(2, 9)}`;
+      const card = document.createElement('div');
+      card.className = 'bg-slate-800 border border-slate-700 rounded-3xl overflow-hidden shadow-2xl hover:border-orange-500/50 transition-all duration-500 group';
+      
+      const hasMultipleImages = imageList.length > 1;
+      
+      const imageSection = `
+        <div id="${carouselId}" class="pro-carousel ${!hasMultipleImages ? 'single-slide' : ''}" style="height: 300px;">
+          <div class="pro-carousel-inner">
+            ${imageList.map(img => `
+              <div class="pro-carousel-item">
+                <img src="${img}" class="w-full h-full object-cover" loading="lazy" alt="${offer.title}" onerror="this.src='https://via.placeholder.com/400x300?text=Errore+caricamento'">
+              </div>
+            `).join('')}
+          </div>
+          ${hasMultipleImages ? `
+          <button class="pro-carousel-btn prev"><i data-feather="chevron-left"></i></button>
+          <button class="pro-carousel-btn next"><i data-feather="chevron-right"></i></button>
+          <div class="pro-carousel-dots">
+            ${imageList.map((_, i) => `<button class="pro-dot ${i === 0 ? 'active' : ''}"></button>`).join('')}
+          </div>
+          ` : ''}
+        </div>
+      `;
+
+      card.innerHTML = `
+        <div class="flex flex-col md:flex-row h-full">
+          <div class="md:w-1/2 relative">
+            ${imageSection}
+            <div class="absolute top-4 left-4 bg-orange-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">Offerta</div>
+          </div>
+          <div class="md:w-1/2 p-8 flex flex-col">
+            <div class="mb-4">
+              <h3 class="text-2xl font-black text-white mb-2 uppercase tracking-tight">${offer.title}</h3>
+              <p class="text-orange-400 text-sm font-bold">${offer.subtitle || ''}</p>
+            </div>
+            <div class="text-slate-300 text-sm mb-6 flex-grow prose prose-invert max-w-none">
+              ${offer.body || ''}
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-6 border-t border-slate-700">
+              <div class="flex flex-col">
+                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Prezzo Speciale</span>
+                <span class="text-3xl font-black text-white">${offer.price || 'P.R.'}</span>
+              </div>
+              <a href="https://wa.me/3335920941?text=Interessato%20all'offerta:%20${encodeURIComponent(offer.title)}" 
+                 class="bg-pc-blue-600 hover:bg-pc-blue-700 text-white px-6 py-3 rounded-xl font-bold shadow-lg transition-all active:scale-95">
+                Prenota Ora
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+      
+      if (hasMultipleImages) {
+        carouselRegistry.set(carouselId, new ProfessionalCarousel(card.querySelector('.pro-carousel')));
+      }
+    }
+    if (window.feather) feather.replace();
+  } catch (error) {
+    console.error('Errore nel caricamento delle offerte:', error);
+    offerteSection.classList.add('hidden');
+  }
+}
+
 // Initialize everything on load
 window.addEventListener('load', () => {
   document.body.classList.add('loaded');
   initObservers();
   fetchContent();
+  fetchOfferte();
   fetchCarousel();
 
   if (!localStorage.getItem('cookies-accepted')) {
