@@ -167,7 +167,10 @@ const processImagePath = (path) => {
   let cleanPath = path.startsWith('/') ? path : '/' + path;
   
   // Se è un'immagine caricata dal CMS, prova a caricarla da GitHub per sincronizzazione immediata
+  // ma gestisci anche il caso in cui il percorso nel JSON sia già corretto per il sito statico
   if (cleanPath.startsWith('/images/uploads/')) {
+    // Prova prima il percorso locale (che funzionerà dopo il deploy)
+    // Ma per lo sviluppo/anteprima immediata usiamo GitHub
     return `https://raw.githubusercontent.com/${owner}/${repo}/main${cleanPath}`;
   }
   return cleanPath;
