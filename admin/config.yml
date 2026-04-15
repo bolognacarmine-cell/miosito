@@ -66,6 +66,13 @@ collections:
           - {label: "Oppure Incolla URL Immagine", name: "url", widget: "string", required: false}
       - {label: "Dettagli Offerta", name: "body", widget: "markdown"}
       - {label: "Pubblica sui Social", name: "publish_to_social", widget: "boolean", default: true}
+      - label: "Seleziona Piattaforme Social"
+        name: "social_platforms"
+        widget: "select"
+        multiple: true
+        options: ["Facebook", "Instagram", "Telegram"]
+        default: ["Facebook", "Instagram", "Telegram"]
+        condition: {field: "publish_to_social", value: true}
 
   - name: "prodotti"
     label: "Prodotti in Vetrina"
@@ -88,6 +95,13 @@ collections:
           - {label: "URL Immagine", name: "url", widget: "string", required: false}
       - {label: "Descrizione Completa", name: "body", widget: "text"}
       - {label: "Pubblica sui Social", name: "publish_to_social", widget: "boolean", default: true}
+      - label: "Seleziona Piattaforme Social"
+        name: "social_platforms"
+        widget: "select"
+        multiple: true
+        options: ["Facebook", "Instagram", "Telegram"]
+        default: ["Facebook", "Instagram", "Telegram"]
+        condition: {field: "publish_to_social", value: true}
 
   - name: "servizi"
     label: "Servizi Offerti"

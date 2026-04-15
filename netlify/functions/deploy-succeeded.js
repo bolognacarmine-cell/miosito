@@ -68,9 +68,12 @@ exports.handler = async (event, context) => {
         const content = `${title}\n\n${body}${price}\n\nScopri di più sul nostro sito!`;
         const caption = `${title} - ${body.substring(0, 100)}...`;
 
+        // Determine which platforms to publish to
+        const selectedPlatforms = data.social_platforms || ['Facebook', 'Instagram', 'Telegram'];
+
         // Publish!
-        await publishPromotion(content, imageUrl, caption);
-        console.log(`Successfully processed ${item.filename}`);
+        await publishPromotion(content, imageUrl, caption, selectedPlatforms);
+        console.log(`Successfully processed ${item.filename} for platforms: ${selectedPlatforms.join(', ')}`);
 
       } catch (err) {
         console.error(`Error processing file ${item.filename}:`, err.message);
