@@ -1,17 +1,93 @@
-social_media_publishing:
-  enabled: true
-  platforms:
-    - name: Facebook
-      enabled: true
-    - name: Twitter
-      enabled: true
-    - name: Instagram
-      enabled: true
-    - name: Telegram
-      enabled: true
-categories:
-  promotions:
-    - name: Seasonal Sales
-      description: Promotions during seasonal sales
-    - name: Holiday Sales
-      description: Promotions during holidays
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Impostazioni Sito"
+    files:
+      - name: "general"
+        label: "Generale"
+        file: "content/settings.json"
+        fields:
+          - {label: "Nome Sito", name: "site_name", widget: "string"}
+          - {label: "Email Contatto", name: "contact_email", widget: "string"}
+          - {label: "Telefono Contatto", name: "contact_phone", widget: "string"}
+          - {label: "Indirizzo", name: "address", widget: "string"}
+          - {label: "Link WhatsApp", name: "whatsapp_link", widget: "string"}
+          - {label: "Link Facebook", name: "facebook_link", widget: "string"}
+          - {label: "Link Instagram", name: "instagram_link", widget: "string"}
+      - name: "social_publishing"
+        label: "Social Publishing Config"
+        file: "content/social_settings.json"
+        fields:
+          - {label: "Abilitato", name: "enabled", widget: "boolean"}
+          - label: "Piattaforme"
+            name: "platforms"
+            widget: "list"
+            fields:
+              - {label: "Nome", name: "name", widget: "string"}
+              - {label: "Attivo", name: "enabled", widget: "boolean"}
+
+  - name: "gallery"
+    label: "Galleria Hero"
+    files:
+      - name: "slides"
+        label: "Slides"
+        file: "content/gallery.json"
+        fields:
+          - label: "Slides"
+            name: "slides"
+            widget: "list"
+            fields:
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Sottotitolo", name: "subtitle", widget: "text"}
+              - {label: "Immagine", name: "image", widget: "image"}
+
+  - name: "prodotti"
+    label: "Prodotti in Vetrina"
+    folder: "content/prodotti"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{title}}"
+    fields:
+      - {label: "In evidenza", name: "featured", widget: "boolean", default: true}
+      - {label: "Titolo", name: "title", widget: "string"}
+      - {label: "Categoria", name: "category", widget: "select", options: ["Hardware", "Smartphone", "Console", "Accessori", "Altro"]}
+      - {label: "Prezzo", name: "price", widget: "string"}
+      - label: "Immagini"
+        name: "images"
+        widget: "list"
+        field: {label: "Immagine", name: "image", widget: "image"}
+      - {label: "Descrizione", name: "body", widget: "text"}
+
+  - name: "servizi"
+    label: "Servizi"
+    folder: "content/servizi"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{title}}"
+    fields:
+      - {label: "Titolo", name: "title", widget: "string"}
+      - {label: "Icona (Feather)", name: "icon", widget: "string"}
+      - {label: "Descrizione", name: "body", widget: "text"}
+      - {label: "Immagine", name: "image", widget: "image"}
+
+  - name: "portfolio"
+    label: "Portfolio"
+    folder: "content/portfolio"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{title}}"
+    fields:
+      - {label: "Titolo", name: "title", widget: "string"}
+      - {label: "Tipo Progetto", name: "type", widget: "string"}
+      - {label: "Descrizione", name: "body", widget: "text"}
+      - {label: "Immagine", name: "image", widget: "image"}
+      - {label: "Link Progetto", name: "link", widget: "string"}

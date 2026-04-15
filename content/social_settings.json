@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "platforms": [
+    { "name": "Facebook", "enabled": true },
+    { "name": "Twitter", "enabled": true },
+    { "name": "Instagram", "enabled": true },
+    { "name": "Telegram", "enabled": true }
+  ],
+  "categories": {
+    "promotions": [
+      { "name": "Seasonal Sales", "description": "Promotions during seasonal sales" },
+      { "name": "Holiday Sales", "description": "Promotions during holidays" }
+    ]
+  }
+}
