@@ -54,6 +54,16 @@
                                 <p id="tg-msg" class="small mt-1 text-muted"></p>
                             </div>
                         </div>
+                        
+                        <!-- Troubleshooting Section -->
+                        <div class="mt-4 p-3 bg-light rounded border">
+                            <h6><i class="fas fa-info-circle text-primary"></i> Guida alla risoluzione (ACCESS TOKEN ERROR)</h6>
+                            <ul class="small text-muted mb-0">
+                                <li><strong>Facebook/Instagram:</strong> I token scadono periodicamente. Se ricevi un errore, genera un nuovo <strong>Page Access Token</strong> dal portale <em>Facebook Developers</em>.</li>
+                                <li><strong>Telegram:</strong> Assicurati che il <code>TELEGRAM_BOT_TOKEN</code> sia corretto e che il <code>TELEGRAM_CHAT_ID</code> sia l'ID numerico del canale/gruppo.</li>
+                                <li><strong>Netlify:</strong> Tutte le chiavi devono essere inserite in <em>Site Settings > Environment Variables</em> su Netlify. Dopo averle aggiunte, è necessario fare un nuovo deploy.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
