@@ -1,4 +1,3 @@
-const { GraphAPI } = require('facebook-graph-api');
 const axios = require('axios');
 
 const facebookPageAccessToken = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
@@ -8,23 +7,37 @@ const telegramChatID = process.env.TELEGRAM_CHAT_ID;
 
 async function publishToFacebook(content) {
     try {
-        const response = await GraphAPI.post('/me/feed', {
+        const response = await axios.post(`https://graph.facebook.com/v10.0/me/feed`, {
             message: content,
             access_token: facebookPageAccessToken
         });
         console.log('Published to Facebook:', response.data);
     } catch (error) {
-        console.error('Error publishing to Facebook:', error);
+        console.error('Error publishing to Facebook:', error.response?.data || error.message);
         throw error;
     }
 }
 
 async function publishToInstagram(imageUrl, caption) {
     try {
-        const response = await axios.post(`https://graph.facebook.com/v10.0/me/media?image_url=${imageUrl}&caption=${caption}&access_token=${instagramAccessToken}`);
-        console.log('Published to Instagram:', response.data);
+        // First create a container for the media
+        const containerResponse = await axios.post(`https://graph.facebook.com/v10.0/me/media`, {
+            image_url: imageUrl,
+            caption: caption,
+            access_token: instagramAccessToken
+        });
+        
+        const creationId = containerResponse.data.id;
+        
+        // Then publish the container
+        const publishResponse = await axios.post(`https://graph.facebook.com/v10.0/me/media_publish`, {
+            creation_id: creationId,
+            access_token: instagramAccessToken
+        });
+        
+        console.log('Published to Instagram:', publishResponse.data);
     } catch (error) {
-        console.error('Error publishing to Instagram:', error);
+        console.error('Error publishing to Instagram:', error.response?.data || error.message);
         throw error;
     }
 }
@@ -37,19 +50,18 @@ async function publishToTelegram(message) {
         });
         console.log('Published to Telegram:', response.data);
     } catch (error) {
-        console.error('Error publishing to Telegram:', error);
+        console.error('Error publishing to Telegram:', error.response?.data || error.message);
         throw error;
     }
 }
 
 async function publishPromotion(content, imageUrl, caption) {
     try {
-        await publishToFacebook(content);
-        await publishToInstagram(imageUrl, caption);
-        await publishToTelegram(content);
+        if (facebookPageAccessToken) await publishToFacebook(content);
+        if (instagramAccessToken && imageUrl) await publishToInstagram(imageUrl, caption);
+        if (telegramBotToken && telegramChatID) await publishToTelegram(content);
     } catch (error) {
         console.error('Error publishing promotion:', error);
-        // Retry logic can be implemented here if needed.
     }
 }
 
