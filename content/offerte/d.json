@@ -1,0 +1,18 @@
+{
+  "active": true,
+  "publish_to_social": true,
+  "social_platforms": [
+    "Facebook",
+    "Instagram",
+    "Telegram"
+  ],
+  "title": "d",
+  "subtitle": "d",
+  "price": "10",
+  "images": [
+    {
+      "image": "/images/uploads/642495057_1545086823756090_3610763156703075448_n.jpg"
+    }
+  ],
+  "body": "dddd"
+}
