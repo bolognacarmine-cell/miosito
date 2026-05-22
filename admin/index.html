@@ -18,6 +18,44 @@
   <script src="https://unpkg.com/decap-cms@^3.3.0/dist/decap-cms.js"></script>
   <script>
     CMS.registerPreviewStyle("/main.css");
+
+    (function () {
+      const h = window.h;
+      const createClass = window.createClass;
+      if (!h || !createClass) return;
+
+      const SocialDashboardLinkControl = createClass({
+        handleOpen: function () {
+          const url = this.props.value || "/pages/social-dashboard.html";
+          window.open(url, "_blank", "noopener,noreferrer");
+        },
+        handleChange: function (e) {
+          this.props.onChange(e.target.value);
+        },
+        render: function () {
+          return h(
+            "div",
+            { className: this.props.classNameWrapper },
+            h(
+              "div",
+              null,
+              h(
+                "button",
+                { type: "button", className: "pc-social-dashboard-btn", onClick: this.handleOpen },
+                "Controlla l'anteprima dei social"
+              ),
+              h("input", {
+                type: "text",
+                value: this.props.value || "/pages/social-dashboard.html",
+                onChange: this.handleChange,
+              })
+            )
+          );
+        },
+      });
+
+      CMS.registerWidget("socialDashboardLink", SocialDashboardLinkControl);
+    })();
   </script>
 </body>
 </html>

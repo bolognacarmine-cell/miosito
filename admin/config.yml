@@ -35,7 +35,7 @@ collections:
             name: "links"
             widget: "object"
             fields:
-              - {label: "Vai alla Dashboard Social", name: "dashboard_url", widget: "hidden", default: "/pages/social-dashboard.html"}
+              - {label: "Controlla l'anteprima dei social", name: "dashboard_url", widget: "socialDashboardLink", default: "/pages/social-dashboard.html"}
           - label: "Piattaforme Attive"
             name: "platforms"
             widget: "list"

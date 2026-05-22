@@ -52,6 +52,24 @@ button[class*="Button"][class*="primary"]:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
 }
 
+.pc-social-dashboard-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px 14px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: 0;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.pc-social-dashboard-btn:hover {
+  background-color: #1d4ed8;
+}
+
 /* Login Screen Customization */
 [class*="LoginButton"] {
   background-color: #1e3a8a !important;
