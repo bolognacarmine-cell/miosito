@@ -1,0 +1,16 @@
+{
+  "featured": true,
+  "publish_to_social": true,
+  "social_platforms": [
+    "Facebook"
+  ],
+  "title": "pc",
+  "category": "Hardware",
+  "price": "100",
+  "images": [
+    {
+      "image": "/images/uploads/riparazione.jpg"
+    }
+  ],
+  "body": "afsdadfadsfdfasf"
+}
