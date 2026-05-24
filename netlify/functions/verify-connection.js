@@ -17,17 +17,32 @@ exports.handler = async (event, context) => {
   const envInstructions = "Assicurati di aver impostato questa variabile nel pannello Netlify > Site settings > Environment variables";
   const socialSettingsHint = "Puoi disattivare temporaneamente questa piattaforma dal CMS (Impostazioni Sito > Configurazione Social).";
 
-  const readSocialSettings = () => {
+  const readSocialSettings = async () => {
     try {
       const settingsPath = path.join(__dirname, '..', '..', 'content', 'social_settings.json');
       const raw = fs.readFileSync(settingsPath, 'utf8');
       return JSON.parse(raw);
     } catch (e) {
-      return null;
+      try {
+        const baseUrl = process.env.DEPLOY_PRIME_URL || process.env.DEPLOY_URL || process.env.URL;
+        if (!baseUrl) throw new Error('Missing baseUrl');
+        const url = `${String(baseUrl).replace(/\/+$/, '')}/content/social_settings.json`;
+        const res = await axios.get(url, { timeout: 5000 });
+        return res.data;
+      } catch (e2) {
+        return {
+          enabled: true,
+          platforms: [
+            { name: 'Facebook', enabled: true },
+            { name: 'Instagram', enabled: false },
+            { name: 'Telegram', enabled: false }
+          ]
+        };
+      }
     }
   };
 
-  const socialSettings = readSocialSettings();
+  const socialSettings = await readSocialSettings();
   const isPlatformEnabled = (platformName) => {
     if (socialSettings && socialSettings.enabled === false) return false;
     const list = Array.isArray(socialSettings?.platforms) ? socialSettings.platforms : [];
