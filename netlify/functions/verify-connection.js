@@ -1,4 +1,6 @@
 const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 
 exports.handler = async (event, context) => {
   const results = {
@@ -13,9 +15,31 @@ exports.handler = async (event, context) => {
   const telegramChatID = process.env.TELEGRAM_CHAT_ID;
 
   const envInstructions = "Assicurati di aver impostato questa variabile nel pannello Netlify > Site settings > Environment variables";
+  const socialSettingsHint = "Puoi disattivare temporaneamente questa piattaforma dal CMS (Impostazioni Sito > Configurazione Social).";
+
+  const readSocialSettings = () => {
+    try {
+      const settingsPath = path.join(__dirname, '..', '..', 'content', 'social_settings.json');
+      const raw = fs.readFileSync(settingsPath, 'utf8');
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  };
+
+  const socialSettings = readSocialSettings();
+  const isPlatformEnabled = (platformName) => {
+    if (socialSettings && socialSettings.enabled === false) return false;
+    const list = Array.isArray(socialSettings?.platforms) ? socialSettings.platforms : [];
+    const found = list.find(p => String(p?.name || '').toLowerCase() === String(platformName || '').toLowerCase());
+    if (!found) return false;
+    return found.enabled !== false;
+  };
 
   // Verify Facebook
-  if (!facebookPageAccessToken) {
+  if (!isPlatformEnabled('Facebook')) {
+    results.facebook = { status: 'disabled', message: "Facebook è disattivato nel CMS." };
+  } else if (!facebookPageAccessToken) {
     results.facebook = { status: 'error', message: `Token FACEBOOK_PAGE_ACCESS_TOKEN mancante. ${envInstructions}` };
   } else {
     try {
@@ -28,8 +52,10 @@ exports.handler = async (event, context) => {
   }
 
   // Verify Instagram
-  if (!instagramAccessToken) {
-    results.instagram = { status: 'error', message: `Token INSTAGRAM_ACCESS_TOKEN mancante. ${envInstructions}` };
+  if (!isPlatformEnabled('Instagram')) {
+    results.instagram = { status: 'disabled', message: "Instagram è disattivato nel CMS." };
+  } else if (!instagramAccessToken) {
+    results.instagram = { status: 'error', message: `Token INSTAGRAM_ACCESS_TOKEN mancante. ${envInstructions}. ${socialSettingsHint}` };
   } else {
     try {
       const response = await axios.get(`https://graph.facebook.com/v10.0/me?fields=name&access_token=${instagramAccessToken}`);
@@ -41,8 +67,10 @@ exports.handler = async (event, context) => {
   }
 
   // Verify Telegram
-  if (!telegramBotToken || !telegramChatID) {
-    results.telegram = { status: 'error', message: `TELEGRAM_BOT_TOKEN o TELEGRAM_CHAT_ID mancanti. ${envInstructions}` };
+  if (!isPlatformEnabled('Telegram')) {
+    results.telegram = { status: 'disabled', message: "Telegram è disattivato nel CMS." };
+  } else if (!telegramBotToken || !telegramChatID) {
+    results.telegram = { status: 'error', message: `TELEGRAM_BOT_TOKEN o TELEGRAM_CHAT_ID mancanti. ${envInstructions}. ${socialSettingsHint}` };
   } else {
     try {
       const response = await axios.get(`https://api.telegram.org/bot${telegramBotToken}/getMe`);

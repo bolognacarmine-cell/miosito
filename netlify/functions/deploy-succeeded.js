@@ -1,4 +1,6 @@
 const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 const { publishPromotion } = require('./social-publisher');
 
 exports.handler = async (event, context) => {
@@ -7,6 +9,28 @@ exports.handler = async (event, context) => {
   const owner = 'bolognacarmine-cell';
   const repo = 'miosito';
   const githubToken = process.env.GITHUB_TOKEN; // Optional but recommended
+  const readSocialSettings = () => {
+    try {
+      const settingsPath = path.join(__dirname, '..', '..', 'content', 'social_settings.json');
+      const raw = fs.readFileSync(settingsPath, 'utf8');
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  };
+  const socialSettings = readSocialSettings();
+  const isPlatformEnabled = (platformName) => {
+    if (socialSettings && socialSettings.enabled === false) return false;
+    const list = Array.isArray(socialSettings?.platforms) ? socialSettings.platforms : [];
+    const found = list.find(p => String(p?.name || '').toLowerCase() === String(platformName || '').toLowerCase());
+    if (!found) return false;
+    return found.enabled !== false;
+  };
+
+  if (socialSettings && socialSettings.enabled === false) {
+    console.log('Social publishing globally disabled in content/social_settings.json');
+    return { statusCode: 200 };
+  }
 
   try {
     // 1. Get the latest commit from the main branch
@@ -70,10 +94,15 @@ exports.handler = async (event, context) => {
 
         // Determine which platforms to publish to
         const selectedPlatforms = data.social_platforms || ['Facebook', 'Instagram', 'Telegram'];
+        const enabledPlatforms = selectedPlatforms.filter(p => isPlatformEnabled(p));
+        if (enabledPlatforms.length === 0) {
+          console.log(`Skipping ${item.filename}: no enabled platforms selected/configured.`);
+          continue;
+        }
 
         // Publish!
-        await publishPromotion(content, imageUrl, caption, selectedPlatforms);
-        console.log(`Successfully processed ${item.filename} for platforms: ${selectedPlatforms.join(', ')}`);
+        await publishPromotion(content, imageUrl, caption, enabledPlatforms);
+        console.log(`Successfully processed ${item.filename} for platforms: ${enabledPlatforms.join(', ')}`);
 
       } catch (err) {
         console.error(`Error processing file ${item.filename}:`, err.message);

@@ -144,8 +144,10 @@
                             
                             if (info.status === 'success') {
                                 statusEl.removeClass('badge-secondary').addClass('badge-success').text('Connesso');
+                            } else if (info.status === 'disabled') {
+                                statusEl.removeClass('badge-success badge-danger').addClass('badge-secondary').text('Disattivato');
                             } else {
-                                statusEl.removeClass('badge-secondary').addClass('badge-danger').text('Errore');
+                                statusEl.removeClass('badge-success').addClass('badge-danger').text('Errore');
                             }
                             msgEl.text(info.message);
                         };

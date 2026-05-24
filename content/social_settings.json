@@ -4,6 +4,14 @@
     {
       "name": "Facebook",
       "enabled": true
+    },
+    {
+      "name": "Instagram",
+      "enabled": false
+    },
+    {
+      "name": "Telegram",
+      "enabled": false
     }
   ],
   "categories": {

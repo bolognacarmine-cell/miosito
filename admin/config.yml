@@ -71,7 +71,7 @@ collections:
         widget: "select"
         multiple: true
         options: ["Facebook", "Instagram", "Telegram"]
-        default: ["Facebook", "Instagram", "Telegram"]
+        default: ["Facebook"]
         condition: {field: "publish_to_social", value: true}
 
   - name: "prodotti"
@@ -100,7 +100,7 @@ collections:
         widget: "select"
         multiple: true
         options: ["Facebook", "Instagram", "Telegram"]
-        default: ["Facebook", "Instagram", "Telegram"]
+        default: ["Facebook"]
         condition: {field: "publish_to_social", value: true}
 
   - name: "servizi"
