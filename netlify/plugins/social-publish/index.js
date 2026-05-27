@@ -41,9 +41,14 @@ const getChangedFiles = () => {
 exports.onSuccess = async ({ utils }) => {
   const repoRoot = process.cwd();
   const socialSettings = tryReadSocialSettings(repoRoot);
-  if (socialSettings && socialSettings.enabled === false) return;
+  if (socialSettings && socialSettings.enabled === false) {
+    console.log('[social-publish] Disabilitato globalmente (content/social_settings.json -> enabled=false)');
+    return;
+  }
 
   const { publishPromotion } = require(path.join(repoRoot, 'netlify', 'functions', 'social-publisher.js'));
+
+  console.log(`[social-publish] Avvio. FACEBOOK_PAGE_ID=${process.env.FACEBOOK_PAGE_ID || '(non impostato)'}`);
 
   let changed;
   try {
@@ -60,13 +65,19 @@ exports.onSuccess = async ({ utils }) => {
       c.file.endsWith('.json')
   );
 
-  if (targets.length === 0) return;
+  if (targets.length === 0) {
+    console.log('[social-publish] Nessun file prodotto/offerta modificato nell’ultimo commit. Nessuna pubblicazione.');
+    return;
+  }
 
   for (const target of targets) {
     try {
       const data = readJson(path.join(repoRoot, target.file));
 
-      if (data.publish_to_social === false || data.active === false) continue;
+      if (data.publish_to_social === false || data.active === false) {
+        console.log(`[social-publish] Skip ${target.file} (publish_to_social=false o active=false)`);
+        continue;
+      }
 
       const title = data.title || '';
       const body = data.body || data.subtitle || '';
@@ -76,14 +87,18 @@ exports.onSuccess = async ({ utils }) => {
 
       const selectedPlatforms = Array.isArray(data.social_platforms) ? data.social_platforms : ['Facebook'];
       const enabledPlatforms = selectedPlatforms.filter((p) => isPlatformEnabled(socialSettings, p));
-      if (enabledPlatforms.length === 0) continue;
+      if (enabledPlatforms.length === 0) {
+        console.log(`[social-publish] Skip ${target.file} (nessuna piattaforma abilitata tra: ${selectedPlatforms.join(', ')})`);
+        continue;
+      }
 
+      console.log(`[social-publish] Pubblico ${target.file} -> ${enabledPlatforms.join(', ')}`);
       await publishPromotion(content, '', caption, enabledPlatforms);
+      console.log(`[social-publish] OK ${target.file}`);
     } catch (e) {
-      utils.status.show({
-        title: 'Social publish error',
-        summary: `${target.file}: ${e.message}`,
-      });
+      console.error(`[social-publish] ERRORE ${target.file}: ${e.message}`);
+      utils.build.failBuild(`Social publish error: ${target.file}: ${e.message}`);
+      return;
     }
   }
 };
