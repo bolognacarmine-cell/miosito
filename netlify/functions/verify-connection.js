@@ -10,6 +10,7 @@ exports.handler = async (event, context) => {
   };
 
   const facebookPageAccessToken = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
+  const facebookPageId = process.env.FACEBOOK_PAGE_ID;
   const instagramAccessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChatID = process.env.TELEGRAM_CHAT_ID;
@@ -58,8 +59,18 @@ exports.handler = async (event, context) => {
     results.facebook = { status: 'error', message: `Token FACEBOOK_PAGE_ACCESS_TOKEN mancante. ${envInstructions}` };
   } else {
     try {
-      const response = await axios.get(`https://graph.facebook.com/me?fields=id,name&access_token=${facebookPageAccessToken}`);
-      results.facebook = { status: 'success', message: `Connesso come ${response.data.name} (ID: ${response.data.id})` };
+      const meResponse = await axios.get(`https://graph.facebook.com/me?fields=id,name&access_token=${facebookPageAccessToken}`);
+      const me = meResponse.data;
+      if (facebookPageId) {
+        const pageResponse = await axios.get(`https://graph.facebook.com/${facebookPageId}?fields=id,name&access_token=${facebookPageAccessToken}`);
+        const page = pageResponse.data;
+        results.facebook = { status: 'success', message: `Pagina: ${page.name} (ID: ${page.id})` };
+        if (String(me?.id) !== String(page?.id)) {
+          results.facebook.message += ` | Token collegato a: ${me.name} (ID: ${me.id})`;
+        }
+      } else {
+        results.facebook = { status: 'success', message: `Connesso come ${me.name} (ID: ${me.id})` };
+      }
     } catch (error) {
       const apiMsg = error.response?.data?.error?.message || error.message;
       results.facebook = { status: 'error', message: `Errore API Facebook: ${apiMsg}. Controlla se il token è scaduto o se hai i permessi necessari.` };

@@ -1,13 +1,15 @@
 const axios = require('axios');
 
 const facebookPageAccessToken = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
+const facebookPageId = process.env.FACEBOOK_PAGE_ID;
 const instagramAccessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
 const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
 const telegramChatID = process.env.TELEGRAM_CHAT_ID;
 
 async function publishToFacebook(content) {
     try {
-        const response = await axios.post(`https://graph.facebook.com/v10.0/me/feed`, {
+        const targetId = facebookPageId || 'me';
+        const response = await axios.post(`https://graph.facebook.com/v10.0/${targetId}/feed`, {
             message: content,
             access_token: facebookPageAccessToken
         });
