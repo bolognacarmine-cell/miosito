@@ -58,8 +58,8 @@ exports.handler = async (event, context) => {
     results.facebook = { status: 'error', message: `Token FACEBOOK_PAGE_ACCESS_TOKEN mancante. ${envInstructions}` };
   } else {
     try {
-      const response = await axios.get(`https://graph.facebook.com/me?access_token=${facebookPageAccessToken}`);
-      results.facebook = { status: 'success', message: `Connesso come ${response.data.name}` };
+      const response = await axios.get(`https://graph.facebook.com/me?fields=id,name&access_token=${facebookPageAccessToken}`);
+      results.facebook = { status: 'success', message: `Connesso come ${response.data.name} (ID: ${response.data.id})` };
     } catch (error) {
       const apiMsg = error.response?.data?.error?.message || error.message;
       results.facebook = { status: 'error', message: `Errore API Facebook: ${apiMsg}. Controlla se il token è scaduto o se hai i permessi necessari.` };
@@ -73,8 +73,8 @@ exports.handler = async (event, context) => {
     results.instagram = { status: 'error', message: `Token INSTAGRAM_ACCESS_TOKEN mancante. ${envInstructions}. ${socialSettingsHint}` };
   } else {
     try {
-      const response = await axios.get(`https://graph.facebook.com/v10.0/me?fields=name&access_token=${instagramAccessToken}`);
-      results.instagram = { status: 'success', message: `Connesso come ${response.data.name}` };
+      const response = await axios.get(`https://graph.facebook.com/v10.0/me?fields=id,name&access_token=${instagramAccessToken}`);
+      results.instagram = { status: 'success', message: `Connesso come ${response.data.name} (ID: ${response.data.id})` };
     } catch (error) {
       const apiMsg = error.response?.data?.error?.message || error.message;
       results.instagram = { status: 'error', message: `Errore API Instagram: ${apiMsg}. Assicurati che l'account Instagram sia di tipo Business e collegato alla pagina Facebook.` };
