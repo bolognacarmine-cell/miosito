@@ -64,20 +64,16 @@ async function publishToTelegram(message) {
  * @param {string[]} platforms Array of platforms to publish to (e.g. ['Facebook', 'Instagram', 'Telegram'])
  */
 async function publishPromotion(content, imageUrl, caption, platforms = ['Facebook', 'Instagram', 'Telegram']) {
-    try {
-        if (platforms.includes('Facebook') && facebookPageAccessToken) {
-            await publishToFacebook(content);
-        }
-        
-        if (platforms.includes('Instagram') && instagramAccessToken && imageUrl) {
-            await publishToInstagram(imageUrl, caption);
-        }
-        
-        if (platforms.includes('Telegram') && telegramBotToken && telegramChatID) {
-            await publishToTelegram(content);
-        }
-    } catch (error) {
-        console.error('Error publishing promotion:', error);
+    if (platforms.includes('Facebook') && facebookPageAccessToken) {
+        await publishToFacebook(content);
+    }
+
+    if (platforms.includes('Instagram') && instagramAccessToken && imageUrl) {
+        await publishToInstagram(imageUrl, caption);
+    }
+
+    if (platforms.includes('Telegram') && telegramBotToken && telegramChatID) {
+        await publishToTelegram(content);
     }
 }
 
