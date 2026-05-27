@@ -1,6 +1,9 @@
 [build]
   publish = "."
 
+[[plugins]]
+  package = "./netlify/plugins/social-publish"
+
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
