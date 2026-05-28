@@ -1,0 +1,17 @@
+{
+  "publish_to_social": true,
+  "body": "eeeee",
+  "active": true,
+  "price": "100",
+  "social_platforms": [
+    "Facebook"
+  ],
+  "expiry": "2026-05-28T21:16:00.000+02:00",
+  "subtitle": "eeeeeeeeeeeeeeee",
+  "title": "eeeeeeeeeeeeeeeee",
+  "images": [
+    {
+      "image": "/images/uploads/riparazione.jpg"
+    }
+  ]
+}
