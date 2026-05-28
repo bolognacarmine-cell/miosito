@@ -2,6 +2,9 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
+const owner = 'bolognacarmine-cell';
+const repo = 'miosito';
+
 const readJson = (filePath) => {
   const raw = fs.readFileSync(filePath, 'utf8');
   return JSON.parse(raw);
@@ -38,6 +41,29 @@ const getChangedFiles = () => {
     });
 };
 
+const normalizeImageUrl = (maybePath) => {
+  if (!maybePath) return '';
+  const val = String(maybePath).trim();
+  if (!val) return '';
+  if (val.startsWith('http://') || val.startsWith('https://')) return val;
+  const cleanPath = val.startsWith('/') ? val : `/${val}`;
+  if (cleanPath.startsWith('/images/uploads/')) {
+    return `https://raw.githubusercontent.com/${owner}/${repo}/main${cleanPath}`;
+  }
+  return '';
+};
+
+const getFirstImageUrl = (data) => {
+  if (!data || typeof data !== 'object') return '';
+  if (Array.isArray(data.images) && data.images.length > 0) {
+    const first = data.images[0];
+    if (typeof first === 'string') return normalizeImageUrl(first);
+    if (first && typeof first === 'object') return normalizeImageUrl(first.url || first.image);
+  }
+  if (data.image) return normalizeImageUrl(data.image);
+  return '';
+};
+
 exports.onSuccess = async ({ utils }) => {
   const repoRoot = process.cwd();
   const socialSettings = tryReadSocialSettings(repoRoot);
@@ -61,12 +87,12 @@ exports.onSuccess = async ({ utils }) => {
   const targets = changed.filter(
     (c) =>
       (c.status === 'A' || c.status === 'M') &&
-      (c.file.startsWith('content/prodotti/') || c.file.startsWith('content/offerte/')) &&
+      (c.file.startsWith('content/prodotti/') || c.file.startsWith('content/offerte/') || c.file.startsWith('content/servizi/')) &&
       c.file.endsWith('.json')
   );
 
   if (targets.length === 0) {
-    console.log('[social-publish] Nessun file prodotto/offerta modificato nell’ultimo commit. Nessuna pubblicazione.');
+    console.log('[social-publish] Nessun file prodotto/offerta/servizi modificato nell’ultimo commit. Nessuna pubblicazione.');
     return;
   }
 
@@ -74,7 +100,7 @@ exports.onSuccess = async ({ utils }) => {
     try {
       const data = readJson(path.join(repoRoot, target.file));
 
-      if (data.publish_to_social === false || data.active === false) {
+      if (data.publish_to_social === false || (Object.prototype.hasOwnProperty.call(data, 'active') && data.active === false)) {
         console.log(`[social-publish] Skip ${target.file} (publish_to_social=false o active=false)`);
         continue;
       }
@@ -84,6 +110,7 @@ exports.onSuccess = async ({ utils }) => {
       const price = data.price ? `\nPrezzo: ${data.price}` : '';
       const content = `${title}\n\n${body}${price}\n\nScopri di più sul nostro sito!`;
       const caption = `${title} - ${String(body).substring(0, 100)}...`;
+      const imageUrl = getFirstImageUrl(data);
 
       const selectedPlatforms = Array.isArray(data.social_platforms) ? data.social_platforms : ['Facebook'];
       const enabledPlatforms = selectedPlatforms.filter((p) => isPlatformEnabled(socialSettings, p));
@@ -93,7 +120,7 @@ exports.onSuccess = async ({ utils }) => {
       }
 
       console.log(`[social-publish] Pubblico ${target.file} -> ${enabledPlatforms.join(', ')}`);
-      await publishPromotion(content, '', caption, enabledPlatforms);
+      await publishPromotion(content, imageUrl, caption, enabledPlatforms);
       console.log(`[social-publish] OK ${target.file}`);
     } catch (e) {
       console.error(`[social-publish] ERRORE ${target.file}: ${e.message}`);

@@ -115,6 +115,14 @@ collections:
       - {label: "Icona (es. cpu, code, settings)", name: "icon", widget: "string"}
       - {label: "Descrizione Breve", name: "body", widget: "text"}
       - {label: "Immagine Rappresentativa", name: "image", widget: "image"}
+      - {label: "Pubblica sui Social", name: "publish_to_social", widget: "boolean", default: true}
+      - label: "Seleziona Piattaforme Social"
+        name: "social_platforms"
+        widget: "select"
+        multiple: true
+        options: ["Facebook", "Instagram", "Telegram"]
+        default: ["Facebook"]
+        condition: {field: "publish_to_social", value: true}
 
   - name: "portfolio"
     label: "Portfolio Lavori"

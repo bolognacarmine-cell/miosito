@@ -6,14 +6,24 @@ const instagramAccessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
 const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
 const telegramChatID = process.env.TELEGRAM_CHAT_ID;
 
-async function publishToFacebook(content) {
+async function publishToFacebook(content, imageUrl) {
     try {
         const targetId = facebookPageId || 'me';
-        const response = await axios.post(`https://graph.facebook.com/v10.0/${targetId}/feed`, {
-            message: content,
-            access_token: facebookPageAccessToken
-        });
-        console.log('Published to Facebook:', response.data);
+        if (imageUrl) {
+            const response = await axios.post(`https://graph.facebook.com/v10.0/${targetId}/photos`, {
+                url: imageUrl,
+                caption: content,
+                published: true,
+                access_token: facebookPageAccessToken
+            });
+            console.log('Published to Facebook (photo):', response.data);
+        } else {
+            const response = await axios.post(`https://graph.facebook.com/v10.0/${targetId}/feed`, {
+                message: content,
+                access_token: facebookPageAccessToken
+            });
+            console.log('Published to Facebook:', response.data);
+        }
     } catch (error) {
         console.error('Error publishing to Facebook:', error.response?.data || error.message);
         throw error;
@@ -65,7 +75,7 @@ async function publishToTelegram(message) {
  */
 async function publishPromotion(content, imageUrl, caption, platforms = ['Facebook', 'Instagram', 'Telegram']) {
     if (platforms.includes('Facebook') && facebookPageAccessToken) {
-        await publishToFacebook(content);
+        await publishToFacebook(content, imageUrl);
     }
 
     if (platforms.includes('Instagram') && instagramAccessToken && imageUrl) {
