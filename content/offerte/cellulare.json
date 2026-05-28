@@ -1,0 +1,16 @@
+{
+  "active": true,
+  "publish_to_social": true,
+  "social_platforms": [
+    "Facebook"
+  ],
+  "title": "cellulare",
+  "price": "€.90",
+  "images": [
+    {
+      "image": "/images/uploads/riparazione.jpg"
+    }
+  ],
+  "body": "super telefono.\n\nvisita il nostro sito https://www.pc-work.it",
+  "subtitle": "supersmart"
+}
