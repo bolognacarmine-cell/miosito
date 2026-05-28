@@ -114,7 +114,15 @@ exports.onSuccess = async ({ utils }) => {
       const title = data.title || '';
       const body = data.body || data.subtitle || '';
       const price = data.price ? `\nPrezzo: ${data.price}` : '';
-      const content = `${title}\n\n${body}${price}\n\nScopri di più sul nostro sito!`;
+      const baseUrl = getBaseUrl();
+      let deepLink = '';
+      if (baseUrl) {
+        if (target.file.startsWith('content/offerte/')) deepLink = `${baseUrl}/#offerte`;
+        if (target.file.startsWith('content/prodotti/')) deepLink = `${baseUrl}/#vetrina`;
+        if (target.file.startsWith('content/servizi/')) deepLink = `${baseUrl}/#services`;
+      }
+      const linkBlock = deepLink ? `\n\nScopri di più:\n${deepLink}` : '';
+      const content = `${title}\n\n${body}${price}${linkBlock}`;
       const caption = `${title} - ${String(body).substring(0, 100)}...`;
       const imageUrl = getFirstImageUrl(data);
 
