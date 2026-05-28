@@ -1,0 +1,16 @@
+{
+  "active": true,
+  "publish_to_social": true,
+  "social_platforms": [
+    "Facebook"
+  ],
+  "title": "cactus",
+  "subtitle": "piccolo",
+  "price": "80",
+  "images": [
+    {
+      "image": "/images/uploads/riparazione.jpg"
+    }
+  ],
+  "body": "cc"
+}
