@@ -41,15 +41,21 @@ const getChangedFiles = () => {
     });
 };
 
+const getBaseUrl = () => {
+  const baseUrl = process.env.DEPLOY_PRIME_URL || process.env.DEPLOY_URL || process.env.URL;
+  if (!baseUrl) return '';
+  return String(baseUrl).replace(/\/+$/, '');
+};
+
 const normalizeImageUrl = (maybePath) => {
   if (!maybePath) return '';
   const val = String(maybePath).trim();
   if (!val) return '';
   if (val.startsWith('http://') || val.startsWith('https://')) return val;
+  const baseUrl = getBaseUrl();
   const cleanPath = val.startsWith('/') ? val : `/${val}`;
-  if (cleanPath.startsWith('/images/uploads/')) {
-    return `https://raw.githubusercontent.com/${owner}/${repo}/main${cleanPath}`;
-  }
+  if (baseUrl) return `${baseUrl}${cleanPath}`;
+  if (cleanPath.startsWith('/images/uploads/')) return `https://raw.githubusercontent.com/${owner}/${repo}/main${cleanPath}`;
   return '';
 };
 
