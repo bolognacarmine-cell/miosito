@@ -1,0 +1,16 @@
+{
+  "featured": true,
+  "publish_to_social": true,
+  "social_platforms": [
+    "Instagram"
+  ],
+  "title": "cellulare",
+  "category": "Smartphone",
+  "price": "20",
+  "images": [
+    {
+      "image": "/images/uploads/riparazione.jpg"
+    }
+  ],
+  "body": "abcdefghilmnopqrstuvza12345678901234678901234567890123456789012345678901234567890"
+}
