@@ -1,11 +1,6 @@
 const axios = require('axios');
 const querystring = require('querystring');
  
-const getBaseUrl = () => {
-  const baseUrl = process.env.DEPLOY_PRIME_URL || process.env.DEPLOY_URL || process.env.URL;
-  return String(baseUrl || '').replace(/\/+$/, '');
-};
- 
 const getCookie = (cookieHeader, name) => {
   if (!cookieHeader) return '';
   const parts = String(cookieHeader).split(';').map(p => p.trim());
@@ -14,13 +9,12 @@ const getCookie = (cookieHeader, name) => {
   return decodeURIComponent(found.substring(name.length + 1));
 };
  
-const escapeHtml = (str) =>
-  String(str || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+const encodeBase64Url = (obj) =>
+  Buffer.from(JSON.stringify(obj))
+    .toString('base64')
+    .replace(/=/g, '')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_');
  
 exports.handler = async (event) => {
   const appId = process.env.META_APP_ID;
@@ -33,8 +27,7 @@ exports.handler = async (event) => {
     };
   }
  
-  const baseUrl = getBaseUrl();
-  const redirectUri = `${baseUrl}/api/auth/meta/callback`;
+  const redirectUri = process.env.META_REDIRECT_URI || 'https://pc-work.it/api/auth/meta/callback';
  
   const code = event.queryStringParameters?.code;
   const state = event.queryStringParameters?.state;
@@ -42,12 +35,12 @@ exports.handler = async (event) => {
   if (!code) {
     return { statusCode: 400, headers: { 'Content-Type': 'text/plain' }, body: 'Missing code.' };
   }
-  if (cookieState && state && cookieState !== state) {
+  if (!state || !cookieState || cookieState !== state) {
     return { statusCode: 400, headers: { 'Content-Type': 'text/plain' }, body: 'Invalid state.' };
   }
  
   try {
-    const tokenRes = await axios.get('https://graph.facebook.com/v20.0/oauth/access_token', {
+    const tokenRes = await axios.get('https://graph.facebook.com/v19.0/oauth/access_token', {
       params: {
         client_id: appId,
         redirect_uri: redirectUri,
@@ -59,7 +52,7 @@ exports.handler = async (event) => {
  
     const shortToken = tokenRes.data.access_token;
  
-    const longRes = await axios.get('https://graph.facebook.com/v20.0/oauth/access_token', {
+    const longRes = await axios.get('https://graph.facebook.com/v19.0/oauth/access_token', {
       params: {
         grant_type: 'fb_exchange_token',
         client_id: appId,
@@ -72,7 +65,7 @@ exports.handler = async (event) => {
     const longToken = longRes.data.access_token;
     const expiresIn = longRes.data.expires_in;
  
-    const accountsRes = await axios.get('https://graph.facebook.com/v20.0/me/accounts', {
+    const accountsRes = await axios.get('https://graph.facebook.com/v19.0/me/accounts', {
       params: {
         fields: 'id,name,access_token,instagram_business_account',
         access_token: longToken
@@ -96,7 +89,7 @@ exports.handler = async (event) => {
     let igBusinessId = page?.instagram_business_account?.id || '';
  
     if (!igBusinessId && pageId && pageAccessToken) {
-      const pageRes = await axios.get(`https://graph.facebook.com/v20.0/${pageId}`, {
+      const pageRes = await axios.get(`https://graph.facebook.com/v19.0/${pageId}`, {
         params: {
           fields: 'instagram_business_account{id,username}',
           access_token: pageAccessToken
@@ -116,64 +109,13 @@ exports.handler = async (event) => {
       }
     };
  
-    const html = `<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Instagram collegato</title>
-  <style>
-    body{font-family:Arial, sans-serif; padding:24px; max-width:720px; margin:0 auto; line-height:1.4}
-    code{background:#f4f4f4; padding:2px 6px; border-radius:4px}
-    .ok{color:#0a7d2a; font-weight:700}
-    .warn{color:#8a3b00; font-weight:700}
-    textarea{width:100%; min-height:120px}
-    button{padding:10px 14px; cursor:pointer}
-  </style>
-</head>
-<body>
-  <h2 class="ok">Collegamento Instagram completato</h2>
-  <p>Ora puoi tornare alla Social Dashboard. I dati sono stati salvati nel browser (localStorage) per fare un post di test.</p>
-  <p><span class="warn">Nota:</span> per la pubblicazione automatica durante i deploy, devi comunque copiare il token su Netlify come <code>INSTAGRAM_ACCESS_TOKEN</code> e l’ID come <code>INSTAGRAM_IG_USER_ID</code>.</p>
-  <h3>Dati ottenuti</h3>
-  <pre>${escapeHtml(JSON.stringify(payload, null, 2))}</pre>
-  <button id="closeBtn">Torna alla Dashboard</button>
-  <script>
-    (function(){
-      var data = ${JSON.stringify(payload)};
-      if (data && data.ok) {
-        if (data.tokens && data.tokens.page_access_token) {
-          localStorage.setItem('ig_access_token', data.tokens.page_access_token);
-        }
-        if (data.instagram && data.instagram.ig_user_id) {
-          localStorage.setItem('ig_user_id', data.instagram.ig_user_id);
-        }
-        if (data.page && data.page.id) {
-          localStorage.setItem('ig_page_id', data.page.id);
-        }
-        if (data.expires_in) {
-          localStorage.setItem('ig_expires_in', String(data.expires_in));
-          localStorage.setItem('ig_saved_at', String(Date.now()));
-        }
-        if (window.opener && window.opener.postMessage) {
-          window.opener.postMessage({ type: 'ig_oauth_complete', data: data }, '*');
-        }
-      }
-      document.getElementById('closeBtn').addEventListener('click', function(){
-        window.location.href = '/pages/social-dashboard.html';
-      });
-    })();
-  </script>
-</body>
-</html>`;
- 
     return {
-      statusCode: 200,
+      statusCode: 302,
       headers: {
-        'Content-Type': 'text/html; charset=utf-8',
-        'Set-Cookie': 'meta_oauth_state=; Path=/; Max-Age=0; Secure; SameSite=Lax'
+        Location: `https://pc-work.it/pages/social-dashboard.html?connected=1#ig=${encodeURIComponent(encodeBase64Url(payload))}`,
+        'Set-Cookie': 'meta_oauth_state=; Path=/; Max-Age=0; Secure; HttpOnly; SameSite=Lax'
       },
-      body: html
+      body: ''
     };
   } catch (e) {
     const msg = e.response?.data?.error?.message || e.response?.data || e.message;

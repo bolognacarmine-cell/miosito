@@ -1,11 +1,6 @@
 const crypto = require('crypto');
 const querystring = require('querystring');
  
-const getBaseUrl = () => {
-  const baseUrl = process.env.DEPLOY_PRIME_URL || process.env.DEPLOY_URL || process.env.URL;
-  return String(baseUrl || '').replace(/\/+$/, '');
-};
- 
 exports.handler = async (event) => {
   const appId = process.env.META_APP_ID;
   if (!appId) {
@@ -16,21 +11,13 @@ exports.handler = async (event) => {
     };
   }
  
-  const baseUrl = getBaseUrl();
-  if (!baseUrl) {
-    return {
-      statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ok: false, error: 'Missing site base URL (URL/DEPLOY_URL/DEPLOY_PRIME_URL)' })
-    };
-  }
- 
-  const redirectUri = `${baseUrl}/api/auth/meta/callback`;
+  const redirectUri = process.env.META_REDIRECT_URI || 'https://pc-work.it/api/auth/meta/callback';
   const state = crypto.randomBytes(16).toString('hex');
  
   const scope = [
     'pages_show_list',
     'pages_read_engagement',
+    'pages_manage_posts',
     'instagram_basic',
     'instagram_content_publish'
   ].join(',');
@@ -46,8 +33,8 @@ exports.handler = async (event) => {
   return {
     statusCode: 302,
     headers: {
-      Location: `https://www.facebook.com/v20.0/dialog/oauth?${qs}`,
-      'Set-Cookie': `meta_oauth_state=${state}; Path=/; Max-Age=600; Secure; SameSite=Lax`
+      Location: `https://www.facebook.com/v19.0/dialog/oauth?${qs}`,
+      'Set-Cookie': `meta_oauth_state=${state}; Path=/; Max-Age=600; Secure; HttpOnly; SameSite=Lax`
     },
     body: ''
   };

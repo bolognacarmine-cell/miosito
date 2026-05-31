@@ -130,6 +130,36 @@
     
     <script>
         $(document).ready(function() {
+            const decodeBase64UrlJson = (b64url) => {
+                const s = String(b64url || '').replace(/-/g, '+').replace(/_/g, '/');
+                const pad = s.length % 4 ? '='.repeat(4 - (s.length % 4)) : '';
+                return JSON.parse(atob(s + pad));
+            };
+
+            const consumeIgOAuthHash = () => {
+                const hash = window.location.hash || '';
+                if (!hash.startsWith('#ig=')) return;
+                const encoded = hash.substring(4);
+                try {
+                    const payload = decodeBase64UrlJson(decodeURIComponent(encoded));
+                    const accessToken = payload?.tokens?.page_access_token || '';
+                    const igUserId = payload?.instagram?.ig_user_id || '';
+                    const pageId = payload?.page?.id || '';
+                    const expiresIn = payload?.expires_in;
+                    if (accessToken && igUserId) {
+                        localStorage.setItem('ig_access_token', accessToken);
+                        localStorage.setItem('ig_user_id', igUserId);
+                        if (pageId) localStorage.setItem('ig_page_id', pageId);
+                        if (typeof expiresIn === 'number') localStorage.setItem('ig_expires_in', String(expiresIn));
+                        localStorage.setItem('ig_saved_at', new Date().toISOString());
+                        window.postMessage({ type: 'ig_oauth_complete' }, window.location.origin);
+                    }
+                } catch (e) {
+                } finally {
+                    history.replaceState(null, document.title, window.location.pathname + window.location.search);
+                }
+            };
+
             const refreshLocalIg = () => {
                 const token = localStorage.getItem('ig_access_token');
                 const igUserId = localStorage.getItem('ig_user_id');
@@ -212,6 +242,7 @@
                     });
             });
 
+            consumeIgOAuthHash();
             refreshLocalIg();
         });
     </script>

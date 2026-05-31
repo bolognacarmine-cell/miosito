@@ -1,5 +1,8 @@
 {
   "enabled": true,
+  "links": {
+    "dashboard_url": "/pages/social-dashboard.html"
+  },
   "platforms": [
     {
       "name": "Facebook",
@@ -13,17 +16,5 @@
       "name": "Telegram",
       "enabled": false
     }
-  ],
-  "categories": {
-    "promotions": [
-      {
-        "name": "Seasonal Sales",
-        "description": "Promotions during seasonal sales"
-      },
-      {
-        "name": "Holiday Sales",
-        "description": "Promotions during holidays"
-      }
-    ]
-  }
+  ]
 }

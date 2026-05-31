@@ -17,6 +17,7 @@ collections:
       - name: "general"
         label: "Informazioni Generali"
         file: "content/settings.json"
+        format: "json"
         fields:
           - {label: "Nome Sito", name: "site_name", widget: "string"}
           - {label: "Email Contatto", name: "contact_email", widget: "string"}
@@ -29,6 +30,7 @@ collections:
       - name: "social_publishing"
         label: "Configurazione Social"
         file: "content/social_settings.json"
+        format: "json"
         fields:
           - {label: "Abilitato", name: "enabled", widget: "boolean", hint: "Attiva/Disattiva la pubblicazione automatica"}
           - label: "Link Rapidi"
