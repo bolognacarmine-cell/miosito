@@ -3,6 +3,7 @@ const axios = require('axios');
 const facebookPageAccessToken = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
 const facebookPageId = process.env.FACEBOOK_PAGE_ID;
 const instagramAccessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
+const instagramIgUserId = process.env.INSTAGRAM_IG_USER_ID;
 const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
 const telegramChatID = process.env.TELEGRAM_CHAT_ID;
 
@@ -32,19 +33,25 @@ async function publishToFacebook(content, imageUrl) {
 
 async function publishToInstagram(imageUrl, caption) {
     try {
-        // First create a container for the media
-        const containerResponse = await axios.post(`https://graph.facebook.com/v10.0/me/media`, {
-            image_url: imageUrl,
-            caption: caption,
-            access_token: instagramAccessToken
+        if (!instagramIgUserId) {
+            throw new Error('Missing INSTAGRAM_IG_USER_ID');
+        }
+ 
+        const containerResponse = await axios.post(`https://graph.facebook.com/v20.0/${instagramIgUserId}/media`, null, {
+            params: {
+                image_url: imageUrl,
+                caption: caption,
+                access_token: instagramAccessToken
+            }
         });
         
         const creationId = containerResponse.data.id;
         
-        // Then publish the container
-        const publishResponse = await axios.post(`https://graph.facebook.com/v10.0/me/media_publish`, {
-            creation_id: creationId,
-            access_token: instagramAccessToken
+        const publishResponse = await axios.post(`https://graph.facebook.com/v20.0/${instagramIgUserId}/media_publish`, null, {
+            params: {
+                creation_id: creationId,
+                access_token: instagramAccessToken
+            }
         });
         
         console.log('Published to Instagram:', publishResponse.data);
@@ -78,7 +85,7 @@ async function publishPromotion(content, imageUrl, caption, platforms = ['Facebo
         await publishToFacebook(content, imageUrl);
     }
 
-    if (platforms.includes('Instagram') && instagramAccessToken && imageUrl) {
+    if (platforms.includes('Instagram') && instagramAccessToken && instagramIgUserId && imageUrl) {
         await publishToInstagram(imageUrl, caption);
     }
 

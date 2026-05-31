@@ -47,6 +47,11 @@
                                 <h5>Instagram</h5>
                                 <div id="ig-status" class="badge badge-secondary">In attesa...</div>
                                 <p id="ig-msg" class="small mt-1 text-muted"></p>
+                                <div class="mt-2">
+                                    <button id="connectInstagram" class="btn btn-outline-primary btn-sm">Collega Instagram</button>
+                                    <button id="testInstagram" class="btn btn-outline-success btn-sm">Post di test</button>
+                                </div>
+                                <p id="ig-local" class="small mt-2 text-muted"></p>
                             </div>
                             <div class="col-md-4">
                                 <h5>Telegram</h5>
@@ -125,6 +130,49 @@
     
     <script>
         $(document).ready(function() {
+            const refreshLocalIg = () => {
+                const token = localStorage.getItem('ig_access_token');
+                const igUserId = localStorage.getItem('ig_user_id');
+                const pageId = localStorage.getItem('ig_page_id');
+                if (token && igUserId) {
+                    $('#ig-local').text(`OAuth locale presente (IG User ID: ${igUserId}${pageId ? `, Page ID: ${pageId}` : ''}).`);
+                } else {
+                    $('#ig-local').text('');
+                }
+            };
+
+            window.addEventListener('message', (e) => {
+                if (e?.data?.type === 'ig_oauth_complete') refreshLocalIg();
+            });
+
+            $('#connectInstagram').click(function() {
+                window.location.href = '/api/auth/meta/login';
+            });
+
+            $('#testInstagram').click(function() {
+                const accessToken = localStorage.getItem('ig_access_token') || '';
+                const igUserId = localStorage.getItem('ig_user_id') || '';
+                if (!accessToken || !igUserId) {
+                    alert('Prima collega Instagram (serve OAuth) oppure configura INSTAGRAM_ACCESS_TOKEN e INSTAGRAM_IG_USER_ID su Netlify.');
+                    return;
+                }
+                const caption = prompt('Test caption Instagram:', 'Test Instagram da Social Dashboard') || '';
+                fetch('/api/instagram/test-post', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ access_token: accessToken, ig_user_id: igUserId, caption })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert('Post Instagram inviato (controlla la pagina Instagram).');
+                    } else {
+                        alert('Errore Instagram: ' + (data.error || 'unknown'));
+                    }
+                })
+                .catch(err => alert('Errore Instagram: ' + err.message));
+            });
+
             $('#verifyConnections').click(function() {
                 const btn = $(this);
                 btn.prop('disabled', true).text('Verifica in corso...');
@@ -163,6 +211,8 @@
                         btn.prop('disabled', false).text('Verifica Ora');
                     });
             });
+
+            refreshLocalIg();
         });
     </script>
 </body>

@@ -12,6 +12,7 @@ exports.handler = async (event, context) => {
   const facebookPageAccessToken = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
   const facebookPageId = process.env.FACEBOOK_PAGE_ID;
   const instagramAccessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
+  const instagramIgUserId = process.env.INSTAGRAM_IG_USER_ID;
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChatID = process.env.TELEGRAM_CHAT_ID;
 
@@ -80,12 +81,15 @@ exports.handler = async (event, context) => {
   // Verify Instagram
   if (!isPlatformEnabled('Instagram')) {
     results.instagram = { status: 'disabled', message: "Instagram è disattivato nel CMS." };
-  } else if (!instagramAccessToken) {
-    results.instagram = { status: 'error', message: `Token INSTAGRAM_ACCESS_TOKEN mancante. ${envInstructions}. ${socialSettingsHint}` };
+  } else if (!instagramAccessToken || !instagramIgUserId) {
+    const missing = [];
+    if (!instagramAccessToken) missing.push('INSTAGRAM_ACCESS_TOKEN');
+    if (!instagramIgUserId) missing.push('INSTAGRAM_IG_USER_ID');
+    results.instagram = { status: 'error', message: `Variabili mancanti: ${missing.join(', ')}. ${envInstructions}. ${socialSettingsHint}` };
   } else {
     try {
-      const response = await axios.get(`https://graph.facebook.com/v10.0/me?fields=id,name&access_token=${instagramAccessToken}`);
-      results.instagram = { status: 'success', message: `Connesso come ${response.data.name} (ID: ${response.data.id})` };
+      const response = await axios.get(`https://graph.facebook.com/v20.0/${instagramIgUserId}?fields=id,username&access_token=${instagramAccessToken}`);
+      results.instagram = { status: 'success', message: `Account IG: @${response.data.username} (ID: ${response.data.id})` };
     } catch (error) {
       const apiMsg = error.response?.data?.error?.message || error.message;
       results.instagram = { status: 'error', message: `Errore API Instagram: ${apiMsg}. Assicurati che l'account Instagram sia di tipo Business e collegato alla pagina Facebook.` };

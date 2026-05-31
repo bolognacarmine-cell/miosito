@@ -10,6 +10,24 @@
   status = 200
 
 [[redirects]]
+  from = "/api/auth/meta/login"
+  to = "/.netlify/functions/meta-login"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/auth/meta/callback"
+  to = "/.netlify/functions/meta-callback"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/instagram/test-post"
+  to = "/.netlify/functions/instagram-test-post"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
