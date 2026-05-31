@@ -36,7 +36,7 @@ exports.handler = async (event, context) => {
           enabled: true,
           platforms: [
             { name: 'Facebook', enabled: true },
-            { name: 'Instagram', enabled: false },
+            { name: 'Instagram', enabled: true },
             { name: 'Telegram', enabled: false }
           ]
         };

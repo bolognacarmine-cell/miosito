@@ -10,7 +10,7 @@
     },
     {
       "name": "Instagram",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "Telegram",
