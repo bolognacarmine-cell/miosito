@@ -365,6 +365,29 @@ async function fetchContentList(type) {
   }
 }
 
+const setAnchorVisibility = (hash, visible) => {
+  const anchors = document.querySelectorAll(`a[href="${hash}"]`);
+  anchors.forEach((a) => {
+    const wrapper = a.closest('li');
+    const target = wrapper || a;
+    target.style.display = visible ? '' : 'none';
+  });
+};
+
+const removeSection = (id) => {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+  setAnchorVisibility(`#${id}`, false);
+};
+
+const showSection = (id) => {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('hidden');
+  setAnchorVisibility(`#${id}`, true);
+};
+
+const isNonEmptyString = (v) => typeof v === 'string' && v.trim().length > 0;
+
 async function fetchContent() {
   const grid = document.getElementById('hardwareGrid');
   const vetrinaSection = document.getElementById('vetrina');
@@ -372,15 +395,19 @@ async function fetchContent() {
 
   try {
     const products = await fetchContentList('prodotti');
-    if (products.length === 0) {
-      vetrinaSection.style.display = 'none';
+    const visibleProducts = Array.isArray(products)
+      ? products.filter((p) => p && p.featured !== false && isNonEmptyString(p.title))
+      : [];
+
+    if (visibleProducts.length === 0) {
+      removeSection('vetrina');
       return;
     }
 
-    vetrinaSection.style.display = 'block';
+    showSection('vetrina');
     grid.innerHTML = '';
 
-    for (const product of products) {
+    for (const product of visibleProducts) {
       
       if (!product) continue;
       
@@ -457,7 +484,7 @@ async function fetchContent() {
     if (window.feather) feather.replace();
   } catch (error) {
     console.error('Errore nel caricamento dei contenuti:', error);
-    vetrinaSection.style.display = 'none';
+    removeSection('vetrina');
   }
 }
 
@@ -479,18 +506,19 @@ async function fetchOfferte() {
 
   try {
     const offers = await fetchContentList('offerte');
-    if (offers.length === 0) {
-      offerteSection.classList.add('hidden');
+    const visibleOffers = Array.isArray(offers)
+      ? offers.filter((o) => o && o.active === true && isNonEmptyString(o.title))
+      : [];
+
+    if (visibleOffers.length === 0) {
+      removeSection('offerte');
       return;
     }
 
-    offerteSection.classList.remove('hidden');
+    showSection('offerte');
     grid.innerHTML = '';
 
-    let rendered = 0;
-    for (const offer of offers) {
-      
-      if (!offer || !offer.active) continue;
+    for (const offer of visibleOffers) {
       
       let imageList = [];
       if (offer.images && Array.isArray(offer.images)) {
@@ -557,17 +585,15 @@ async function fetchOfferte() {
         </div>
       `;
       grid.appendChild(card);
-      rendered += 1;
       
       if (hasMultipleImages) {
         carouselRegistry.set(carouselId, new ProfessionalCarousel(card.querySelector('.pro-carousel')));
       }
     }
-    if (rendered === 0) offerteSection.classList.add('hidden');
     if (window.feather) feather.replace();
   } catch (error) {
     console.error('Errore nel caricamento delle offerte:', error);
-    offerteSection.classList.add('hidden');
+    removeSection('offerte');
   }
 }
 
@@ -578,16 +604,19 @@ async function fetchServizi() {
 
   try {
     const services = await fetchContentList('servizi');
-    if (services.length === 0) {
-      servicesSection.classList.add('hidden');
+    const visibleServices = Array.isArray(services)
+      ? services.filter((s) => s && isNonEmptyString(s.title) && isNonEmptyString(s.body))
+      : [];
+
+    if (visibleServices.length === 0) {
+      removeSection('services');
       return;
     }
 
-    servicesSection.classList.remove('hidden');
+    showSection('services');
     grid.innerHTML = '';
 
-    for (const service of services) {
-      if (!service) continue;
+    for (const service of visibleServices) {
       const title = String(service.title || '').trim();
       const body = String(service.body || '').trim();
       const icon = String(service.icon || 'cpu').trim();
@@ -618,7 +647,7 @@ async function fetchServizi() {
 
     if (window.feather) feather.replace();
   } catch (e) {
-    servicesSection.classList.add('hidden');
+    removeSection('services');
   }
 }
 
@@ -626,6 +655,9 @@ async function fetchServizi() {
 window.addEventListener('load', () => {
   document.body.classList.add('loaded');
   initObservers();
+  setAnchorVisibility('#services', false);
+  setAnchorVisibility('#offerte', false);
+  setAnchorVisibility('#vetrina', false);
   fetchServizi();
   fetchContent();
   fetchOfferte();

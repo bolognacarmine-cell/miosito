@@ -1,6 +1,9 @@
 [build]
   publish = "."
 
+[functions]
+  included_files = ["content/**"]
+
 [[plugins]]
   package = "./netlify/plugins/social-publish"
 
