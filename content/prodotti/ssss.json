@@ -1,8 +1,9 @@
 {
   "featured": true,
-  "publish_to_social": false,
+  "publish_to_social": true,
   "social_platforms": [
-    "Facebook"
+    "Facebook",
+    "Instagram"
   ],
   "title": "ssss",
   "category": "Hardware",
