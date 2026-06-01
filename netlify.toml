@@ -28,6 +28,12 @@
   force = true
 
 [[redirects]]
+  from = "/api/content/list"
+  to = "/.netlify/functions/content-list"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

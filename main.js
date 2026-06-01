@@ -348,29 +348,31 @@ async function fetchCarousel() {
   }
 }
 
+async function fetchContentList(type) {
+  try {
+    const res = await fetch(`/api/content/list?type=${encodeURIComponent(type)}&t=${Date.now()}`, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        Pragma: 'no-cache'
+      }
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data?.items) ? data.items : [];
+  } catch (e) {
+    return [];
+  }
+}
+
 async function fetchContent() {
   const grid = document.getElementById('hardwareGrid');
   const vetrinaSection = document.getElementById('vetrina');
   if (!grid || !vetrinaSection) return;
 
   try {
-    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/prodotti?t=${Date.now()}`);
-    if (res.status === 403) {
-      console.warn('GitHub API Rate Limit raggiunto. Impossibile caricare i prodotti dinamici.');
-      vetrinaSection.style.display = 'none';
-      return;
-    }
-    if (res.status === 404) {
-      console.log('Cartella prodotti non trovata o vuota su GitHub.');
-      vetrinaSection.style.display = 'none';
-      return;
-    }
-    if (!res.ok) throw new Error(`Fetch failed with status: ${res.status}`);
-    
-    const files = await res.json();
-    const productFiles = files.filter(f => f.name.endsWith('.json'));
-
-    if (productFiles.length === 0) {
+    const products = await fetchContentList('prodotti');
+    if (products.length === 0) {
       vetrinaSection.style.display = 'none';
       return;
     }
@@ -378,9 +380,7 @@ async function fetchContent() {
     vetrinaSection.style.display = 'block';
     grid.innerHTML = '';
 
-    for (const file of productFiles) {
-      const productRes = await fetch(file.download_url + '?t=' + Date.now());
-      const product = await productRes.json();
+    for (const product of products) {
       
       if (!product) continue;
       
@@ -478,16 +478,8 @@ async function fetchOfferte() {
   if (!grid || !offerteSection) return;
 
   try {
-    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/content/offerte?t=${Date.now()}`);
-    if (!res.ok) {
-      offerteSection.classList.add('hidden');
-      return;
-    }
-    
-    const files = await res.json();
-    const offerteFiles = files.filter(f => f.name.endsWith('.json'));
-
-    if (offerteFiles.length === 0) {
+    const offers = await fetchContentList('offerte');
+    if (offers.length === 0) {
       offerteSection.classList.add('hidden');
       return;
     }
@@ -495,9 +487,8 @@ async function fetchOfferte() {
     offerteSection.classList.remove('hidden');
     grid.innerHTML = '';
 
-    for (const file of offerteFiles) {
-      const offerRes = await fetch(file.download_url + '?t=' + Date.now());
-      const offer = await offerRes.json();
+    let rendered = 0;
+    for (const offer of offers) {
       
       if (!offer || !offer.active) continue;
       
@@ -566,11 +557,13 @@ async function fetchOfferte() {
         </div>
       `;
       grid.appendChild(card);
+      rendered += 1;
       
       if (hasMultipleImages) {
         carouselRegistry.set(carouselId, new ProfessionalCarousel(card.querySelector('.pro-carousel')));
       }
     }
+    if (rendered === 0) offerteSection.classList.add('hidden');
     if (window.feather) feather.replace();
   } catch (error) {
     console.error('Errore nel caricamento delle offerte:', error);
@@ -578,10 +571,62 @@ async function fetchOfferte() {
   }
 }
 
+async function fetchServizi() {
+  const grid = document.getElementById('servicesGrid');
+  const servicesSection = document.getElementById('services');
+  if (!grid || !servicesSection) return;
+
+  try {
+    const services = await fetchContentList('servizi');
+    if (services.length === 0) {
+      servicesSection.classList.add('hidden');
+      return;
+    }
+
+    servicesSection.classList.remove('hidden');
+    grid.innerHTML = '';
+
+    for (const service of services) {
+      if (!service) continue;
+      const title = String(service.title || '').trim();
+      const body = String(service.body || '').trim();
+      const icon = String(service.icon || 'cpu').trim();
+      const image = processImagePath(service.image);
+
+      const card = document.createElement('div');
+      card.className = 'service-card group relative bg-slate-900 rounded-3xl shadow-2xl overflow-hidden border border-slate-800 transition-all duration-500 hover:border-orange-500/50';
+      card.innerHTML = `
+        <div class="absolute inset-0 z-0">
+          <img src="${image}" alt="${title}" class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+        </div>
+        <div class="relative z-10 p-8 flex flex-col h-full">
+          <div class="bg-orange-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+            <i data-feather="${icon}" class="w-8 h-8 text-orange-500"></i>
+          </div>
+          <h3 class="text-xl font-black text-white mb-4 uppercase tracking-tight">${title}</h3>
+          <p class="text-slate-300 text-sm mb-8 leading-relaxed font-medium">${body}</p>
+          <div class="mt-auto">
+            <a href="#contact" class="text-orange-500 font-bold hover:text-orange-400 transition-colors inline-flex items-center gap-2 group/link">
+              Scopri di più <i data-feather="chevron-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    }
+
+    if (window.feather) feather.replace();
+  } catch (e) {
+    servicesSection.classList.add('hidden');
+  }
+}
+
 // Initialize everything on load
 window.addEventListener('load', () => {
   document.body.classList.add('loaded');
   initObservers();
+  fetchServizi();
   fetchContent();
   fetchOfferte();
   fetchCarousel();
