@@ -1,9 +1,9 @@
 :root {
   /* Colors - Dark Theme Base */
   --bg-primary: #04142f;
-  --bg-secondary: #0a2552;
-  --bg-slate-800: #102f63;
-  --bg-slate-700: #1a4585;
+  --bg-secondary: #08214a;
+  --bg-slate-800: #0a2552;
+  --bg-slate-700: #0f2f63;
   
   --text-main: #f8fafc;
   --text-muted: #b6c7e6;
@@ -16,8 +16,8 @@
   --accent-orange-dark: #ea580c;
   
   /* Brand Blue (if still needed) */
-  --pc-blue-600: #2563eb;
-  --pc-blue-700: #1d4ed8;
+  --pc-blue-600: #f97316;
+  --pc-blue-700: #ea580c;
 
   --border-color: rgba(51, 65, 85, 0.5);
   --radius-xl: 1.5rem;
@@ -461,9 +461,9 @@ footer {
 }
 
 /* --- CUSTOM TAILWIND COLORS (if needed in JS) --- */
-.text-pc-blue-600 { color: var(--accent-orange); }
-.bg-pc-blue-600 { background-color: var(--accent-orange); }
-.hover\:bg-pc-blue-700:hover { background-color: var(--accent-orange-dark); }
+.text-pc-blue-600 { color: var(--pc-blue-600); }
+.bg-pc-blue-600 { background-color: var(--pc-blue-600); }
+.hover\:bg-pc-blue-700:hover { background-color: var(--pc-blue-700); }
 
 #home {
   background:
