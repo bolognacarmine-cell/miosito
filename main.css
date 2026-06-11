@@ -504,6 +504,11 @@ footer {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
 }
 
+.pc-info-img--cover {
+  max-height: 380px;
+  object-fit: cover;
+}
+
 .pc-info-title {
   margin: 0 0 12px 0;
   color: #0066cc;
