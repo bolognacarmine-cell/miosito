@@ -700,6 +700,7 @@ if (window.netlifyIdentity) {
   let isSpeaking = false;
   let userInteracted = false;
   let autoSpoken = false;
+  let preferredVoice = null;
 
   const updateButton = () => {
     const icon = isSpeaking ? 'volume-x' : 'volume-2';
@@ -708,10 +709,46 @@ if (window.netlifyIdentity) {
     if (window.feather) feather.replace();
   };
 
+  const scoreVoice = (voice) => {
+    if (!voice) return -1;
+
+    const name = (voice.name || '').toLowerCase();
+    const lang = (voice.lang || '').toLowerCase();
+    let score = 0;
+
+    if (lang === 'it-it') score += 100;
+    else if (lang.startsWith('it')) score += 80;
+    else return -1;
+
+    if (/natural|neural|online|enhanced|premium/.test(name)) score += 40;
+    if (/microsoft|google/.test(name)) score += 20;
+    if (/elsa|cosimo|isabella|diego|luca/.test(name)) score += 15;
+    if (voice.default) score += 10;
+    if (voice.localService) score += 5;
+
+    return score;
+  };
+
   const pickItalianVoice = () => {
     const voices = synth.getVoices?.() || [];
-    // Preferisci "it-IT" se presente
-    return voices.find(v => (v.lang || '').toLowerCase().startsWith('it')) || null;
+    const ranked = voices
+      .map(voice => ({ voice, score: scoreVoice(voice) }))
+      .filter(item => item.score >= 0)
+      .sort((a, b) => b.score - a.score);
+
+    preferredVoice = ranked[0]?.voice || null;
+    return preferredVoice;
+  };
+
+  const normalizeSpeechText = (text) => {
+    if (!text) return '';
+
+    return text
+      .replace(/\s+/g, ' ')
+      .replace(/[•●▪◦]/g, ', ')
+      .replace(/\s*([,;:.!?])\s*/g, '$1 ')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
   };
 
   const stop = () => {
@@ -722,17 +759,18 @@ if (window.netlifyIdentity) {
   };
 
   const speak = (text) => {
-    if (!text) return;
+    const cleanText = normalizeSpeechText(text);
+    if (!cleanText) return;
     stop();
 
-    const u = new SpeechSynthesisUtterance(text);
+    const u = new SpeechSynthesisUtterance(cleanText);
     u.lang = 'it-IT';
-    u.rate = 1.02;
-    u.pitch = 1.0;
+    u.rate = 0.92;
+    u.pitch = 0.98;
     u.volume = 1.0;
 
-    // A volte le voci arrivano in async: proviamo comunque a selezionare la migliore
-    const voice = pickItalianVoice();
+    // A volte le voci arrivano in async: scegliamo la migliore disponibile.
+    const voice = preferredVoice || pickItalianVoice();
     if (voice) u.voice = voice;
 
     u.onend = () => {
@@ -752,9 +790,12 @@ if (window.netlifyIdentity) {
     synth.speak(u);
   };
 
-  // Se le voci vengono caricate dopo, aggiorniamo la selezione (senza interrompere)
+  // Se le voci vengono caricate dopo, aggiorniamo la selezione.
+  pickItalianVoice();
   if (typeof synth.onvoiceschanged !== 'undefined') {
-    synth.onvoiceschanged = () => {};
+    synth.onvoiceschanged = () => {
+      pickItalianVoice();
+    };
   }
 
   // Browser policy: per non rischiare blocchi, l'autoplay parte solo dopo una prima interazione utente
