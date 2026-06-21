@@ -683,3 +683,104 @@ if (window.netlifyIdentity) {
     }
   });
 }
+
+// ------------------------------
+// "Voce IA" (TTS) per portfolio
+// ------------------------------
+(() => {
+  const btn = document.getElementById('pcwork-tts-btn');
+  const speechEl = document.getElementById('pcwork-demo-speech');
+  const featured = document.getElementById('pcwork-demo-featured');
+  if (!btn || !speechEl || !featured) return;
+
+  const synth = window.speechSynthesis;
+  if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return;
+
+  let currentUtterance = null;
+  let isSpeaking = false;
+  let userInteracted = false;
+  let autoSpoken = false;
+
+  const updateButton = () => {
+    const icon = isSpeaking ? 'volume-x' : 'volume-2';
+    const label = isSpeaking ? 'Ferma' : 'Ascolta';
+    btn.innerHTML = `<i data-feather="${icon}" class="w-4 h-4"></i> ${label}`;
+    if (window.feather) feather.replace();
+  };
+
+  const pickItalianVoice = () => {
+    const voices = synth.getVoices?.() || [];
+    // Preferisci "it-IT" se presente
+    return voices.find(v => (v.lang || '').toLowerCase().startsWith('it')) || null;
+  };
+
+  const stop = () => {
+    try { synth.cancel(); } catch (_) {}
+    isSpeaking = false;
+    currentUtterance = null;
+    updateButton();
+  };
+
+  const speak = (text) => {
+    if (!text) return;
+    stop();
+
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'it-IT';
+    u.rate = 1.02;
+    u.pitch = 1.0;
+    u.volume = 1.0;
+
+    // A volte le voci arrivano in async: proviamo comunque a selezionare la migliore
+    const voice = pickItalianVoice();
+    if (voice) u.voice = voice;
+
+    u.onend = () => {
+      isSpeaking = false;
+      currentUtterance = null;
+      updateButton();
+    };
+    u.onerror = () => {
+      isSpeaking = false;
+      currentUtterance = null;
+      updateButton();
+    };
+
+    currentUtterance = u;
+    isSpeaking = true;
+    updateButton();
+    synth.speak(u);
+  };
+
+  // Se le voci vengono caricate dopo, aggiorniamo la selezione (senza interrompere)
+  if (typeof synth.onvoiceschanged !== 'undefined') {
+    synth.onvoiceschanged = () => {};
+  }
+
+  // Browser policy: per non rischiare blocchi, l'autoplay parte solo dopo una prima interazione utente
+  const markInteractionOnce = () => { userInteracted = true; };
+  document.addEventListener('click', markInteractionOnce, { once: true, capture: true });
+  document.addEventListener('keydown', markInteractionOnce, { once: true, capture: true });
+
+  btn.addEventListener('click', () => {
+    userInteracted = true;
+    if (isSpeaking) stop();
+    else speak(speechEl.textContent.trim());
+  });
+
+  // Auto-avvio: appena l'utente ha interagito e la card entra in viewport (una sola volta per sessione)
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      if (autoSpoken) return;
+      if (!userInteracted) return;
+      autoSpoken = true;
+      speak(speechEl.textContent.trim());
+    });
+  }, { threshold: 0.35 });
+  obs.observe(featured);
+
+  // Stop se si cambia pagina/sezione rapidamente
+  window.addEventListener('beforeunload', stop);
+  updateButton();
+})();
