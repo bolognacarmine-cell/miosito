@@ -58,6 +58,17 @@
 .portfolio-card p{font-size:14px;color:var(--text-2);line-height:1.65;margin:0}
 .portfolio-card .tech{margin-top:14px;font-size:13px;color:var(--text-3)}
 .pcwork-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);font-size:12px;color:var(--text-2)}
+.seo-head{display:grid;grid-template-columns:1.35fr 1fr;gap:44px;align-items:end}
+.seo-stat{padding:26px 30px;border-radius:var(--radius);background:var(--grad);color:#fff;box-shadow:var(--shadow-lg)}
+.seo-stat .n{font-family:var(--font-display);font-size:46px;font-weight:800;line-height:1;letter-spacing:-.03em}
+.seo-stat .l{font-size:13px;line-height:1.5;color:rgba(255,255,255,.85);margin-top:10px}
+.seo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:38px}
+.seo-card{padding:28px 24px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.seo-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.seo-card .ic{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--grad-soft);border:1px solid var(--border)}
+.seo-card .idx{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2)}
+.seo-card h4{font-size:19px;margin:2px 0 0}
+.seo-card p{font-size:13.5px;color:var(--text-2);line-height:1.6;margin:0}
 </style>
 </head>
 <body data-themes="corporate-clean,trust-blue,minimal-white,navy-formal" data-theme-base="./_shared/themes/">
@@ -187,14 +198,45 @@
     <div class="notes">Non si tratta di fare più lavoro, ma di far lavorare gli asset già esistenti: ogni automazione è una semplificazione.</div>
   </section>
 
-  <section class="slide center tc" data-title="Il controllo SEO">
-    <div style="max-width:900px;margin:0 auto">
-      <p class="kicker anim-fade-down" data-anim="fade-down">Controllo SEO</p>
-      <h1 class="h1 anim-rise-in" data-anim="rise-in" style="font-size:96px">La SEO non è separata dalle vendite. È il motore che continua a portare visite <span class="gradient-text">senza pagare ogni click</span></h1>
-      <div class="divider-accent" style="margin:24px auto"></div>
-      <p class="lede" style="margin:0 auto">Se il catalogo è ben strutturato, veloce e indicizzato bene, il sito lavora anche quando le campagne rallentano.</p>
-      <div class="notes">La SEO non è un reparto a parte: è un investimento che rende più forte l'intera presenza online.</div>
+  <section class="slide" data-title="Il controllo SEO">
+    <div class="seo-head">
+      <div>
+        <p class="kicker">Controllo SEO</p>
+        <h2 class="h2">La SEO è il motore che continua a portare visite senza pagare ogni click</h2>
+        <p class="dim" style="font-size:18px;line-height:1.6;margin-top:6px">Se il catalogo è ben strutturato, veloce e indicizzato bene, il sito lavora anche quando le campagne rallentano.</p>
+      </div>
+      <div class="seo-stat">
+        <div class="n">24/7</div>
+        <div class="l">Il traffico organico continua ad arrivare nel tempo, anche senza budget pubblicitario attivo.</div>
+      </div>
     </div>
+    <div class="seo-grid anim-stagger-list" data-anim-target>
+      <div class="seo-card">
+        <div class="ic">🧩</div>
+        <div class="idx">01</div>
+        <h4>Struttura e contenuti</h4>
+        <p>Title, meta, H1 e schede prodotto chiare: ogni pagina comunica il valore giusto.</p>
+      </div>
+      <div class="seo-card">
+        <div class="ic">⚡</div>
+        <div class="idx">02</div>
+        <h4>Velocità e mobile</h4>
+        <p>Caricamento rapido ed esperienza fluida da smartphone, dove arriva la maggior parte del traffico.</p>
+      </div>
+      <div class="seo-card">
+        <div class="ic">🛠️</div>
+        <div class="idx">03</div>
+        <h4>Base tecnica</h4>
+        <p>Indicizzazione, sitemap, redirect e 404 sotto controllo per non disperdere visite.</p>
+      </div>
+      <div class="seo-card">
+        <div class="ic">📊</div>
+        <div class="idx">04</div>
+        <h4>Monitoraggio continuo</h4>
+        <p>Keyword e pagine riviste ogni mese per capire cosa spingere e cosa correggere.</p>
+      </div>
+    </div>
+    <div class="notes">La SEO non è un reparto a parte: è un investimento che rende più forte l'intera presenza online.</div>
   </section>
 
   <section class="slide" data-title="Cosa controlliamo ogni mese">
@@ -308,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function () {
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
       xAxis: {
         type: 'category',
-        data: ['Visibilità online', 'Interazione social', 'Automazioni utili', 'Crescita dell'attività'],
+        data: ["Visibilità online", "Interazione social", "Automazioni utili", "Crescita dell'attività"],
         axisLabel: { color: c['--text-2'], interval: 0, rotate: 0, fontSize: 12 },
         axisLine: { lineStyle: { color: c['--border'] } }
       },
